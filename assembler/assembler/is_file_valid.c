@@ -14,6 +14,10 @@
 #include "asm.h"
 #include "op.h"
 
+/*
+*	validation du fichier si c'est bon, creation du champion
+*/
+
 int			*create_champion(char **name, t_label *first)
 {
 	if (first && name)

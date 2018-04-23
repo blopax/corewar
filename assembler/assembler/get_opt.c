@@ -14,39 +14,43 @@
 #include "asm.h"
 #include "op.h"
 
+/*
+*	Test de chaque op ,le retour sera si l'element est valide ou non (fonction en cours checkx_x.c)
+*/
+
 int		all_op(char *line)
 {
-	if (!ft_strncmp(line, OP1, 4) && line[4] != ':' && ft_iswhitespace(line[4]))
+	if (!ft_strncmp(line, OP1, 4) && line[4] != LABEL_CHAR && ft_iswhitespace(line[4]))
 		return (1);
-	if (!ft_strncmp(line, OP2, 2) && line[2] != ':'  && ft_iswhitespace(line[2]))
+	if (!ft_strncmp(line, OP2, 2) && line[2] != LABEL_CHAR  && ft_iswhitespace(line[2]))
 		return (2);
-	if (!ft_strncmp(line, OP3, 2) && line[2] != ':' && ft_iswhitespace(line[2]))
+	if (!ft_strncmp(line, OP3, 2) && line[2] != LABEL_CHAR && ft_iswhitespace(line[2]))
 		return (3);
-	if (!ft_strncmp(line, OP4, 3) && line[3] != ':' && ft_iswhitespace(line[3]))
+	if (!ft_strncmp(line, OP4, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
 		return (4);
-	if (!ft_strncmp(line, OP5, 3) && line[3] != ':' && ft_iswhitespace(line[3]))
+	if (!ft_strncmp(line, OP5, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
 		return (5);
-	if (!ft_strncmp(line, OP6, 3) && line[3] != ':' && ft_iswhitespace(line[3]))
+	if (!ft_strncmp(line, OP6, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
 		return (6);
-	if (!ft_strncmp(line, OP7, 2) && line[2] != ':' && ft_iswhitespace(line[2]))
+	if (!ft_strncmp(line, OP7, 2) && line[2] != LABEL_CHAR && ft_iswhitespace(line[2]))
 		return (7);
-	if (!ft_strncmp(line, OP8, 3) && line[3] != ':' && ft_iswhitespace(line[3]))
+	if (!ft_strncmp(line, OP8, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
 		return (8);
-	if (!ft_strncmp(line, OP9, 4) && line[4] != ':' && ft_iswhitespace(line[4]))
+	if (!ft_strncmp(line, OP9, 4) && line[4] != LABEL_CHAR && ft_iswhitespace(line[4]))
 		return (9);
-	if (!ft_strncmp(line, OP10, 3) && line[3] != ':' && ft_iswhitespace(line[3]))
+	if (!ft_strncmp(line, OP10, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
 		return (10);
-	if (!ft_strncmp(line, OP11, 3) && line[3] != ':' && ft_iswhitespace(line[3]))
+	if (!ft_strncmp(line, OP11, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
 		return (11);
-	if (!ft_strncmp(line, OP12, 4) && line[4] != ':' && ft_iswhitespace(line[4]))
+	if (!ft_strncmp(line, OP12, 4) && line[4] != LABEL_CHAR && ft_iswhitespace(line[4]))
 		return (12);;
-	if (!ft_strncmp(line, OP13, 3) && line[3] != ':' && ft_iswhitespace(line[3]))
+	if (!ft_strncmp(line, OP13, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
 		return (13);
-	if (!ft_strncmp(line, OP14, 4) && line[4] != ':' && ft_iswhitespace(line[4]))
+	if (!ft_strncmp(line, OP14, 4) && line[4] != LABEL_CHAR && ft_iswhitespace(line[4]))
 		return (14);
-	if (!ft_strncmp(line, OP15, 5) && line[5] != ':' && ft_iswhitespace(line[5]))
+	if (!ft_strncmp(line, OP15, 5) && line[5] != LABEL_CHAR && ft_iswhitespace(line[5]))
 		return (15);
-	if (!ft_strncmp(line, OP16, 3) && line[3] != ':' && ft_iswhitespace(line[5]))
+	if (!ft_strncmp(line, OP16, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[5]))
 		return (16);
 	return (0);
 }
@@ -66,6 +70,11 @@ int		valid_opt(char **file, int *line, t_label *act)
 	return (i);
 }
 
+/*
+*	On regarde qu'on ne croise pas un autre label ni une opération non valide
+*	On skip les lignes vide ou commentaire	
+*/
+
 int		get_act_opt(char **file, int *line, t_label *act)
 {
 	while (file[*line])
@@ -80,6 +89,11 @@ int		get_act_opt(char **file, int *line, t_label *act)
 	}
 	return (0);
 }
+
+/*
+*	On rajoute les opérations pour le label en cours, jusqu'à ce qu'une opération ne soit pas valide
+*	qu'on croise un autre label
+*/
 
 int		get_opt(char **file, int *line, t_label *act)
 {

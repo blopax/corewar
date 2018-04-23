@@ -116,6 +116,10 @@ len is 2048");
 	return (NULL);
 }
 
+/*
+*	verif du nom et commentaire si un des deux renvoient NULL, erreur
+*/
+
 char	**check_name_and_comment(char **file, int *act)
 {
 	char	**champion_describe;

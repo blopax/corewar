@@ -14,6 +14,10 @@
 #include "asm.h"
 #include "op.h"
 
+/*
+*	si file est null, erreur, sinon je l'imprime dans le fichier
+*/
+
 int		main(int ac, char **av)
 {
 	int		*file;
