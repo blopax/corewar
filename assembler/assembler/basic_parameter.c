@@ -1,3 +1,8 @@
+#include "op.h"
+#include "asm.h"
+#include "ft_printf.h"
+
+
 int		is_d2(char *line)
 {
 	int		i;
@@ -8,12 +13,15 @@ int		is_d2(char *line)
 			return (0);
 		else
 			line++;
-	if (line[i] == DIRECT_CHAR && line[i + 1] == LABEL_CHAR && i += 2)
+	if (line[i] == DIRECT_CHAR && line[i + 1] == LABEL_CHAR)
+	{
+		i += 2;
 		while (ft_isascii(line[i]))
 			i++;
+	}
 	else
 		return (0);
-	return (i);
+	return (i - 2);
 }
 
 int		is_d4(char *line)
@@ -31,7 +39,7 @@ int		is_d4(char *line)
 			i++;
 	else
 		return (0);
-	return (i);
+	return (i - 1);
 }
 
 int		is_rg(char *line)

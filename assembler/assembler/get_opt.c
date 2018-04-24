@@ -21,9 +21,9 @@
 int		all_op(char *line)
 {
 	if (!ft_strncmp(line, OP1, 4) && line[4] != LABEL_CHAR && ft_iswhitespace(line[4]))
-		return (1);
+		return (first_case(line, 5));
 	if (!ft_strncmp(line, OP2, 2) && line[2] != LABEL_CHAR  && ft_iswhitespace(line[2]))
-		return (2);
+		return (second_case(line, 3));
 	if (!ft_strncmp(line, OP3, 2) && line[2] != LABEL_CHAR && ft_iswhitespace(line[2]))
 		return (3);
 	if (!ft_strncmp(line, OP4, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
@@ -66,7 +66,6 @@ int		valid_opt(char **file, int *line, t_label *act)
 	while (file[*line][i] && ft_iswhitespace(file[*line][i]))
 		i++;
 	i = all_op(&file[*line][i]);
-	
 	return (i);
 }
 
@@ -83,7 +82,10 @@ int		get_act_opt(char **file, int *line, t_label *act)
 		if (label_name_valid(file[*line], NULL))
 			return (1);
 		if (!valid_opt(file, line, act))
+		{
+			ft_printf("Retour -1 %s\n", file[*line]);
 			return (-1);
+		}
 		*line += 1;
 		act->size = 1;
 	}
