@@ -117,7 +117,7 @@ all : comp $(NAME)
 	@printf "\033[0;31mCompilation of \033[0m\033[0;32m$<\033[0m\r"
 
 comp :
-	@echo "\033[0;35mBegin of compilation of library\033[0m"
+		@echo "\033[0;35mBegin of compilation of library\033[0m"
 
 $(NAME) : $(COMP_NAME)
 	@ar rc $(NAME) $(COMP_NAME)

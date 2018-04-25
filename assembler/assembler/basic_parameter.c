@@ -29,17 +29,18 @@ int		is_d4(char *line)
 	int		i;
 
 	i = 0;
-	while (!*line || ft_iswhitespace(*line))
-		if (!*line)
-			return (0);
-		else
+	while (ft_iswhitespace(*line) && *line)
 			line++;
+	if (!*line)
+		return (0);
 	if (line[i] == DIRECT_CHAR && ++i)
 		while (ft_isdigit(line[i]))
 			i++;
 	else
 		return (0);
-	return (i - 1);
+	if (i > 11 || (i == 11 && ft_strncmp(line, "%2147483647", 11) > 0))
+		return (0);
+	return (i);
 }
 
 int		is_rg(char *line)
@@ -47,15 +48,16 @@ int		is_rg(char *line)
 	int		i;
 
 	i = 0;
-	while (!*line || ft_iswhitespace(*line))
-		if (!*line)
-			return (0);
-		else
+	while (*line && ft_iswhitespace(*line))
 			line++;
+	if (!*line)
+		return (0);
 	if (line[i] == 'r' && ++i)
 		while (ft_isdigit(line[i]))
 			i++;
 	else
+		return (0);
+	if (i > 3 || (i == 3 && ft_strncmp(line, "r16", 3) > 0))
 		return (0);
 	return (i);
 }
@@ -74,6 +76,8 @@ int		is_id(char *line)
 		while (ft_isdigit(line[i]))
 			i++;
 	else
+		return (0);
+	if (i > 10 || (i == 10 && ft_strncmp(line, "2147483647", 10) > 0))
 		return (0);
 	return (i);
 }

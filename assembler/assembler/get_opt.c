@@ -25,11 +25,11 @@ int		all_op(char *line)
 	if (!ft_strncmp(line, OP2, 2) && line[2] != LABEL_CHAR  && ft_iswhitespace(line[2]))
 		return (second_case(line, 3));
 	if (!ft_strncmp(line, OP3, 2) && line[2] != LABEL_CHAR && ft_iswhitespace(line[2]))
-		return (3);
+		return (third_case(line, 3));
 	if (!ft_strncmp(line, OP4, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
-		return (4);
+		return (fourth_case(line, 4));
 	if (!ft_strncmp(line, OP5, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
-		return (5);
+		return (fourth_case(line, 4));
 	if (!ft_strncmp(line, OP6, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
 		return (6);
 	if (!ft_strncmp(line, OP7, 2) && line[2] != LABEL_CHAR && ft_iswhitespace(line[2]))
