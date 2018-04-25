@@ -40,15 +40,27 @@ int			is_letter_in_label_name(char test)
 int			label_name_valid(char *line, char **name)
 {
 	int		i;
+	int		j;
 
 	i = 0;
+	j = 0;
 	while (ft_iswhitespace(line[i]))
 		i++;
-	while (line[i] && is_letter_in_label_name(line[i]))
-		i++;
-	if (line[i] == ':')
-		if (name && (*name = ft_strndup(line, i)))
-			return (1);
+	while (line[i + j] && is_letter_in_label_name(line[i + j]))
+		j++;
+	if (line[i + j] == LABEL_CHAR)
+	{
+		if (name)
+		{
+			*name = ft_strndup(&line[i], j);
+			while (j != -1)
+			{
+				line[i + j] = ' ';
+				j--;
+			}
+		}
+		return (1);
+	}
 	return (0);
 }
 
