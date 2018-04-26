@@ -110,3 +110,61 @@ int		eighth_case(char *line, int start)
 	}
 	return (0);
 }
+
+/*
+*	fork : DIR2
+*/
+
+int		nineth_case(char *line, int start)
+{
+		int		len;
+
+	while (ft_iswhitespace(line[start]))
+		start++;
+	if (!(len = is_d2(&line[start])) && !(len = is_d4(&line[start])))
+		return (0);
+	while (line[start] != DIRECT_CHAR)
+		line++;
+	while (line[start + len] && ft_iswhitespace(line[start + len]))
+		start++;
+	if (!line[start + len] || line[start + len] == '#')
+		return (1);
+	return (0);
+}
+
+/*
+* lld OCP : DIR2/ID, RG
+*/
+
+int		tenth_case(char *line, int start)
+{
+	char	**split;
+	int		len;
+
+	while (ft_iswhitespace(line[start]))
+		start++;
+	split = ft_strsplit(&line[start], SEPARATOR_CHAR);
+	if (split && split[0] && split[1])
+	{
+		if ((len = is_id(split[0])) || (len = is_d4(split[0])) || (len = is_d2(split[0])))
+		{
+			if (split[0][len])
+				return (0);
+		}
+		else
+			return (0);
+		if ((len = is_rg(split[1])))
+		{
+			while (split[1][len])
+				if (split[1][len] == '#')
+					return (1);
+				else if (!ft_iswhitespace(split[1][len]))
+					return (0);
+				else
+					len++;
+			if (!split[2] && nb_letter(&line[start], SEPARATOR_CHAR) == 1)
+				return (1);
+		}
+	}
+	return (0);
+}

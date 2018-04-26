@@ -57,7 +57,7 @@ int		second_case(char *line, int start)
 	split = ft_strsplit(&line[start], SEPARATOR_CHAR);
 	if (split && split[0] && split[1])
 	{
-		if (((len = is_id(split[0])) || (len = is_d4(split[0]))))
+		if (((len = is_id(split[0])) || (len = is_d4(split[0])) || (len = is_d2(split[0]))))
 		{
 			if (split[0][len])
 				return (0);

@@ -20,3 +20,8 @@ live:	live %2147483647
 		ldi %123,123,r5
 		ldi %:live,%1234,r5
 		sti	r2,r2,%12
+		fork %:live
+		fork %1234
+		lld	 %:live,r2
+		lld	 %123,r3
+		lld	 123,r4

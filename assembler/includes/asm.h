@@ -59,6 +59,8 @@ int		fifth_case(char *line, int start);
 int		sixth_case(char *line, int start);
 int		seventh_case(char *line, int start);
 int		eighth_case(char *line, int start);
+int		nineth_case(char *line, int start);
+int		tenth_case(char *line, int start);
 int		is_d2(char *line);
 int		is_d4(char *line);
 int		is_rg(char *line);

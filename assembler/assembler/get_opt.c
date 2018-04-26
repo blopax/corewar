@@ -43,9 +43,9 @@ int		all_op(char *line)
 	if (!ft_strncmp(line, OP11, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
 		return (eighth_case(line, 4));
 	if (!ft_strncmp(line, OP12, 4) && line[4] != LABEL_CHAR && ft_iswhitespace(line[4]))
-		return (12);;
+		return (nineth_case(line, 5));
 	if (!ft_strncmp(line, OP13, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
-		return (13);
+		return (tenth_case(line, 4));
 	if (!ft_strncmp(line, OP14, 4) && line[4] != LABEL_CHAR && ft_iswhitespace(line[4]))
 		return (14);
 	if (!ft_strncmp(line, OP15, 5) && line[5] != LABEL_CHAR && ft_iswhitespace(line[5]))
