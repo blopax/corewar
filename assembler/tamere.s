@@ -3,12 +3,20 @@ OK OK OK
 KO KO KO"
 .comment "salut ca marche bien ou pas?"
 
-live %2147483647
-live %1
-live %1
-ld 9898,r1
-ld %2147483647,r2
-st r1,r2
-st r1,2147483647
-and r1,r2,r3
-sub r1,r2,r3
+live:	live %2147483647
+		live %1
+		live %1
+		ld 9898,r1
+		ld %2147483647,r2
+		st	r1,r2
+		st	r1,2147483647
+		and	r1,r2,r3
+		sub	r1,r2,r3
+		and %281,r2,r3
+		zjmp %:live
+		ldi r1,%:live,r3
+		ldi r2,123,r3
+		ldi	123,%:live,r4
+		ldi %123,123,r5
+		ldi %:live,%1234,r5
+		sti	r2,r2,%12

@@ -50,6 +50,7 @@ t_label	*get_label(char **name, int line);
 int		get_opt(char **file, int *line, t_label *act);
 int		label_name_valid(char *file, char **name);
 void	skip_comment_and_empty_line(char **file, int *line);
+int		nb_letter(char *line, char c);
 int		first_case(char *line, int start);
 int		second_case(char *line, int start);
 int		third_case(char *line, int start);
