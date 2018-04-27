@@ -25,3 +25,8 @@ live:	live %2147483647
 		lld	 %:live,r2
 		lld	 %123,r3
 		lld	 123,r4
+		lldi r1,%:live,r3
+		lldi r2,123,r3
+		lldi 123,%:live,r4
+		lldi %123,123,r5
+		lldi %:live,%1234,r5

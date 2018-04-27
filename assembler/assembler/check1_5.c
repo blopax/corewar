@@ -23,6 +23,8 @@ int		nb_letter(char *line, char c)
 
 /*
 *	live : D4
+*	zjmp : D2
+*	fork : D2
 */
 
 int		first_case(char *line, int start)
@@ -31,8 +33,7 @@ int		first_case(char *line, int start)
 
 	while (ft_iswhitespace(line[start]))
 		start++;
-	len = is_d4(&line[start]);
-	if (!len)
+	if (!(len = is_d4(&line[start])) && !(len = is_d2(&line[start])))
 		return (0);
 	while (line[start] != DIRECT_CHAR)
 		line++;
@@ -44,7 +45,8 @@ int		first_case(char *line, int start)
 }
 
 /*
-*	load OCP : ID/D4, RG
+*	ld		OCP : ID/D4, RG
+*	lld		OCP : ID/D2, RG
 */
 
 int		second_case(char *line, int start)
@@ -178,8 +180,6 @@ int		fifth_case(char *line, int start)
 			return (0);
 		if ((len = is_rg(split[1])) || (len = is_id(split[1])) || (len = is_d4(split[1])) || (len = is_d2(split[1])))
 		{
-			if (split[1][len])
-				ft_printf("ERROR %d %c %zu\n", len,split[1][len], ft_strlen(split[1]));
 			if (split[1][len])
 				return (0);
 		}
