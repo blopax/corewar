@@ -40,6 +40,11 @@ typedef struct		s_label
 	struct	s_label		*next;
 }					t_label;
 
+typedef struct 		s_op
+{
+	
+}					t_op;
+
 int		valid_name(char *name);
 int		*val_asm(int fd);
 void	print_in_file(int *to_print, char *name);

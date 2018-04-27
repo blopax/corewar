@@ -10,7 +10,8 @@ int		is_d2(char *line)
 	i = 0;
 	if (!*line)
 		return (0);
-	if (line[i] == DIRECT_CHAR && line[i + 1] == LABEL_CHAR && is_letter_in_label_name(line[i + 2]))
+	if (line[i] == DIRECT_CHAR && line[i + 1] == LABEL_CHAR &&
+		is_letter_in_label_name(line[i + 2]))
 	{
 		i += 2;
 		while (is_letter_in_label_name(line[i]))
@@ -30,7 +31,8 @@ int		is_d4(char *line)
 	i = 0;
 	if (!*line)
 		return (0);
-	if (line[i] == DIRECT_CHAR && ++i && (ft_isdigit(line[i]) || (line[i] == '-' && ft_isdigit(line[i + 1]))))
+	if (line[i] == DIRECT_CHAR && ++i && 
+		(ft_isdigit(line[i]) || (line[i] == '-' && ft_isdigit(line[i + 1]))))
 	{
 		if (line[i] == '-')
 			i++;
