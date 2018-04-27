@@ -25,27 +25,27 @@ int		all_op(char *line)
 	if (!ft_strncmp(line, OP2, 2) && line[2] != LABEL_CHAR  && ft_iswhitespace(line[2]))
 		return (second_case(line, 3));
 	if (!ft_strncmp(line, OP3, 2) && line[2] != LABEL_CHAR && ft_iswhitespace(line[2]))
-		return (3);
+		return (third_case(line, 3));
 	if (!ft_strncmp(line, OP4, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
-		return (4);
+		return (fourth_case(line, 4));
 	if (!ft_strncmp(line, OP5, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
-		return (5);
+		return (fourth_case(line, 4));
 	if (!ft_strncmp(line, OP6, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
-		return (6);
+		return (fifth_case(line, 4));
 	if (!ft_strncmp(line, OP7, 2) && line[2] != LABEL_CHAR && ft_iswhitespace(line[2]))
-		return (7);
+		return (fifth_case(line, 3));
 	if (!ft_strncmp(line, OP8, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
-		return (8);
+		return (fifth_case(line, 4));
 	if (!ft_strncmp(line, OP9, 4) && line[4] != LABEL_CHAR && ft_iswhitespace(line[4]))
-		return (9);
+		return (sixth_case(line, 5));
 	if (!ft_strncmp(line, OP10, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
-		return (10);
+		return (seventh_case(line, 4));
 	if (!ft_strncmp(line, OP11, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
-		return (11);
+		return (eighth_case(line, 4));
 	if (!ft_strncmp(line, OP12, 4) && line[4] != LABEL_CHAR && ft_iswhitespace(line[4]))
-		return (12);;
+		return (nineth_case(line, 5));
 	if (!ft_strncmp(line, OP13, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
-		return (13);
+		return (tenth_case(line, 4));
 	if (!ft_strncmp(line, OP14, 4) && line[4] != LABEL_CHAR && ft_iswhitespace(line[4]))
 		return (14);
 	if (!ft_strncmp(line, OP15, 5) && line[5] != LABEL_CHAR && ft_iswhitespace(line[5]))
@@ -82,10 +82,7 @@ int		get_act_opt(char **file, int *line, t_label *act)
 		if (label_name_valid(file[*line], NULL))
 			return (1);
 		if (!valid_opt(file, line, act))
-		{
-			ft_printf("Retour -1 %s\n", file[*line]);
 			return (-1);
-		}
 		*line += 1;
 		act->size = 1;
 	}
@@ -105,6 +102,5 @@ int		get_opt(char **file, int *line, t_label *act)
 	ft_printf("LABEL %s\n", act->name);
 	while (file[*line] && !ret)
 		ret = get_act_opt(file, line, act);
-	ft_printf("%d %d\n", *line, ret);
 	return (ret);
 }
