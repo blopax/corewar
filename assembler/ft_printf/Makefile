@@ -114,7 +114,7 @@ all : comp $(NAME)
 
 %.o : %.c
 	@gcc $(FLAGS) -o $@ -c $< -Iincludes
-	@printf "\033[0;31mCompilation of \033[0m\033[0;32m$<\033[0m\r"
+	@printf "\033[0;31mCompilation of \033[0m\033[0;32m$<\033[0m            \r"
 
 comp :
 		@echo "\033[0;35mBegin of compilation of library\033[0m"
