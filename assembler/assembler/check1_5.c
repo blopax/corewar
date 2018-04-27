@@ -21,6 +21,39 @@ int		nb_letter(char *line, char c)
 	return (nb);
 }
 
+char	*after_white_space(char *str)
+{
+	while (ft_iswhitespace(*str))
+		str++;
+	return (str);
+}
+
+int		check_param(char *str, int test, char **ret)
+{
+	int		len;
+	char	*tmp;
+
+	if ((test & 1) && (len = is_rg(str)) && (tmp = after_white_space(&str[len])))
+	{
+			if (len && (!*tmp || *tmp == '#') && (*ret = tmp))
+				return (len);
+			return (0);
+	}
+	if ((test & 2) && ((len = is_d2(str)) || (len = is_d4(str))) && (tmp = after_white_space(&str[len])))
+	{
+		if (len && (!*tmp || *tmp == '#') && (*ret = tmp))
+			return (len);
+		return (0);
+	}
+	if ((test & 4) && (len = is_id(str)) && (tmp = after_white_space(&str[len])))
+	{
+		if (len && (!*tmp || *tmp == '#') && (*ret = tmp))
+			return (len);
+		return (0);
+	}
+	return (0);
+}
+
 /*
 *	live : D4
 *	zjmp : D2
@@ -30,16 +63,11 @@ int		nb_letter(char *line, char c)
 int		first_case(char *line, int start)
 {
 	int		len;
+	char	*tmp;
 
-	while (ft_iswhitespace(line[start]))
-		start++;
-	if (!(len = is_d4(&line[start])) && !(len = is_d2(&line[start])))
-		return (0);
-	while (line[start] != DIRECT_CHAR)
-		line++;
-	while (line[start + len] && ft_iswhitespace(line[start + len]))
-		start++;
-	if (!line[start + len] || line[start + len] == '#')
+	tmp = after_white_space(&line[start]);
+	if ((len = check_param(tmp, 2, &tmp)))
+	if (!*tmp || *tmp== '#')
 		return (1);
 	return (0);
 }
@@ -53,31 +81,19 @@ int		second_case(char *line, int start)
 {
 	char	**split;
 	int		len;
+	char	*tmp;
 
-	while (ft_iswhitespace(line[start]))
-		start++;
-	split = ft_strsplit(&line[start], SEPARATOR_CHAR);
+	split = ft_strsplit(after_white_space(&line[start]), SEPARATOR_CHAR);
 	if (split && split[0] && split[1])
 	{
-		if (((len = is_id(split[0])) || (len = is_d4(split[0])) || (len = is_d2(split[0]))))
-		{
-			if (split[0][len])
-				return (0);
-		}
-		else
+		len = check_param(after_white_space(split[0]), 6, &tmp);
+		if (!len || *tmp)
 			return (0);
-		if ((len = is_rg(split[1])))
-		{
-			while (split[1][len])
-				if (split[1][len] == '#')
-					return (1);
-				else if (!ft_iswhitespace(split[1][len]))
-					return (0);
-				else
-					len++;
-			if (!split[2] && nb_letter(&line[start], SEPARATOR_CHAR) == 1)
-				return (1);
-		}
+		len = check_param(after_white_space(split[1]), 1, &tmp);
+		if (!len || (*tmp && *tmp != '#'))
+			return (0);
+		if (!split[2] && nb_letter(&line[start], SEPARATOR_CHAR) == 1)
+			return (1);
 	}
 	return (0);
 }
@@ -90,31 +106,19 @@ int		third_case(char *line, int start)
 {
 	char	**split;
 	int		len;
+	char	*tmp;
 
-	while (ft_iswhitespace(line[start]))
-		start++;
-	split = ft_strsplit(&line[start], ',');
+	split = ft_strsplit(after_white_space(&line[start]), ',');
 	if (split && split[0] && split[1])
 	{
-		if ((len = is_rg(split[0])))
-		{
-			if (split[0][len])
-				return (0);
-		}
-		else
+		len = check_param(after_white_space(split[0]), 1, &tmp);
+		if (!len || *tmp)
 			return (0);
-		if ((len = is_rg(split[1])) || (len = (is_id(split[1]))))
-		{
-			while (split[1][len])
-				if (split[1][len] == '#')
-					return (1);
-				else if (!ft_iswhitespace(split[1][len]))
-					return (0);
-				else
-					len++;
-			if (!split[2] && nb_letter(&line[start], SEPARATOR_CHAR) == 1)
-				return (1);
-		}
+		len = check_param(after_white_space(split[1]), 5, &tmp);
+		if (!len || (*tmp && *tmp != '#'))
+			return (0);
+		if (!split[2] && nb_letter(&line[start], SEPARATOR_CHAR) == 1)
+			return (1);
 	}
 	return (0);
 }
@@ -127,32 +131,22 @@ int		fourth_case(char *line, int start)
 {
 	char 	**split;
 	int		len;
-	int		len2;
+	char	*tmp;
 
-	while (ft_iswhitespace(line[start]))
-		start++;
-	split = ft_strsplit(&line[start], ',');
+	split = ft_strsplit(after_white_space(&line[start]), ',');
 	if (split && split[0] && split[1] && split[2])
 	{
-		if ((len = is_rg(split[0])) && (len2 = is_rg(split[1])))
-		{
-			if (split[0][len] || split[1][len2])
-				return (0);
-		}
-		else
+		len = check_param(after_white_space(split[0]), 1, &tmp);
+		if (!len || *tmp)
 			return (0);
-		if ((len = is_rg(split[2])))
-		{
-			while (split[2][len])
-				if (split[2][len] == '#')
-					return (1);
-				else if (!ft_iswhitespace(split[2][len]))
-					return (0);
-				else
-					len++;
-			if (!split[3] && nb_letter(&line[start], SEPARATOR_CHAR) == 2)
-				return (1);
-		}
+		len = check_param(after_white_space(split[1]), 1, &tmp);
+		if (!len || *tmp)
+			return (0);
+		len = check_param(after_white_space(split[2]), 1, &tmp);
+		if (!len || (*tmp && *tmp != '#'))
+			return (0);
+		if (!split[3] && nb_letter(&line[start], SEPARATOR_CHAR) == 2)
+			return (1);
 	}
 	return (0);
 }
@@ -165,38 +159,22 @@ int		fifth_case(char *line, int start)
 {
 	char 	**split;
 	int		len;
+	char	*tmp;
 
-	while (ft_iswhitespace(line[start]))
-		start++;
-	split = ft_strsplit(&line[start], ',');
+	split = ft_strsplit(after_white_space(&line[start]), ',');
 	if (split && split[0] && split[1] && split[2])
 	{
-		if ((len = is_rg(split[0])) || (len = is_id(split[0])) || (len = is_d4(split[0])) || (len = is_d2(split[0])))
-		{
-			if (split[0][len])
-				return (0);
-		}
-		else
+		len = check_param(after_white_space(split[0]), 7, &tmp);
+		if (!len || *tmp)
 			return (0);
-		if ((len = is_rg(split[1])) || (len = is_id(split[1])) || (len = is_d4(split[1])) || (len = is_d2(split[1])))
-		{
-			if (split[1][len])
-				return (0);
-		}
-		else
+		len = check_param(after_white_space(split[1]), 7, &tmp);
+		if (!len || *tmp)
 			return (0);
-		if ((len = is_rg(split[2])))
-		{
-			while (split[2][len])
-				if (split[2][len] == '#')
-					return (1);
-				else if (!ft_iswhitespace(split[2][len]))
-					return (0);
-				else
-					len++;
-			if (!split[3] && nb_letter(&line[start], SEPARATOR_CHAR) == 2)
-				return (1);
-		}
+		len = check_param(after_white_space(split[2]), 1, &tmp);
+		if (!len || (*tmp && *tmp != '#'))
+			return (0);
+		if (!split[3] && nb_letter(&line[start], SEPARATOR_CHAR) == 2)
+			return (1);
 	}
 	return (0);
 }

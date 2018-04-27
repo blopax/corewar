@@ -8,9 +8,9 @@ live:	live %2147483647
 		live %1
 		ld 9898,r1
 		ld %2147483647,r2
-		st	r1,r2
-		st	r1,2147483647
-		and	r1,r2,r3
+		st	r1,		r2
+		st	r1, 2147483647
+		and	r1,r2,r3 ##
 		sub	r1,r2,r3
 		and %281,r2,r3
 		zjmp %:live
@@ -30,3 +30,4 @@ live:	live %2147483647
 		lldi 123,%:live,r4
 		lldi %123,123,r5
 		lldi %:live,%1234,r5
+		aff r2
