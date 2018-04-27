@@ -20,38 +20,38 @@
 
 int		all_op(char *line)
 {
-	if (!ft_strncmp(line, OP1, 4) && line[4] != LABEL_CHAR && ft_iswhitespace(line[4]))
+	if (!ft_strncmp(line, OP1, 4) && ft_iswhitespace(line[4]))
 		return (first_case(line, 5));
-	if (!ft_strncmp(line, OP2, 2) && line[2] != LABEL_CHAR  && ft_iswhitespace(line[2]))
+	if (!ft_strncmp(line, OP2, 2) && ft_iswhitespace(line[2]))
 		return (second_case(line, 3));
-	if (!ft_strncmp(line, OP3, 2) && line[2] != LABEL_CHAR && ft_iswhitespace(line[2]))
+	if (!ft_strncmp(line, OP3, 2) && ft_iswhitespace(line[2]))
 		return (third_case(line, 3));
-	if (!ft_strncmp(line, OP4, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
+	if (!ft_strncmp(line, OP4, 3) && ft_iswhitespace(line[3]))
 		return (fourth_case(line, 4));
-	if (!ft_strncmp(line, OP5, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
+	if (!ft_strncmp(line, OP5, 3) && ft_iswhitespace(line[3]))
 		return (fourth_case(line, 4));
-	if (!ft_strncmp(line, OP6, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
+	if (!ft_strncmp(line, OP6, 3) && ft_iswhitespace(line[3]))
 		return (fifth_case(line, 4));
-	if (!ft_strncmp(line, OP7, 2) && line[2] != LABEL_CHAR && ft_iswhitespace(line[2]))
+	if (!ft_strncmp(line, OP7, 2) && ft_iswhitespace(line[2]))
 		return (fifth_case(line, 3));
-	if (!ft_strncmp(line, OP8, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
+	if (!ft_strncmp(line, OP8, 3) && ft_iswhitespace(line[3]))
 		return (fifth_case(line, 4));
-	if (!ft_strncmp(line, OP9, 4) && line[4] != LABEL_CHAR && ft_iswhitespace(line[4]))
-		return (sixth_case(line, 5));
-	if (!ft_strncmp(line, OP10, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
+	if (!ft_strncmp(line, OP9, 4) && ft_iswhitespace(line[4]))
+		return (first_case(line, 5));
+	if (!ft_strncmp(line, OP10, 3) && ft_iswhitespace(line[3]))
 		return (seventh_case(line, 4));
-	if (!ft_strncmp(line, OP11, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
+	if (!ft_strncmp(line, OP11, 3) && ft_iswhitespace(line[3]))
 		return (eighth_case(line, 4));
-	if (!ft_strncmp(line, OP12, 4) && line[4] != LABEL_CHAR && ft_iswhitespace(line[4]))
-		return (nineth_case(line, 5));
-	if (!ft_strncmp(line, OP13, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[3]))
-		return (tenth_case(line, 4));
-	if (!ft_strncmp(line, OP14, 4) && line[4] != LABEL_CHAR && ft_iswhitespace(line[4]))
-		return (14);
-	if (!ft_strncmp(line, OP15, 5) && line[5] != LABEL_CHAR && ft_iswhitespace(line[5]))
-		return (15);
-	if (!ft_strncmp(line, OP16, 3) && line[3] != LABEL_CHAR && ft_iswhitespace(line[5]))
-		return (16);
+	if (!ft_strncmp(line, OP12, 4) && ft_iswhitespace(line[4]))
+		return (first_case(line, 5));
+	if (!ft_strncmp(line, OP13, 3) && ft_iswhitespace(line[3]))
+		return (second_case(line, 4));
+	if (!ft_strncmp(line, OP14, 4) && ft_iswhitespace(line[4]))
+		return (seventh_case(line, 5));
+	if (!ft_strncmp(line, OP15, 5) && ft_iswhitespace(line[5]))
+		return (first_case(line, 6));
+	if (!ft_strncmp(line, OP16, 3) && ft_iswhitespace(line[3]))
+		return (nineth_case(line, 4));
 	return (0);
 }
 
