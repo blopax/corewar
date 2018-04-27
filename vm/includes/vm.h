@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/04/26 18:09:28 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/04/27 16:26:26 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,14 @@ typedef struct		s_proc
 
 typedef struct		s_player
 {
-	int				live;
+	int				fd;
+	void			*header;
+	int				magic;
 	char			*name;
+	char			*comment;
 	int				size;
+	void			*program;
+	int				live;
 	int				turn;
 	int				number;
 }					t_player;
@@ -59,6 +64,8 @@ typedef struct		s_info
 	int				lives_threshold;
 	int				total_lives;
 	int				dump;
+	int				players_nb;
+	t_player		players_info[MAX_PLAYERS];
 }					t_info;
 
 #endif
