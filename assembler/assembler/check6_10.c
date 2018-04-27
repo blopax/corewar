@@ -7,13 +7,11 @@
 *	lldi	OCP : RG/ID/D2, RG/D2, RG
 */
 
-int		seventh_case(char *line, int start)
+int		seventh_case(char *line, char **split, int op, t_label *act)
 {
-	char 	**split;
 	int		len;
 	char	*tmp;
 
-	split = ft_strsplit(after_white_space(&line[start]), ',');
 	if (split && split[0] && split[1] && split[2])
 	{
 		len = check_param(after_white_space(split[0]), 7, &tmp);
@@ -23,10 +21,8 @@ int		seventh_case(char *line, int start)
 		if (!len || *tmp)
 			return (0);
 		len = check_param(after_white_space(split[2]), 1, &tmp);
-		if (!len || (*tmp && *tmp != '#'))
-			return (0);
-		if (!split[3] && nb_letter(&line[start], SEPARATOR_CHAR) == 2)
-			return (1);
+		if (len && (*tmp == '#' || (!*tmp && !split[3])) && nb_letter(line, SEPARATOR_CHAR) == 2)
+			return (add_op(split, op, act));
 	}
 	return (0);
 }
@@ -35,13 +31,11 @@ int		seventh_case(char *line, int start)
 *	sti OCP : RG, RG/ID/D2, D2/RG
 */
 
-int		eighth_case(char *line, int start)
+int		eighth_case(char *line, char **split, int op, t_label *act)
 {
-	char 	**split;
 	int		len;
 	char	*tmp;
 
-	split = ft_strsplit(after_white_space(&line[start]), ',');
 	if (split && split[0] && split[1] && split[2])
 	{
 		len = check_param(after_white_space(split[0]), 1, &tmp);
@@ -51,10 +45,8 @@ int		eighth_case(char *line, int start)
 		if (!len || *tmp)
 			return (0);
 		len = check_param(after_white_space(split[2]), 3, &tmp);
-		if (!len || (*tmp && *tmp != '#'))
-			return (0);
-		if (!split[3] && nb_letter(&line[start], SEPARATOR_CHAR) == 2)
-			return (1);
+		if (len && (*tmp == '#' || (!*tmp && !split[3])) && nb_letter(line, SEPARATOR_CHAR) == 2)
+			return (add_op(split, op, act));
 	}
 	return (0);
 }
@@ -63,17 +55,15 @@ int		eighth_case(char *line, int start)
 *	aff : RG
 */
 
-int		nineth_case(char *line, int start)
+int		nineth_case(char *line, char **split, int op, t_label *act)
 {
 	int		len;
 	char	*tmp;
 
-	tmp = after_white_space(&line[start]);
-	if ((len = check_param(tmp, 1, &tmp)))
+	if ((len = check_param(split[0], 1, &tmp)))
 	{
-		tmp = after_white_space(&tmp[len]);
-		if (!*tmp || *tmp == '#')
-			return (1);
+		if ((*tmp == '#' || (!*tmp && !split[1])) && !nb_letter(line, SEPARATOR_CHAR))
+			return (add_op(split, op, act));
 	}
 	return (0);
 }

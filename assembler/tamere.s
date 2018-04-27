@@ -33,3 +33,4 @@ live:	live %2147483647
 		lldi %:live,%1234,r5
 		aff r2
 		sti	r10,%-510,r2
+		fork %:label00		# 3, 0, 281

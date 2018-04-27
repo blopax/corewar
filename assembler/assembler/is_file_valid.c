@@ -37,6 +37,14 @@ int			*is_file_valid(char **file)
 	name = check_name_and_comment(file, &last_line);
 	if (name)
 		first = get_label(file, last_line);
+	for (t_label *act = first; act; act = act->next)
+	{
+		ft_printf("%s\n", act->name);
+		for (t_op *op = act->op; op; op = op->next)
+		{
+			ft_printf("		Op %d\n", op->op);
+		}
+	}
 	ret = create_champion(name, first);
 	return (ret);
 }

@@ -120,5 +120,5 @@ t_label		*get_label(char **file, int line)
 		if (get_current_label(file, &line, &first) < 0)
 			return (NULL);
 	}
-	return (NULL);
+	return (first);
 }

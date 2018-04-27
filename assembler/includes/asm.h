@@ -34,15 +34,19 @@
 typedef struct		s_label
 {
 	char				*name;
-	char				*command;
 	int					relative_pos;
 	int					size;
-	struct	s_label		*next;
+	struct s_op			*op;
+	struct s_label		*next;
 }					t_label;
 
 typedef struct 		s_op
 {
-	
+	int					op;
+	char				*par[3];
+	int					size;
+	int					relative_pos;
+	struct s_op			*next;
 }					t_op;
 
 int		valid_name(char *name);
@@ -58,18 +62,19 @@ void	skip_comment_and_empty_line(char **file, int *line);
 char	*after_white_space(char *str);
 int		check_param(char *str, int test, char **ret);
 int		nb_letter(char *line, char c);
-int		first_case(char *line, int start);
 int		is_letter_in_label_name(char c);
-int		second_case(char *line, int start);
-int		third_case(char *line, int start);
-int		fourth_case(char *line, int start);
-int		fifth_case(char *line, int start);
-int		seventh_case(char *line, int start);
-int		eighth_case(char *line, int start);
-int		nineth_case(char *line, int start);
+int		first_case(char *line, char **split, int op, t_label *act);
+int		second_case(char *line, char **split, int op, t_label *act);
+int		third_case(char *line, char **split, int op, t_label *act);
+int		fourth_case(char *line, char **split, int op, t_label *act);
+int		fifth_case(char *line, char **split, int op, t_label *act);
+int		seventh_case(char *line, char **split, int op, t_label *act);
+int		eighth_case(char *line, char **split, int op, t_label *act);
+int		nineth_case(char *line, char **split, int op, t_label *act);
 int		is_d2(char *line);
 int		is_d4(char *line);
 int		is_rg(char *line);
 int		is_id(char *line);
+int		add_op(char **split, int op, t_label *act);
 
 #endif
