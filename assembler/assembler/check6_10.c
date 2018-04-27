@@ -3,8 +3,8 @@
 #include "op.h"
 
 /*
-*	ldi		OCP : RG/ID/D2, ID/D2, RG
-*	lldi	OCP : RG/ID/D2, ID/D2, RG
+*	ldi		OCP : RG/ID/D2, RG/D2, RG
+*	lldi	OCP : RG/ID/D2, RG/D2, RG
 */
 
 int		seventh_case(char *line, int start)
@@ -19,7 +19,7 @@ int		seventh_case(char *line, int start)
 		len = check_param(after_white_space(split[0]), 7, &tmp);
 		if (!len || *tmp)
 			return (0);
-		len = check_param(after_white_space(split[1]), 6, &tmp);
+		len = check_param(after_white_space(split[1]), 3, &tmp);
 		if (!len || *tmp)
 			return (0);
 		len = check_param(after_white_space(split[2]), 1, &tmp);
@@ -32,7 +32,7 @@ int		seventh_case(char *line, int start)
 }
 
 /*
-*	sti OCP : RG, RG/ID/D2, ID/D2
+*	sti OCP : RG, RG/ID/D2, D2/RG
 */
 
 int		eighth_case(char *line, int start)
@@ -50,7 +50,7 @@ int		eighth_case(char *line, int start)
 		len = check_param(after_white_space(split[1]), 7, &tmp);
 		if (!len || *tmp)
 			return (0);
-		len = check_param(after_white_space(split[2]), 6, &tmp);
+		len = check_param(after_white_space(split[2]), 3, &tmp);
 		if (!len || (*tmp && *tmp != '#'))
 			return (0);
 		if (!split[3] && nb_letter(&line[start], SEPARATOR_CHAR) == 2)

@@ -54,6 +54,7 @@ char	*after_white_space(char *str);
 int		check_param(char *str, int test, char **ret);
 int		nb_letter(char *line, char c);
 int		first_case(char *line, int start);
+int		is_letter_in_label_name(char c);
 int		second_case(char *line, int start);
 int		third_case(char *line, int start);
 int		fourth_case(char *line, int start);

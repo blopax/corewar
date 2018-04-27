@@ -4,6 +4,7 @@ KO KO KO"
 .comment "salut ca marche bien ou pas?"
 
 live:	live %2147483647
+		live %:live
 		live %1
 		live %1
 		ld 9898,r1
@@ -31,3 +32,4 @@ live:	live %2147483647
 		lldi %123,123,r5
 		lldi %:live,%1234,r5
 		aff r2
+		sti	r10,%-510,r2
