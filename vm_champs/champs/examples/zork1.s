@@ -1,5 +1,5 @@
-.name "zork"
-.comment "zork"
+.name ""
+.comment "fkff"
 
 l2:		sti r1, %:live, %1
 		and r2, %0, r2
