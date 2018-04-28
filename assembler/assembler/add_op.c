@@ -2,7 +2,7 @@
 #include "ft_printf.h"
 #include "op.h"
 
-int		add_op(char **split, int op, t_label *act)
+int		add_op(char **split, int op, t_label *act, int *ocp)
 {
 	t_op	*act_op;
 	int		i;
@@ -22,12 +22,15 @@ int		add_op(char **split, int op, t_label *act)
 		act_op->next->relative_pos = act_op->relative_pos + act_op->size;
 		act_op = act_op->next;
 	}
+	act_op->ocp = ocp[0];
+	act_op->size = ocp[1];
 	while (split[i])
 	{
 		act_op->par[i] = split[i];
 		i++;
 	}
+	act_op->par[i] = NULL;
 	act_op->op = op;
-	act_op->size = 1;
+	act->size += act_op->size;
 	return (1);
 }

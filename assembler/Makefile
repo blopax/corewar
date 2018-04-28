@@ -30,6 +30,7 @@ SRC_ASSEMBLY = \
 			check6_10.c\
 			basic_parameter.c\
 			add_op.c\
+			get_ocp.c\
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_ASSEMBLY))
 

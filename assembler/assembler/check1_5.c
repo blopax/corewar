@@ -55,9 +55,10 @@ int		check_param(char *str, int test, char **ret)
 }
 
 /*
-*	live : D4
-*	zjmp : D2
-*	fork : D2
+*	01 live : D4
+*	09 zjmp : D2
+*	12 fork : D2
+*	15 lfork : D2
 */
 
 int		first_case(char *line, char **split, int op, t_label *act)
@@ -67,13 +68,13 @@ int		first_case(char *line, char **split, int op, t_label *act)
 
 	if ((len = check_param(split[0], 2, &tmp)))
 		if ((*tmp == '#' || (!*tmp && !split[1])) && !nb_letter(line, SEPARATOR_CHAR))
-			return (add_op(split, op, act));
+			return (add_op(split, op, act, get_first_ocp(op)));
 	return (0);
 }
 
 /*
-*	ld		OCP : ID/D4, RG
-*	lld		OCP : ID/D2, RG
+*	02 ld		OCP : ID/D4, RG
+*	13 lld		OCP : ID/D2, RG
 */
 
 int		second_case(char *line, char **split, int op, t_label *act)
@@ -88,13 +89,13 @@ int		second_case(char *line, char **split, int op, t_label *act)
 			return (0);
 		len = check_param(after_white_space(split[1]), 1, &tmp);
 		if (len && (*tmp == '#' || (!*tmp && !split[2])) && nb_letter(line, SEPARATOR_CHAR) == 1)
-			return (add_op(split, op, act));
+			return (add_op(split, op, act, get_second_ocp(split, op)));
 	}
 	return (0);
 }
 
 /*
-*	st OCP : RG, RG/ID
+*	03 st OCP : RG, RG/ID
 */
 
 int		third_case(char *line, char **split, int op, t_label *act)
@@ -109,13 +110,13 @@ int		third_case(char *line, char **split, int op, t_label *act)
 			return (0);
 		len = check_param(after_white_space(split[1]), 5, &tmp);
 		if (len && (*tmp == '#' || (!*tmp && !split[2])) && nb_letter(line, SEPARATOR_CHAR) == 1)
-			return (add_op(split, op, act));
+			return (add_op(split, op, act, get_third_ocp(split)));
 	}
 	return (0);
 }
 
 /*
-*	add et sub OCP : RG, RG, RG
+*	04 add et 05 sub OCP : RG, RG, RG
 */
 
 int		fourth_case(char *line, char **split, int op, t_label *act)
@@ -133,13 +134,13 @@ int		fourth_case(char *line, char **split, int op, t_label *act)
 			return (0);
 		len = check_param(after_white_space(split[2]), 1, &tmp);
 		if (len && (*tmp == '#' || (!*tmp && !split[3])) && nb_letter(line, SEPARATOR_CHAR) == 2)
-			return (add_op(split, op, act));
+			return (add_op(split, op, act, get_fourth_ocp()));
 	}
 	return (0);
 }
 
 /*
-* and et or et xor OCP : RG/ID/D4, RG/ID/D4, RG
+* 06 and et 07 or et 08 xor OCP : RG/ID/D4, RG/ID/D4, RG
 */
 
 int		fifth_case(char *line, char **split, int op, t_label *act)
@@ -157,7 +158,7 @@ int		fifth_case(char *line, char **split, int op, t_label *act)
 			return (0);
 		len = check_param(after_white_space(split[2]), 1, &tmp);
 		if (len && (*tmp == '#' || (!*tmp && !split[3])) && nb_letter(line, SEPARATOR_CHAR) == 2)
-			return (add_op(split, op, act));
+			return (add_op(split, op, act, get_fourth_ocp(split)));
 	}
 	return (0);
 }

@@ -39,10 +39,12 @@ int			*is_file_valid(char **file)
 		first = get_label(file, last_line);
 	for (t_label *act = first; act; act = act->next)
 	{
-		ft_printf("%s\n", act->name);
+		ft_printf("%s Size [%d]\n", act->name, act->size);
 		for (t_op *op = act->op; op; op = op->next)
 		{
-			ft_printf("		Op %d\n", op->op);
+			ft_printf("		Op [%d] Position relative [%d] ocp [%d]\n", op->op, op->relative_pos, op->ocp);
+			for (int i = 0; op->par[i]; i++)
+				ft_printf("			%s\n", op->par[i]);
 		}
 	}
 	ret = create_champion(name, first);

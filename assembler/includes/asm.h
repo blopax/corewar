@@ -43,7 +43,8 @@ typedef struct		s_label
 typedef struct 		s_op
 {
 	int					op;
-	char				*par[3];
+	int					ocp;
+	char				*par[4];
 	int					size;
 	int					relative_pos;
 	struct s_op			*next;
@@ -71,10 +72,19 @@ int		fifth_case(char *line, char **split, int op, t_label *act);
 int		seventh_case(char *line, char **split, int op, t_label *act);
 int		eighth_case(char *line, char **split, int op, t_label *act);
 int		nineth_case(char *line, char **split, int op, t_label *act);
+int		*get_first_ocp(int op);
+int		*get_second_ocp(char **split, int op);
+int		*get_third_ocp(char **split);
+int		*get_fourth_ocp();
+int		*get_fifth_ocp(char **split);
+int		*get_sixth_ocp(char **split);
+int		*get_seventh_ocp(char **split);
+int		*get_eighth_ocp(char **split);
+int		*get_nineth_ocp();
 int		is_d2(char *line);
 int		is_d4(char *line);
 int		is_rg(char *line);
 int		is_id(char *line);
-int		add_op(char **split, int op, t_label *act);
+int		add_op(char **split, int op, t_label *act, int *ocp);
 
 #endif
