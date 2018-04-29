@@ -22,6 +22,7 @@ t_label		*search_last(t_label *first)
 	while (last->next != NULL)
 		last = last->next;
 	last->next = (t_label*)ft_memalloc(sizeof(t_label));
+	last->next->relative_pos = last->relative_pos + last->size;
 	return (last->next);
 }
 

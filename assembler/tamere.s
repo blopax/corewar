@@ -11,9 +11,9 @@ live:	live %2147483647
 		ld %2147483647,r2
 		st	r1,		r2
 		st	r1, 2147483647
-		and	r1,r2,r3 ##
+		add	r1,r2,r3 ##
 		sub	r1,r2,r3
-		and %281,r2,r3
+		and %281,r2,r3 
 		zjmp %:live
 		ldi r1,%:live,r3
 		ldi r2,%123,r3
@@ -23,6 +23,8 @@ live:	live %2147483647
 		sti r2,r2,%12
 		fork %:live
 		fork %1234
+		lfork %:live
+		lfork %1234
 		lld	 %:live,r2
 		lld	 %123,r3
 		lld	 123,r4

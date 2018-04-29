@@ -125,11 +125,9 @@ $(NAME) : $(COMP_NAME)
 	@echo "\n\033[0;35mCompilation de la librairie finie\033[0m"
 
 clean :
-	@echo "\033[0;31mPiou piou partially erased zone\033[0m"
 	@rm -f $(COMP_NAME)
 
 fclean : clean
-	@echo "\033[0;31mPiou piou sector clear\033[0m"
 	@rm -f $(NAME)
 
 re : recompil fclean all

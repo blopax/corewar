@@ -44,6 +44,7 @@ typedef struct 		s_op
 {
 	int					op;
 	int					ocp;
+	int					dir_size;
 	char				*par[4];
 	int					size;
 	int					relative_pos;

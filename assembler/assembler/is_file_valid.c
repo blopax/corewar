@@ -39,10 +39,10 @@ int			*is_file_valid(char **file)
 		first = get_label(file, last_line);
 	for (t_label *act = first; act; act = act->next)
 	{
-		ft_printf("%s Size [%d]\n", act->name, act->size);
+		ft_printf("%s Size [%d] RelativePos [%d]\n", act->name, act->size, act->relative_pos);
 		for (t_op *op = act->op; op; op = op->next)
 		{
-			ft_printf("		Op [%d] Position relative [%d] ocp [%d]\n", op->op, op->relative_pos, op->ocp);
+			ft_printf("		Op [%d] Position relative [%d] ocp [%d] dir_size [%d]\n", op->op, op->relative_pos, op->ocp, op->dir_size);
 			for (int i = 0; op->par[i]; i++)
 				ft_printf("			%s\n", op->par[i]);
 		}
