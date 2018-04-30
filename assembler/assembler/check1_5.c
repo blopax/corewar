@@ -78,7 +78,7 @@ int		first_case(char *line, char **split, int op, t_label *act)
 
 /*
 *	02 ld		OCP : ID/D4, RG
-*	13 lld		OCP : ID/D2, RG
+*	13 lld		OCP : ID/D4, RG
 */
 
 int		second_case(char *line, char **split, int op, t_label *act)
@@ -166,7 +166,7 @@ int		fifth_case(char *line, char **split, int op, t_label *act)
 		len = check_param(after_white_space(split[2]), 1, &tmp);
 		if (len && (*tmp == COMMENT_CHAR
 			|| (!*tmp && !split[3])) && nb_letter(line, SEPARATOR_CHAR) == 2)
-			return (add_op(split, op, act, get_fourth_ocp(split)));
+			return (add_op(split, op, act, get_fifth_ocp(split)));
 	}
 	return (0);
 }

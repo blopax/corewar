@@ -14,30 +14,147 @@
 #include "asm.h"
 #include "op.h"
 
+int			add_all_op_size(t_label *first)
+{
+	int		ret;
+	t_label	*act;
+
+	ret = 0;
+	act = first;
+	while (act)
+	{
+		ret += act->size;
+		act = act->next;
+	}
+	return (ret);
+}
+
+void	add_name_comment(unsigned char *ret, char **name, int size)
+{
+	int		magic;
+
+	if (ret && name)
+		magic = 0;
+	magic = COREWAR_EXEC_MAGIC;
+	ret[0] = magic >> 24;
+	ret[1] = (magic >> 16) & 0xFF;
+	ret[2] = (magic >> 8) & 0xFF;
+	ret[3] = magic & 0xFF;
+	ft_strncpy((char*)&ret[4], name[0], PROG_NAME_LENGTH);
+	ret[4 + PROG_NAME_LENGTH + 4] = size >> 24;
+	ret[4 + PROG_NAME_LENGTH + 5] = (size >> 16) & 0xFF;
+	ret[4 + PROG_NAME_LENGTH + 6] = (size >> 8) & 0xFF;
+	ret[4 + PROG_NAME_LENGTH + 7] = (size) & 0xFF;
+	ft_strncpy((char*)&ret[4 + PROG_NAME_LENGTH + 8], name[1], COMMENT_LENGTH);
+}
+
+void				add_reg(unsigned char *ret, int *i, t_op *op)
+{
+	char	*tmp;
+
+	tmp = after_white_space(op->par[op->act]);
+	tmp++;
+	ret[*i += 1] = ft_atoi(tmp);
+}
+
+void				add_dir(unsigned char *ret, int *i, t_op *op, t_label *first)
+{
+	
+}
+
+void				add_id(unsigned char *ret, int *i, t_op *op)
+{
+	char	*tmp;
+	int		num;
+
+	tmp = after_white_space(op->par[op->act]);
+	num = ft_atoi(tmp);
+	ret[*i += 1] = ((num >> 8) & 0xFF);
+	ret[*i += 1] = ((num) & 0xFF);
+}
+
+void				add_act_op(unsigned char *ret, t_op *op ,t_label *first, int *i)
+{
+	int		bitwise;
+	int		param;
+
+	param = 0;
+	bitwise = 6;
+	if (first)
+	ret[*i += 1] = op->op;
+	if (op->op != 1 && op->op != 9 && op->op != 12 && op->op != 15 && op->op != 16)
+		ret[*i += 1] = op->ocp;
+	while (bitwise)
+	{
+		op->act = param;
+		if (((op->ocp >> bitwise) & 3) == 1)
+			add_reg(ret, i, op);
+	/*	if (((op->ocp >> bitwise) & 3) == 2)
+			add_dir(ret, i, op, first);*/
+		if (((op->ocp >> bitwise) & 3) == 3)
+			add_id(ret, i, op);
+		bitwise -= 2;
+		param += 1;
+	}
+}
+
+void				add_op_str(unsigned char *ret, t_label *first)
+{
+	int			i;
+	t_label		*act;
+	t_op		*act_op;
+
+	i = PROG_NAME_LENGTH + COMMENT_LENGTH + 12;
+	act = first;
+	while (act)
+	{
+		act_op = act->op;
+		while (act_op)
+		{
+			add_act_op(ret, act_op,first, &i);
+			act_op = act_op->next;
+		}
+		act = act->next;
+	}
+	for (int j = 0; j < i; j += 2)
+	{
+		if (!(j % 16))
+			ft_printf("\n");
+		ft_printf("%.2x%.2x ", ret[j], ret[j + 1]);
+	}
+}
+
+unsigned char		*create_champion(char **name, t_label *first)
+{
+	unsigned char	*ret;
+	int				size;
+
+	size = add_all_op_size(first);
+	if (!first || !name ||
+		!(ret = ft_memalloc(size + COMMENT_LENGTH + PROG_NAME_LENGTH)))
+		return (NULL);
+	add_name_comment(ret, name, size);
+	add_op_str(ret, first);
+	return (ret);
+}
+
 /*
 *	validation du fichier si c'est bon, creation du champion
 */
 
-int			*create_champion(char **name, t_label *first)
+unsigned char		*is_file_valid(char **file)
 {
-	if (first && name)
-		return (NULL);
-	return (NULL);
-}
-
-int			*is_file_valid(char **file)
-{
-	char		**name;
-	int			*ret;
-	t_label		*first;
-	int			last_line;
+	char				**name;
+	unsigned char		*ret;
+	t_label				*first;
+	int					last_line;
 
 	ret = NULL;
 	first = NULL;
 	name = check_name_and_comment(file, &last_line);
 	if (name)
 		first = get_label(file, last_line);
-	for (t_label *act = first; act; act = act->next)
+/*for (t_label *act = first; act; act = act->next)
 	{
 		ft_printf("%s Size [%d] RelativePos [%d]\n", act->name, act->size, act->relative_pos);
 		for (t_op *op = act->op; op; op = op->next)
@@ -46,7 +163,27 @@ int			*is_file_valid(char **file)
 			for (int i = 0; op->par[i]; i++)
 				ft_printf("			%s\n", op->par[i]);
 		}
-	}
+	}*/
 	ret = create_champion(name, first);
+	ft_free_ar((void**)name);
+/*	
+* FREE ALL CHAINED LIST
+	t_label *next;
+	for (t_label *act = first; act;)
+	{
+		t_op *next_op;
+		for (t_op *act_op = act->op; act_op;)
+		{
+			for (int i = 0; act_op->par[i]; i++)
+				free(act_op->par[i]);
+			next_op = act_op->next;
+			free(act_op);
+			act_op = next_op;
+		}
+		next = act->next;
+		free(act->name);
+		free(act);
+		act = next;
+}*/
 	return (ret);
 }

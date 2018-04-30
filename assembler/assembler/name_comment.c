@@ -60,7 +60,7 @@ char	*get_content(char **file, int line, int act)
 	i = 0;
 	if ((content = ft_strnew((line == 0 ? PROG_NAME_LENGTH : COMMENT_LENGTH))))
 	{
-		len = content_start(&file[line][act], act);
+		len = act;
 		while (file[line][len] != '\"')
 		{
 			content[i] = file[line][len];
@@ -101,17 +101,17 @@ char	*get_describe(char **file, int *act, int choice)
 			return (get_content(file, save, content_start(&file[save][name_len], 5)));
 		else
 			ft_printf("%s\n", len <= 0 ? "Wrong name format" : "Max name len is\
-128");
+%d", PROG_NAME_LENGTH);
 	}
 	else
 	{
 		if (!strncmp(file[*act], COMMENT_CMD_STRING, cmd_len) && ((len =
 		get_len(file, content_start(&file[*act][cmd_len], cmd_len), act)) >= 0)
 		&& len <= COMMENT_LENGTH)
-			return (get_content(file, save, 8));
+			return (get_content(file, save, content_start(&file[save][cmd_len], 8)));
 		else
 			ft_printf("%s\n", len < 0 ? "Wrong comment format" : "Max comment \
-len is 2048");
+len is %d", COMMENT_LENGTH);
 	}
 	return (NULL);
 }
@@ -125,7 +125,7 @@ char	**check_name_and_comment(char **file, int *act)
 	char	**champion_describe;
 
 	*act = 0;
-	if (!(champion_describe = (char**)malloc(sizeof(char*) * 2)))
+	if (!(champion_describe = (char**)malloc(sizeof(char*) * 3)))
 	{
 		ft_printf("Malloc error\nCheck your memory\n");
 		return (NULL);
@@ -134,6 +134,7 @@ char	**check_name_and_comment(char **file, int *act)
 	champion_describe[0] = get_describe(file, act, 0);
 	skip_comment_and_empty_line(file, act);
 	champion_describe[1] = get_describe(file, act, 1);
+	champion_describe[2] = NULL;
 	if (!champion_describe[0] || !champion_describe[1])
 	{
 		ft_free_ar((void**)champion_describe);

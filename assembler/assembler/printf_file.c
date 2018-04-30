@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	print_in_file(int *to_print, char *name)
+void	print_in_file(unsigned char *to_print, char *name)
 {
 	to_print = NULL;
 	name = NULL;

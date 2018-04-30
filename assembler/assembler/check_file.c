@@ -57,10 +57,10 @@ int				valid_name(char *name)
 	return (0);
 }
 
-int				*val_asm(int fd)
+unsigned char			*val_asm(int fd)
 {
-	char	**file;
-	int		*ret;
+	char			**file;
+	unsigned char	*ret;
 
 	ret = NULL;
 	if (fd >= 2)

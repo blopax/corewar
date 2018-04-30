@@ -29,20 +29,27 @@ int		add_op(char **split, int op, t_label *act, int *ocp)
 {
 	t_op	*act_op;
 	int		i;
+	int		bitwise;
 
 	i = 0;
+	bitwise = 6;
 	if (!(act_op = add_last(act)))
-		return (0);
+		return (free_and_ret(split, ocp, 0));
 	act_op->ocp = ocp[0];
 	act_op->size = ocp[1];
 	act_op->dir_size = ocp[2];
-	while (split[i])
+	while (bitwise && ((ocp[0] >> bitwise) & 3))
 	{
-		act_op->par[i] = split[i];
+		if (!(act_op->par[i] = ft_strdup(split[i])))
+		{
+			ft_free_ar((void**)act_op->par);
+			return (free_and_ret(split, ocp, 0));
+		}
 		i++;
+		bitwise -= 2;
 	}
 	act_op->par[i] = NULL;
 	act_op->op = op;
 	act->size += act_op->size;
-	return (1);
+	return (free_and_ret(split, ocp, 1));
 }

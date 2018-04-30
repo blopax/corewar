@@ -31,32 +31,41 @@ SRC_ASSEMBLY = \
 			basic_parameter.c\
 			add_op.c\
 			get_ocp.c\
+			free_all.c\
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_ASSEMBLY))
 
 COMP_NAME = $(SRC:.c=.o)
 
+LIB_PATH = ft_printf
+
 all : LIB $(NAME)
 
 LIB:
-	@make -C ft_printf
+	@make -C $(LIB_PATH)
 
 %.o : %.c
-	@gcc $(FLAGS) -o $@ -c $< -Ift_printf/includes -Iincludes
+	@gcc $(FLAGS) -o $@ -c $< -I$(LIB_PATH)/includes -Iincludes
 
 $(NAME) : $(COMP_NAME)
-	@gcc -o $(NAME) $(COMP_NAME) ft_printf/libftprintf.a
+	@gcc $(FLAGS) -o $(NAME) $(COMP_NAME) $(LIB_PATH)/libftprintf.a
 	@echo "\033[0;35mCompilation de la l'assembleur fini\033[0m"
+
+leaks:
+	@~/Applications/clang/bin/clang $(FLAGS) -g -fsanitize=leak -o $(NAME) $(COMP_NAME) $(LIB_PATH)/libftprintf.a
+
+address:
+	@~/Applications/clang/bin/clang $(FLAGS) -g -fsanitize=address -fno-omit-frame-pointer -o $(NAME) $(COMP_NAME) $(LIB_PATH)/libftprintf.a
 
 clean :
 	@echo "\033[0;31mPiou piou partially erased zone\033[0m"
 	@rm -f $(COMP_NAME)
-	@make clean -C ft_printf
+	@make clean -C $(LIB_PATH)
 
 fclean : clean
 	@echo "\033[0;31mPiou piou sector clear\033[0m"
 	@rm -f $(NAME)
-	@make fclean -C ft_printf
+	@make fclean -C $(LIB_PATH)
 
 re : recompil fclean all
 
