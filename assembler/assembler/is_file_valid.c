@@ -57,9 +57,54 @@ void				add_reg(unsigned char *ret, int *i, t_op *op)
 	ret[*i += 1] = ft_atoi(tmp);
 }
 
-void				add_dir(unsigned char *ret, int *i, t_op *op, t_label *first)
+int				search_label(t_label *first, t_op *op, char *tmp, int *num)
 {
-	
+	t_label		*act;
+	int			ret;
+
+	act = first;
+	ret = 1;
+	while (act && strcmp(act->name, &tmp[1]))
+		act = act->next;
+	if (strcmp(act->name, &tmp[1]))
+		return (0);
+	ft_printf("LAB %d OP %d\n", act->relative_pos, op->relative_pos);
+	*num = act->relative_pos - op->relative_pos;
+	return (1);
+}
+
+void			add_dir_2(unsigned char *ret, int *i, int num)
+{
+	ret[*i += 1] = ((num >> 8) & 0xFF);
+	ret[*i += 1] = ((num) & 0xFF);
+}
+
+void			add_dir_4(unsigned char *ret, int *i, int num)
+{
+	ret[*i += 1] = ((num >> 24) & 0xFF);
+	ret[*i += 1] = ((num >> 16) & 0xFF);
+	ret[*i += 1] = ((num >> 8) & 0xFF);
+	ret[*i += 1] = ((num) & 0xFF);
+}
+
+int				add_dir(unsigned char *ret, int *i, t_op *op, t_label *first)
+{
+	char	*tmp;
+	int		num;
+
+	tmp = after_white_space(op->par[op->act]);
+	tmp++;
+	if (*tmp != ':')
+		num = ft_atoi(tmp);
+	else
+		if (!(search_label(first, op, tmp, &num)))
+			return (0);
+	if (op->dir_size == 2)
+			add_dir_2(ret, i, num);
+	if (op->dir_size == 4)
+			add_dir_4(ret, i, num);
+	return (1);
+
 }
 
 void				add_id(unsigned char *ret, int *i, t_op *op)
@@ -73,7 +118,7 @@ void				add_id(unsigned char *ret, int *i, t_op *op)
 	ret[*i += 1] = ((num) & 0xFF);
 }
 
-void				add_act_op(unsigned char *ret, t_op *op ,t_label *first, int *i)
+int				add_act_op(unsigned char *ret, t_op *op ,t_label *first, int *i)
 {
 	int		bitwise;
 	int		param;
@@ -89,39 +134,46 @@ void				add_act_op(unsigned char *ret, t_op *op ,t_label *first, int *i)
 		op->act = param;
 		if (((op->ocp >> bitwise) & 3) == 1)
 			add_reg(ret, i, op);
-	/*	if (((op->ocp >> bitwise) & 3) == 2)
-			add_dir(ret, i, op, first);*/
+		if (((op->ocp >> bitwise) & 3) == 2)
+			if (!(add_dir(ret, i, op, first)))
+				return (0);
 		if (((op->ocp >> bitwise) & 3) == 3)
 			add_id(ret, i, op);
 		bitwise -= 2;
 		param += 1;
 	}
+	return (1);
 }
 
-void				add_op_str(unsigned char *ret, t_label *first)
+int				add_op_str(unsigned char *ret, t_label *first)
 {
 	int			i;
 	t_label		*act;
 	t_op		*act_op;
 
-	i = PROG_NAME_LENGTH + COMMENT_LENGTH + 12;
+	i = PROG_NAME_LENGTH + COMMENT_LENGTH + 15;
 	act = first;
 	while (act)
 	{
 		act_op = act->op;
 		while (act_op)
 		{
-			add_act_op(ret, act_op,first, &i);
+			if (!(add_act_op(ret, act_op,first, &i)))
+				return (0);
 			act_op = act_op->next;
 		}
 		act = act->next;
 	}
-	for (int j = 0; j < i; j += 2)
+	for (int j = 0; j <= i; j += 1)
 	{
 		if (!(j % 16))
 			ft_printf("\n");
-		ft_printf("%.2x%.2x ", ret[j], ret[j + 1]);
+		if (!(j % 2))
+			ft_printf("%.2x", ret[j]);
+		else
+			ft_printf("%.2x ", ret[j]);
 	}
+	return (1);
 }
 
 unsigned char		*create_champion(char **name, t_label *first)
@@ -134,7 +186,11 @@ unsigned char		*create_champion(char **name, t_label *first)
 		!(ret = ft_memalloc(size + COMMENT_LENGTH + PROG_NAME_LENGTH)))
 		return (NULL);
 	add_name_comment(ret, name, size);
-	add_op_str(ret, first);
+	if (!(add_op_str(ret, first)))
+	{
+		free(ret);
+		return (NULL);
+	}
 	return (ret);
 }
 

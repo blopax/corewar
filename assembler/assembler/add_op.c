@@ -11,6 +11,7 @@ t_op	*add_last(t_label *act)
 		if (!(act->op = (t_op*)ft_memalloc(sizeof(t_op))))
 			return (NULL);
 		act_op = act->op;
+		act_op->relative_pos = act->relative_pos;
 	}
 	else
 	{

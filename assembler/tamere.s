@@ -2,4 +2,4 @@
 KO KO KO"
 .comment "salut ca marche bien ou pas?"
 
-live:	st r4, 2147483649
+live:	live %:live
