@@ -69,6 +69,8 @@ int			get_current_label(char **file, int *line, t_label **first)
 {
 	t_label		*act;
 
+	if (!file[*line])
+		return (0);
 	if (!*first)
 	{
 		act = (t_label*)ft_memalloc(sizeof(t_label));
@@ -118,6 +120,8 @@ t_label		*get_label(char **file, int line)
 	while (file[line])
 	{
 		skip_comment_and_empty_line(file, &line);
+		if (!file[line])
+			break ;
 		if (get_current_label(file, &line, &first) < 0)
 			return (NULL);
 	}

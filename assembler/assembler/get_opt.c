@@ -78,11 +78,14 @@ int		get_act_opt(char **file, int *line, t_label *act)
 	while (file[*line])
 	{
 		skip_comment_and_empty_line(file, line);
+		if (!file[*line])
+			return (0);
 		if (label_name_valid(file[*line], NULL))
 			return (1);
 		if (!all_op(after_white_space(file[*line]), act))
 			return (-1);
-		*line += 1;
+		if (file[*line])
+			*line += 1;
 	}
 	return (0);
 }

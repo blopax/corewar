@@ -52,6 +52,12 @@ typedef struct 		s_op
 	struct s_op			*next;
 }					t_op;
 
+typedef struct		s_print
+{
+	char				*str;
+	int					size;
+}					t_print;
+
 int				valid_name(char *name);
 unsigned char	*val_asm(int fd);
 void			print_in_file(unsigned char *to_print, char *name);
