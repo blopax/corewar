@@ -42,10 +42,7 @@ int		add_op(char **split, int op, t_label *act, int *ocp)
 	while (bitwise && ((ocp[0] >> bitwise) & 3))
 	{
 		if (!(act_op->par[i] = ft_strdup(split[i])))
-		{
-			ft_free_ar((void**)act_op->par);
 			return (free_and_ret(split, ocp, 0));
-		}
 		i++;
 		bitwise -= 2;
 	}

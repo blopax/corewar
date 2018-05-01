@@ -52,19 +52,19 @@ int		all_op(char *line, t_label *act)
 	if (!ft_strncmp(line, OP9, 4) && right_follow(line[4]))
 		return (first_case(line, split_arg(&line[4]), 9, act));
 	if (!ft_strncmp(line, OP10, 3) && right_follow(line[3]))
-		return (seventh_case(line, split_arg(&line[3]), 10, act));
+		return (sixth_case(line, split_arg(&line[3]), 10, act));
 	if (!ft_strncmp(line, OP11, 3) && right_follow(line[3]))
-		return (eighth_case(line, split_arg(&line[3]), 11, act));
+		return (seventh_case(line, split_arg(&line[3]), 11, act));
 	if (!ft_strncmp(line, OP12, 4) && right_follow(line[4]))
 		return (first_case(line, split_arg(&line[4]), 12, act));
 	if (!ft_strncmp(line, OP13, 3) && right_follow(line[3]))
 		return (second_case(line, split_arg(&line[3]), 13, act));
 	if (!ft_strncmp(line, OP14, 4) && right_follow(line[4]))
-		return (seventh_case(line, split_arg(&line[4]), 14, act));
+		return (sixth_case(line, split_arg(&line[4]), 14, act));
 	if (!ft_strncmp(line, OP15, 5) && right_follow(line[5]))
 		return (first_case(line, split_arg(&line[5]), 15, act));
 	if (!ft_strncmp(line, OP16, 3) && right_follow(line[3]))
-		return (nineth_case(line, split_arg(&line[3]), 16, act));
+		return (eighth_case(line, split_arg(&line[3]), 16, act));
 	return (0);
 }
 

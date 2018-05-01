@@ -26,45 +26,6 @@ t_label		*search_last(t_label *first)
 	return (last->next);
 }
 
-int			is_letter_in_label_name(char test)
-{
-	char	*label_chars = LABEL_CHARS;
-
-	while (*label_chars)
-		if (*label_chars == test)
-			return (1);
-		else
-			label_chars++;
-	return (0);
-}
-
-int			label_name_valid(char *line, char **name)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while (ft_iswhitespace(line[i]))
-		i++;
-	while (line[i + j] && is_letter_in_label_name(line[i + j]))
-		j++;
-	if (line[i + j] == LABEL_CHAR)
-	{
-		if (name)
-		{
-			*name = ft_strndup(&line[i], j);
-			while (j != -1)
-			{
-				line[i + j] = ' ';
-				j--;
-			}
-		}
-		return (1);
-	}
-	return (0);
-}
-
 int			get_current_label(char **file, int *line, t_label **first)
 {
 	t_label		*act;
@@ -88,25 +49,6 @@ int			get_current_label(char **file, int *line, t_label **first)
 		if (get_opt(file, line, act) >= 0)
 			return (1);
 		return (0);
-	}
-}
-
-void		skip_comment_and_empty_line(char **file, int *line)
-{
-	int		i;
-
-	i = 0;
-	while (file[*line])
-	{
-		if (!ft_iswhitespace(file[*line][i]) && file[*line][i])
-			if (file[*line][i] != '#')
-				return ;
-		if (!file[*line][i] || file[*line][i] == '#')
-		{
-			i = -1;
-			*line += 1;
-		}
-		i++;
 	}
 }
 

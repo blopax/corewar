@@ -26,12 +26,19 @@ SRC_ASSEMBLY = \
 			name_comment.c\
 			get_label.c\
 			get_opt.c\
-			check1_5.c\
-			check6_10.c\
 			basic_parameter.c\
 			add_op.c\
-			get_ocp.c\
 			free_all.c\
+			utilities.c\
+			utilities2.c\
+			first_case.c\
+			second_case.c\
+			third_case.c\
+			fourth_case.c\
+			fifth_case.c\
+			sixth_case.c\
+			seventh_case.c\
+			eighth_case.c\
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_ASSEMBLY))
 

@@ -27,10 +27,10 @@ int		is_d4(char *line)
 	int		i;
 
 	i = 0;
-	if (line[i] == DIRECT_CHAR && ++i && 
-		(ft_isdigit(line[i]) || (line[i] == '-' && ft_isdigit(line[i + 1]))))
+	if (line[i] == DIRECT_CHAR && ++i && (ft_isdigit(line[i])
+		|| ((line[i] == '-' || line[i] == '+') && ft_isdigit(line[i + 1]))))
 	{
-		if (line[i] == '-')
+		if (line[i] == '-' || line[i] == '+')
 			i++;
 		while (ft_isdigit(line[i]))
 			i++;
