@@ -66,9 +66,8 @@ int				search_label(t_label *first, t_op *op, char *tmp, int *num)
 	ret = 1;
 	while (act && strcmp(act->name, &tmp[1]))
 		act = act->next;
-	if (strcmp(act->name, &tmp[1]))
+	if (!act)
 		return (0);
-	ft_printf("LAB %d OP %d\n", act->relative_pos, op->relative_pos);
 	*num = act->relative_pos - op->relative_pos;
 	return (1);
 }
