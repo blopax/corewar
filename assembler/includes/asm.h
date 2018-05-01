@@ -54,15 +54,16 @@ typedef struct 		s_op
 
 typedef struct		s_print
 {
-	char				*str;
+	unsigned char		*str;
 	int					size;
 }					t_print;
 
 int				valid_name(char *name);
-unsigned char	*val_asm(int fd);
-void			print_in_file(unsigned char *to_print, char *name);
-unsigned char	*is_file_valid(char **file);
+t_print			*val_asm(int fd);
+void			print_in_file(t_print *to_print, char *name);
+t_print			*is_file_valid(char **file);
 char			**check_name_and_comment(char **file, int *act);
+char			**split_arg(char *str);
 t_label			*get_label(char **name, int line);
 int				get_opt(char **file, int *line, t_label *act);
 int				label_name_valid(char *file, char **name);
@@ -84,7 +85,14 @@ int				is_d2(char *line);
 int				is_d4(char *line);
 int				is_rg(char *line);
 int				is_id(char *line);
+void			add_reg(unsigned char *ret, int *i, t_op *op);
+int				add_dir(unsigned char *ret, int *i, t_op *op, t_label *first);
+void			add_id(unsigned char *ret, int *i, t_op *op);
 int				add_op(char **split, int op, t_label *act, int *ocp);
+int				add_all_op_size(t_label *first);
+int				free_chain(t_label *first, int ret);
+int				add_op_str(unsigned char *ret, t_label *first, int *i);
 int				free_and_ret(char **ar_str, int *tab, int ret);
+int				add_act_op(unsigned char *ret, t_op *op ,t_label *first, int *i);
 
 #endif

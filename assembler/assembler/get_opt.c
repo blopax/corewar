@@ -26,11 +26,6 @@ int		right_follow(char c)
 
 }
 
-char	**split_arg(char *str)
-{
-	return (ft_strsplit(after_white_space(str), SEPARATOR_CHAR));
-}
-
 int		all_op(char *line, t_label *act)
 {
 	if (!ft_strncmp(line, OP1, 4) && right_follow(line[4]))

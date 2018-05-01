@@ -39,6 +39,7 @@ SRC_ASSEMBLY = \
 			sixth_case.c\
 			seventh_case.c\
 			eighth_case.c\
+			op_to_str.c\
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_ASSEMBLY))
 

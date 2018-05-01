@@ -42,6 +42,7 @@ void			ft_putendl_fd(char const *s, int fd);
 void			ft_putchar_fd(char c, int fd);
 
 void			ft_putstr_fd(char const *s, int fd);
+void			ft_putnstr_fd(char const *s, int fd, int nb);
 void			ft_strclr(char *s);
 void			ft_memdel(void **ap);
 void			ft_strdel(char **as);

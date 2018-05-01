@@ -20,7 +20,7 @@
 
 int		main(int ac, char **av)
 {
-	unsigned char	*file;
+	t_print		*file;
 
 	if (ac == 1)
 		ft_printf("Usage : The assembly need at least one file to be used\n");
