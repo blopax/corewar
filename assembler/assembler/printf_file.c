@@ -41,7 +41,7 @@ void	print_in_file(t_print *to_print, char *name)
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
 		if (fd > 1)
 			ft_putnstr_fd((char*)to_print->str, fd, to_print->size + 1);
-		ft_printf("Fichier %s created\n", ret);
+		ft_printf("Writing output program to %s\n", ret);
 		free(ret);
 	}
 	free(to_print->str);

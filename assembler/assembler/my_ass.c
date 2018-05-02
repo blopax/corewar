@@ -28,11 +28,14 @@ int		main(int ac, char **av)
 	{
 		while (++av && *av)
 		{
-			if (valid_name(av[0]) && (file = val_asm(open(av[0], O_RDONLY))))
+			if (valid_name(av[0]) && (file = val_asm(open(av[0], O_RDONLY))) && file->str)
 				print_in_file(file, av[0]);
 			else
+			{
+				free(file);
 				ft_printf("An error has occured for the compilation \
 of your file %s\n", av[0]);
+			}
 		}
 	}
 	return (0);

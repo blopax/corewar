@@ -6,13 +6,22 @@ int				search_label(t_label *first, t_op *op, char *tmp, int *num)
 {
 	t_label		*act;
 	int			ret;
+	size_t		len;
 
 	act = first;
 	ret = 1;
-	while (act && strcmp(act->name, &tmp[1]))
+	while (act)
+	{
+		if (!ft_strncmp(act->name, &tmp[1], (len = ft_strlen(act->name)))
+		&& (!tmp[len + 1] || ft_iswhitespace(tmp[len + 1])))
+			break ;
 		act = act->next;
+	}
 	if (!act)
+	{
+		ft_printf("Label %s doesn't exist\n", &tmp[1]);
 		return (0);
+	}
 	*num = act->relative_pos - op->relative_pos;
 	return (1);
 }
