@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/04/27 19:10:07 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/02 19:30:11 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ typedef struct		s_info
 	int				dump;
 	int				players_nb;
 	t_player		players_info[MAX_PLAYERS];
+	char			argv[15];
 }					t_info;
 
+int					ft_atoi_cor(const char *str);
 #endif
