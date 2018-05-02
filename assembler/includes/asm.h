@@ -87,7 +87,7 @@ int				is_rg(char *line);
 int				is_id(char *line);
 void			add_reg(unsigned char *ret, int *i, t_op *op);
 int				add_dir(unsigned char *ret, int *i, t_op *op, t_label *first);
-void			add_id(unsigned char *ret, int *i, t_op *op);
+int				add_id(unsigned char *ret, int *i, t_op *op, t_label *first);
 int				add_op(char **split, int op, t_label *act, int *ocp);
 int				add_all_op_size(t_label *first);
 int				free_chain(t_label *first, int ret);

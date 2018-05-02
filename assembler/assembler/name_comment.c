@@ -110,8 +110,8 @@ char	*get_describe(char **file, int *act, int choice)
 		&& len <= COMMENT_LENGTH)
 			return (get_content(file, save, content_start(&file[save][cmd_len], 8)));
 		else
-			ft_printf("%s\n", len < 0 ? "Wrong comment format" : "Max comment \
-len is %d", COMMENT_LENGTH);
+			ft_printf("%s\n", (len <= 0 ? "Wrong comment format" : "Max comment \
+len is 2048"));
 	}
 	return (NULL);
 }

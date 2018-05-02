@@ -35,10 +35,6 @@ void	add_name_comment(unsigned char *ret, char **name, int size)
 	ft_strncpy((char*)&ret[4 + PROG_NAME_LENGTH + 8], name[1], COMMENT_LENGTH);
 }
 
-
-
-
-
 unsigned char		*create_champion(char **name, t_label *first, int *size_ptr)
 {
 	unsigned char	*ret;

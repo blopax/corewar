@@ -58,9 +58,18 @@ int		is_id(char *line)
 	int		i;
 
 	i = 0;
+	if (line[i] == '-' || line[i] == '+')
+		i++;
 	if (ft_isdigit(line[i]))
 		while (ft_isdigit(line[i]))
 			i++;
+	else if (line[i] == ':')
+	{
+		while (is_letter_in_label_name(line[++i]))
+			i++;
+		if (line[i] && !ft_iswhitespace(line[i]) && line[i] != '#')
+			return (0);
+	}
 	else
 		return (0);
 	return (i);

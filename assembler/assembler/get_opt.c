@@ -23,7 +23,6 @@ int		right_follow(char c)
 	if (c == '%' || ft_iswhitespace(c))
 		return (1);
 	return (0);
-
 }
 
 int		all_op(char *line, t_label *act)

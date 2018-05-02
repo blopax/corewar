@@ -62,15 +62,20 @@ int				add_dir(unsigned char *ret, int *i, t_op *op, t_label *first)
 	return (1);
 }
 
-void				add_id(unsigned char *ret, int *i, t_op *op)
+int				add_id(unsigned char *ret, int *i, t_op *op, t_label *first)
 {
 	char	*tmp;
 	int		num;
 
 	tmp = after_white_space(op->par[op->act]);
-	num = ft_atoi(tmp);
+	if (*tmp != ':')
+		num = ft_atoi(tmp);
+	else
+		if (!(search_label(first, op, tmp, &num)))
+			return (0);
 	ret[*i += 1] = ((num >> 8) & 0xFF);
 	ret[*i += 1] = ((num) & 0xFF);
+	return (1);
 }
 
 int				add_op_str(unsigned char *ret, t_label *first, int *i)

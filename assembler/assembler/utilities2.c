@@ -77,7 +77,8 @@ int				add_act_op(unsigned char *ret, t_op *op ,t_label *first, int *i)
 			if (!(add_dir(ret, i, op, first)))
 				return (0);
 		if (((op->ocp >> bitwise) & 3) == 3)
-			add_id(ret, i, op);
+			if (!(add_id(ret, i, op, first)))
+				return (0);
 		bitwise -= 2;
 		param += 1;
 	}
