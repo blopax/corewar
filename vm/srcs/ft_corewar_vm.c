@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:56:29 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/04/27 19:10:03 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/02 19:30:06 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_info	*ft_init_info(void)
 	new_info->dump = 0;
 	new_info->players_nb = 0;
 	ft_init_players(new_info);
+	ft_bzero(new_info->argv, 15);
 	return (new_info);
 }
 
@@ -73,7 +74,22 @@ void	ft_error(int error_code)
 		ft_putstr("Incorrect parameters before a player\n");
 	if (error_code == 2)
 		ft_putstr("Player file not found\n");
+	if (error_code == 3)
+		ft_putstr("Incorrect number used in parameters\n");
 	exit (0);
+}
+
+void	ft_check_argv_validity(t_info *info, int i)
+{
+	int	k;
+
+	k = 0;
+	while (k < i)
+	{
+		if (info->argv[k] == 0)
+			ft_error(4);
+		k++;
+	}
 }
 
 void	ft_define_players(int argc, char **argv, t_info *info)
@@ -81,17 +97,20 @@ void	ft_define_players(int argc, char **argv, t_info *info)
 	int i;
 	int n_flag;
 
-	i = 0;
+	i = 1;
 	while (i < argc)
 	{
 		n_flag = 0;
 		if (ft_strcmp(ft_strstr(argv[i], ".cor"), ".cor") == 0)
 		{
-			if (i > 1 && ft_strcmp(argv[i - 2], "-n") == 0)
+			info->argv[i] = 1;
+			if (i > 2 && ft_strcmp(argv[i - 2], "-n") == 0)
 			{
-				if (argv[i - 1][0] != '-' ||
-						ft_isdigit(ft_atoi(argv[i - 1] + 1)) != 0)
-					n_flag = ft_atoi(argv[i - 1]) * -1;
+				info->argv[i - 2] = 1;
+				if ((argv[i - 1][0] != '-' ||
+						ft_isdigit(ft_atoi_cor(argv[i - 1] + 1)) != 0) &&
+						(n_flag = ft_atoi(argv[i - 1]) * -1) >= 0)
+					info->argv[i - 1] = 1;
 				else
 					ft_error(1);
 			}
@@ -99,12 +118,13 @@ void	ft_define_players(int argc, char **argv, t_info *info)
 						open(argv[i], O_RDONLY)) == -1)
 				ft_error(2);
 			info->players_nb++;
+			ft_check_argv_validity(info, i);
 		}
 		i++;
 	}
 }
 
-void	ft_check_argc(int argc)
+void	ft_check_argc(int argc, char **argv, t_info *info)
 {
 	if (argc == 0)
 	{
@@ -112,10 +132,18 @@ void	ft_check_argc(int argc)
 		ft_putstr("[-dump n] [-n] -player1.cor [-n] -player2.cor...\n");
 		exit (0);
 	}
-	if (argc > 15)
+	if (argc > MAX_ARG)
 	{
 		ft_putstr("Error : Too many parameters.\n");
 		exit (0);
+	}
+	if (ft_strcmp("-dump", argv[1]) == 0)
+	{
+		info->argv[1] = 1;
+		if((info->dump = ft_atoi(argv[2])) > 0)
+			info->argv[2] = 1;
+		else
+			ft_error(3);
 	}
 }
 
@@ -124,9 +152,7 @@ int	main(int argc, char **argv)
 	t_info	*info;
 
 	info = ft_init_info();
-	ft_check_argc(argc);
-	if (ft_strcmp("-dump", argv[1]) == 0)
-		info->dump = ft_atoi(argv[2]);
+	ft_check_argc(argc, argv, info);
 	ft_define_players(argc, argv, info);
 	return (0);
 }

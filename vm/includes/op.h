@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 16:19:11 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/04/27 19:10:09 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/02 18:25:07 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
+# define MAX_ARG				3 + MAX_PLAYERS * 3
 
 typedef struct		s_header
 {
