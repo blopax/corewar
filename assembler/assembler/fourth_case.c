@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fourth_case.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/06 12:07:12 by atourner          #+#    #+#             */
+/*   Updated: 2018/05/06 12:22:39 by atourner         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 #include "ft_printf.h"
 #include "op.h"
 
 /*
-*	04 add et 05 sub OCP : RG, RG, RG
+**	04 add et 05 sub OCP : RG, RG, RG
 */
 
-int		*get_fourth_ocp()
+int		*get_fourth_ocp(void)
 {
 	int		*ret;
 

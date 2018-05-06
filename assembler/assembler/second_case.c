@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   second_case.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/06 12:28:16 by atourner          #+#    #+#             */
+/*   Updated: 2018/05/06 12:28:29 by atourner         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 #include "ft_printf.h"
 #include "op.h"
 
 /*
-*	02 ld		OCP : ID/D4, RG
-*	13 lld		OCP : ID/D4, RG
+**	02 ld		OCP : ID/D4, RG
+**	13 lld		OCP : ID/D4, RG
 */
 
 int		*get_second_ocp(char **split, int op)
@@ -17,7 +29,7 @@ int		*get_second_ocp(char **split, int op)
 	tmp = after_white_space(split[0]);
 	ret[2] = 4;
 	if (*tmp == DIRECT_CHAR)
-			size_and_ocp(ret, 2, 6, 6);
+		size_and_ocp(ret, 2, 6, 6);
 	else
 		size_and_ocp(ret, 3, 6, 4);
 	size_and_ocp(ret, 1, 4, 1);

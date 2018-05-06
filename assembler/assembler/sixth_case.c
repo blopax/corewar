@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sixth_case.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/06 12:28:38 by atourner          #+#    #+#             */
+/*   Updated: 2018/05/06 12:28:38 by atourner         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #include "asm.h"
 #include "op.h"
 
 /*
-*	10 ldi		OCP : RG/ID/D2, RG/D2, RG
-*	14 lldi		OCP : RG/ID/D2, RG/D2, RG
+**	10 ldi		OCP : RG/ID/D2, RG/D2, RG
+**	14 lldi		OCP : RG/ID/D2, RG/D2, RG
 */
 
 int		*get_sixth_ocp(char **split)

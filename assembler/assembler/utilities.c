@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utilities.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/06 12:32:20 by atourner          #+#    #+#             */
+/*   Updated: 2018/05/06 13:52:22 by atourner         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 #include "ft_printf.h"
 #include "op.h"
@@ -21,7 +33,7 @@ void		skip_comment_and_empty_line(char **file, int *line)
 	}
 }
 
-char	*after_white_space(char *str)
+char		*after_white_space(char *str)
 {
 	while (ft_iswhitespace(*str))
 		str++;
@@ -30,17 +42,26 @@ char	*after_white_space(char *str)
 
 int			is_letter_in_label_name(char test)
 {
-	char	*label_chars = LABEL_CHARS;
+	char		*label_chars;
+	char		*save;
 
+	if (!(label_chars = (char*)malloc(sizeof(char) * ft_strlen(LABEL_CHARS))))
+		return (0);
+	ft_strcpy(label_chars, LABEL_CHARS);
+	save = label_chars;
 	while (*label_chars)
 		if (*label_chars == test)
+		{
+			free(save);
 			return (1);
+		}
 		else
 			label_chars++;
+	free(save);
 	return (0);
 }
 
-int		nb_letter(char *line, char c)
+int			nb_letter(char *line, char c)
 {
 	int		i;
 	int		nb;

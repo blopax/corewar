@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/17 09:36:35 by atourner          #+#    #+#             */
-/*   Updated: 2018/04/19 17:02:11 by atourner         ###   ########.fr       */
+/*   Updated: 2018/05/06 14:08:17 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		get_len(char **file, int i, int *act)
 	return (len);
 }
 
-int		content_start(char *file, int start)
+int		cont_start(char *file, int start)
 {
 	int		i;
 
@@ -51,14 +51,14 @@ int		content_start(char *file, int start)
 	return (-1);
 }
 
-char	*get_content(char **file, int line, int act)
+char	*get_content(char **file, int line, int act, int mall)
 {
 	char			*content;
 	int				i;
 	int				len;
 
 	i = 0;
-	if ((content = ft_strnew((line == 0 ? PROG_NAME_LENGTH : COMMENT_LENGTH))))
+	if ((content = ft_strnew((mall == 0 ? PROG_NAME_LENGTH : COMMENT_LENGTH))))
 	{
 		len = act;
 		while (file[line][len] != '\"')
@@ -89,35 +89,32 @@ char	*get_describe(char **file, int *act, int choice)
 	int			len;
 	int			cmd_len;
 	int			name_len;
-	int			save;
+	int			sav;
 
 	get_describe_len(&name_len, &cmd_len, &len);
-	save = *act;
+	sav = *act;
 	if (!choice)
 	{
 		if (!strncmp(file[*act], NAME_CMD_STRING, name_len) && ((len =
-		get_len(file, content_start(&file[*act][name_len], name_len), act)) > 0)
+		get_len(file, cont_start(&file[*act][name_len], name_len), act)) > 0)
 		&& len <= PROG_NAME_LENGTH)
-			return (get_content(file, save, content_start(&file[save][name_len], 5)));
+			return (get_content(file, sav,
+						cont_start(&file[sav][name_len], 5), 0));
 		else
-			ft_printf("%s\n", len <= 0 ? "Wrong name format" : "Max name len is\
-%d", PROG_NAME_LENGTH);
+			print_error(0, len);
+		return (NULL);
 	}
+	if (!strncmp(file[*act], COMMENT_CMD_STRING, cmd_len) && ((len =
+	get_len(file, cont_start(&file[*act][cmd_len], cmd_len), act)) >= 0)
+	&& len <= COMMENT_LENGTH)
+		return (get_content(file, sav, cont_start(&file[sav][cmd_len], 8), 1));
 	else
-	{
-		if (!strncmp(file[*act], COMMENT_CMD_STRING, cmd_len) && ((len =
-		get_len(file, content_start(&file[*act][cmd_len], cmd_len), act)) >= 0)
-		&& len <= COMMENT_LENGTH)
-			return (get_content(file, save, content_start(&file[save][cmd_len], 8)));
-		else
-			ft_printf("%s\n", (len <= 0 ? "Wrong comment format" : "Max comment \
-len is 2048"));
-	}
+		print_error(1, len);
 	return (NULL);
 }
 
 /*
-*	verif du nom et commentaire si un des deux renvoient NULL, erreur
+**	verif du nom et commentaire si un des deux renvoient NULL, erreur
 */
 
 char	**check_name_and_comment(char **file, int *act)

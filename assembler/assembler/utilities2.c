@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utilities2.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/06 12:35:22 by atourner          #+#    #+#             */
+/*   Updated: 2018/05/06 14:58:32 by atourner         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 #include "ft_printf.h"
 #include "op.h"
 
-void	size_and_ocp(int *ret, int type, int bitwise, int size)
+void			size_and_ocp(int *ret, int type, int bitwise, int size)
 {
 	ret[0] += type << bitwise;
 	ret[1] += size;
 }
 
-int			add_all_op_size(t_label *first)
+int				add_all_op_size(t_label *first)
 {
 	int		ret;
 	t_label	*act;
@@ -23,12 +35,12 @@ int			add_all_op_size(t_label *first)
 	return (ret);
 }
 
-char	**split_arg(char *str)
+char			**split_arg(char *str)
 {
 	return (ft_strsplit(after_white_space(str), SEPARATOR_CHAR));
 }
 
-int		check_param(char *str, int test, char **ret)
+int				check_param(char *str, int test, char **ret)
 {
 	int		len;
 	char	*tmp;
@@ -36,8 +48,8 @@ int		check_param(char *str, int test, char **ret)
 	if ((test & 1) && (len = is_rg(str)))
 	{
 		tmp = after_white_space(&str[len]);
-			if (len && (!*tmp || *tmp == COMMENT_CHAR) && (*ret = tmp))
-				return (len);
+		if (len && (!*tmp || *tmp == COMMENT_CHAR) && (*ret = tmp))
+			return (len);
 	}
 	if ((test & 2))
 	{
@@ -57,7 +69,7 @@ int		check_param(char *str, int test, char **ret)
 	return (0);
 }
 
-int				add_act_op(unsigned char *ret, t_op *op ,t_label *first, int *i)
+int				add_act_op(unsigned char *ret, t_op *op, t_label *first, int *i)
 {
 	int		bitwise;
 	int		param;
@@ -65,8 +77,9 @@ int				add_act_op(unsigned char *ret, t_op *op ,t_label *first, int *i)
 	param = 0;
 	bitwise = 6;
 	if (first)
-	ret[*i += 1] = op->op;
-	if (op->op != 1 && op->op != 9 && op->op != 12 && op->op != 15 && op->op != 16)
+		ret[*i += 1] = op->op;
+	if (op->op != 1 && op->op != 9 && op->op != 12
+			&& op->op != 15 && op->op != 16)
 		ret[*i += 1] = op->ocp;
 	while (bitwise)
 	{

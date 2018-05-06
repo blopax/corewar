@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   op_to_str.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/06 12:17:03 by atourner          #+#    #+#             */
+/*   Updated: 2018/05/06 12:23:53 by atourner         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #include "asm.h"
 #include "op.h"
@@ -26,7 +38,7 @@ int				search_label(t_label *first, t_op *op, char *tmp, int *num)
 	return (1);
 }
 
-void				add_reg(unsigned char *ret, int *i, t_op *op)
+void			add_reg(unsigned char *ret, int *i, t_op *op)
 {
 	char	*tmp;
 
@@ -44,9 +56,8 @@ int				add_dir(unsigned char *ret, int *i, t_op *op, t_label *first)
 	tmp++;
 	if (*tmp != ':')
 		num = ft_atoi(tmp);
-	else
-		if (!(search_label(first, op, tmp, &num)))
-			return (0);
+	else if (!(search_label(first, op, tmp, &num)))
+		return (0);
 	if (op->dir_size == 2)
 	{
 		ret[*i += 1] = ((num >> 8) & 0xFF);
@@ -70,9 +81,8 @@ int				add_id(unsigned char *ret, int *i, t_op *op, t_label *first)
 	tmp = after_white_space(op->par[op->act]);
 	if (*tmp != ':')
 		num = ft_atoi(tmp);
-	else
-		if (!(search_label(first, op, tmp, &num)))
-			return (0);
+	else if (!(search_label(first, op, tmp, &num)))
+		return (0);
 	ret[*i += 1] = ((num >> 8) & 0xFF);
 	ret[*i += 1] = ((num) & 0xFF);
 	return (1);
@@ -90,7 +100,7 @@ int				add_op_str(unsigned char *ret, t_label *first, int *i)
 		act_op = act->op;
 		while (act_op)
 		{
-			if (!(add_act_op(ret, act_op,first, i)))
+			if (!(add_act_op(ret, act_op, first, i)))
 				return (0);
 			act_op = act_op->next;
 		}

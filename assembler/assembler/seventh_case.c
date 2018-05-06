@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   seventh_case.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/06 12:27:40 by atourner          #+#    #+#             */
+/*   Updated: 2018/05/06 13:42:34 by atourner         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #include "asm.h"
 #include "op.h"
 
 /*
-*	11 sti OCP : RG, RG/ID/D2, D2/RG
+**	11 sti OCP : RG, RG/ID/D2, D2/RG
 */
 
 int		*get_seventh_ocp(char **split)
@@ -18,7 +30,7 @@ int		*get_seventh_ocp(char **split)
 	if (*tmp == 'r')
 		size_and_ocp(ret, 1, 4, 1);
 	else if (*tmp == DIRECT_CHAR)
-		size_and_ocp(ret, 2, 4 ,2);
+		size_and_ocp(ret, 2, 4, 2);
 	else
 		size_and_ocp(ret, 3, 4, 2);
 	tmp = after_white_space(split[2]);

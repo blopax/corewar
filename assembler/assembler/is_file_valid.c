@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/16 20:06:03 by atourner          #+#    #+#             */
-/*   Updated: 2018/04/18 14:47:17 by atourner         ###   ########.fr       */
+/*   Updated: 2018/05/06 12:23:24 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 #include "asm.h"
 #include "op.h"
 
-
-
-void	add_name_comment(unsigned char *ret, char **name, int size)
+void				add_name_comment(unsigned char *ret, char **name, int size)
 {
 	int		magic;
 
@@ -54,10 +52,10 @@ unsigned char		*create_champion(char **name, t_label *first, int *size_ptr)
 }
 
 /*
-*	validation du fichier si c'est bon, creation du champion
+**	validation du fichier si c'est bon, creation du champion
 */
 
-t_print			*is_file_valid(char **file)
+t_print				*is_file_valid(char **file)
 {
 	char				**name;
 	t_print				*ret;

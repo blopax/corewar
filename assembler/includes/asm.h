@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/16 15:18:55 by atourner          #+#    #+#             */
-/*   Updated: 2018/04/20 13:52:44 by atourner         ###   ########.fr       */
+/*   Updated: 2018/05/06 13:11:28 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ int				free_chain(t_label *first, int ret);
 int				add_op_str(unsigned char *ret, t_label *first, int *i);
 int				free_and_ret(char **ar_str, int *tab, int ret);
 int				add_act_op(unsigned char *ret, t_op *op ,t_label *first, int *i);
+void			print_error(int type, int len);
 
 #endif

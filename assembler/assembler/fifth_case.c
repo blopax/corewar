@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fifth_case.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/06 12:06:28 by atourner          #+#    #+#             */
+/*   Updated: 2018/05/06 12:22:21 by atourner         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 #include "ft_printf.h"
 #include "op.h"
 
 /*
-* 06 and et 07 or et 08 xor OCP : RG/ID/D4, RG/ID/D4, RG
+** 06 and et 07 or et 08 xor OCP : RG/ID/D4, RG/ID/D4, RG
 */
 
 int		*get_fifth_ocp(char **split)
