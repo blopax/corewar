@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/16 15:18:55 by atourner          #+#    #+#             */
-/*   Updated: 2018/05/06 13:11:28 by atourner         ###   ########.fr       */
+/*   Updated: 2018/05/07 15:41:50 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct		s_label
 	struct s_label		*next;
 }					t_label;
 
-typedef struct 		s_op
+typedef struct		s_op
 {
 	int					op;
 	int					ocp;
@@ -58,42 +58,46 @@ typedef struct		s_print
 	int					size;
 }					t_print;
 
-int				valid_name(char *name);
-t_print			*val_asm(int fd);
-void			print_in_file(t_print *to_print, char *name);
-t_print			*is_file_valid(char **file);
-char			**check_name_and_comment(char **file, int *act);
-char			**split_arg(char *str);
-t_label			*get_label(char **name, int line);
-int				get_opt(char **file, int *line, t_label *act);
-int				label_name_valid(char *file, char **name);
-void			skip_comment_and_empty_line(char **file, int *line);
-char			*after_white_space(char *str);
-void			size_and_ocp(int *ret, int type, int bitwise, int size);
-int				check_param(char *str, int test, char **ret);
-int				nb_letter(char *line, char c);
-int				is_letter_in_label_name(char c);
-int				first_case(char *line, char **split, int op, t_label *act);
-int				second_case(char *line, char **split, int op, t_label *act);
-int				third_case(char *line, char **split, int op, t_label *act);
-int				fourth_case(char *line, char **split, int op, t_label *act);
-int				fifth_case(char *line, char **split, int op, t_label *act);
-int				sixth_case(char *line, char **split, int op, t_label *act);
-int				seventh_case(char *line, char **split, int op, t_label *act);
-int				eighth_case(char *line, char **split, int op, t_label *act);
-int				is_d2(char *line);
-int				is_d4(char *line);
-int				is_rg(char *line);
-int				is_id(char *line);
-void			add_reg(unsigned char *ret, int *i, t_op *op);
-int				add_dir(unsigned char *ret, int *i, t_op *op, t_label *first);
-int				add_id(unsigned char *ret, int *i, t_op *op, t_label *first);
-int				add_op(char **split, int op, t_label *act, int *ocp);
-int				add_all_op_size(t_label *first);
-int				free_chain(t_label *first, int ret);
-int				add_op_str(unsigned char *ret, t_label *first, int *i);
-int				free_and_ret(char **ar_str, int *tab, int ret);
-int				add_act_op(unsigned char *ret, t_op *op ,t_label *first, int *i);
-void			print_error(int type, int len);
+int					valid_name(char *name);
+t_print				*val_asm(int fd);
+void				print_in_file(t_print *to_print, char *name);
+t_print				*is_file_valid(char **file);
+char				**check_name_and_comment(char **file, int *act);
+char				**split_arg(char *str);
+t_label				*get_label(char **name, int line);
+int					get_opt(char **file, int *line, t_label *act);
+int					label_name_valid(char *file, char **name);
+void				skip_comment_and_empty_line(char **file, int *line);
+char				*after_white_space(char *str);
+void				size_and_ocp(int *ret, int type, int bitwise, int size);
+int					check_param(char *str, int test, char **ret);
+int					nb_letter(char *line, char c);
+int					is_letter_in_label_name(char c);
+int					first_case(char *line, char **split, int op, t_label *act);
+int					second_case(char *line, char **split, int op, t_label *act);
+int					third_case(char *line, char **split, int op, t_label *act);
+int					fourth_case(char *line, char **split, int op, t_label *act);
+int					fifth_case(char *line, char **split, int op, t_label *act);
+int					sixth_case(char *line, char **split, int op, t_label *act);
+int					seventh_case(char *line, char **split,
+		int op, t_label *act);
+int					eighth_case(char *line, char **split, int op, t_label *act);
+int					is_d2(char *line);
+int					is_d4(char *line);
+int					is_rg(char *line);
+int					is_id(char *line);
+void				add_reg(unsigned char *ret, int *i, t_op *op);
+int					add_dir(unsigned char *ret, int *i,
+		t_op *op, t_label *first);
+int					add_id(unsigned char *ret, int *i,
+		t_op *op, t_label *first);
+int					add_op(char **split, int op, t_label *act, int *ocp);
+int					add_all_op_size(t_label *first);
+int					free_chain(t_label *first, int ret);
+int					add_op_str(unsigned char *ret, t_label *first, int *i);
+int					free_and_ret(char **ar_str, int *tab, int ret);
+int					add_act_op(unsigned char *ret, t_op *op,
+		t_label *first, int *i);
+void				print_error(int type, int len);
 
 #endif

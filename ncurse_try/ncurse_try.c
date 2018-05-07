@@ -24,7 +24,7 @@ int main()
 	int		i = 0;
 	while (1)
 	{
-		wait(50);
+		wait(500);
 		i++;
 		attron(COLOR_PAIR(i % 1));
 		mvprintw(1,0,"%.2x\n", 0xFF);
