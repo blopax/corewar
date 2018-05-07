@@ -1,12 +1,13 @@
 #include <ncurses.h>
 #include <unistd.h>
 #include <time.h>
+#include <stdlib.h>
 
 /*
  * http://tldp.org/HOWTO/NCURSES-Programming-HOWTO/
  */
 
-void wait(int ms)
+void wait_plz(int ms)
 {
     clock_t start = clock();
     while ((clock() - start) * 1000 < ms * CLOCKS_PER_SEC);
@@ -22,9 +23,10 @@ int main()
 	init_pair(4, COLOR_BLACK, COLOR_WHITE);
 	init_pair(5, COLOR_BLACK, COLOR_BLUE);
 	int		i = 0;
-	while (1)
+	system("afplay ~/Downloads/GuileTheme.mp3 &");
+	while (i < 200)
 	{
-		wait(500);
+		wait_plz(50);
 		i++;
 		attron(COLOR_PAIR(i % 1));
 		mvprintw(1,0,"%.2x\n", 0xFF);
@@ -37,7 +39,10 @@ int main()
 		attron(COLOR_PAIR(i % 5));
 		mvprintw(5,0,"%.2x\n", 0xFF);
 		refresh();
+		if (!(i % 50))
+			system("afplay ~/Downloads/Whilem_cry.mp3 &");
 	}
+	system("pkill afplay; afplay ~/Downloads/final_victory.mp3 &");
 	getch();
 	endwin();
 	return (0);
