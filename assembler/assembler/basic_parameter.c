@@ -14,16 +14,16 @@
 #include "asm.h"
 #include "ft_printf.h"
 
-int		is_d2(char *line)
+int		ft_is_d2(char *line)
 {
 	int		i;
 
 	i = 0;
 	if (line[i] == DIRECT_CHAR && line[i + 1] == LABEL_CHAR &&
-		is_letter_in_label_name(line[i + 2]))
+		ft_letter_lab_name(line[i + 2]))
 	{
 		i += 2;
-		while (is_letter_in_label_name(line[i]))
+		while (ft_letter_lab_name(line[i]))
 			i++;
 		if (line[i] && !ft_iswhitespace(line[i]) && line[i] != '#')
 			return (0);
@@ -33,7 +33,7 @@ int		is_d2(char *line)
 	return (i);
 }
 
-int		is_d4(char *line)
+int		ft_is_d4(char *line)
 {
 	int		i;
 
@@ -51,7 +51,7 @@ int		is_d4(char *line)
 	return (i);
 }
 
-int		is_rg(char *line)
+int		ft_is_rg(char *line)
 {
 	int		i;
 
@@ -64,7 +64,7 @@ int		is_rg(char *line)
 	return (i);
 }
 
-int		is_id(char *line)
+int		ft_is_id(char *line)
 {
 	int		i;
 
@@ -76,7 +76,7 @@ int		is_id(char *line)
 			i++;
 	else if (line[i] == ':')
 	{
-		while (is_letter_in_label_name(line[++i]))
+		while (ft_letter_lab_name(line[++i]))
 			i++;
 		if (line[i] && !ft_iswhitespace(line[i]) && line[i] != '#')
 			return (0);

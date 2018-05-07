@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/06 12:02:51 by atourner          #+#    #+#             */
-/*   Updated: 2018/05/06 12:02:52 by atourner         ###   ########.fr       */
+/*   Created: 2018/05/07 16:32:07 by atourner          #+#    #+#             */
+/*   Updated: 2018/05/07 18:15:05 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_printf.h"
 #include "op.h"
 
-t_op	*add_last(t_label *act)
+static t_op		*add_last(t_label *act)
 {
 	t_op	*act_op;
 
@@ -38,7 +38,7 @@ t_op	*add_last(t_label *act)
 	return (act_op);
 }
 
-int		add_op(char **split, int op, t_label *act, int *ocp)
+int				ft_add_op(char **split, int op, t_label *act, int *ocp)
 {
 	t_op	*act_op;
 	int		i;
@@ -47,19 +47,19 @@ int		add_op(char **split, int op, t_label *act, int *ocp)
 	i = 0;
 	bitwise = 6;
 	if (!(act_op = add_last(act)))
-		return (free_and_ret(split, ocp, 0));
+		return (ft_free_and_ret(split, ocp, 0));
 	act_op->ocp = ocp[0];
 	act_op->size = ocp[1];
 	act_op->dir_size = ocp[2];
 	while (bitwise && ((ocp[0] >> bitwise) & 3))
 	{
 		if (!(act_op->par[i] = ft_strdup(split[i])))
-			return (free_and_ret(split, ocp, 0));
+			return (ft_free_and_ret(split, ocp, 0));
 		i++;
 		bitwise -= 2;
 	}
 	act_op->par[i] = NULL;
 	act_op->op = op;
 	act->size += act_op->size;
-	return (free_and_ret(split, ocp, 1));
+	return (ft_free_and_ret(split, ocp, 1));
 }

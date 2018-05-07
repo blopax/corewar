@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/17 09:36:35 by atourner          #+#    #+#             */
-/*   Updated: 2018/05/06 14:08:17 by atourner         ###   ########.fr       */
+/*   Created: 2018/05/07 16:34:52 by atourner          #+#    #+#             */
+/*   Updated: 2018/05/07 18:15:56 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "asm.h"
 #include "op.h"
 
-int		get_len(char **file, int i, int *act)
+static int		get_len(char **file, int i, int *act)
 {
 	unsigned int	line;
 	unsigned int	len;
@@ -39,7 +39,7 @@ int		get_len(char **file, int i, int *act)
 	return (len);
 }
 
-int		cont_start(char *file, int start)
+static int		cont_start(char *file, int start)
 {
 	int		i;
 
@@ -51,7 +51,7 @@ int		cont_start(char *file, int start)
 	return (-1);
 }
 
-char	*get_content(char **file, int line, int act, int mall)
+static char		*get_content(char **file, int line, int act, int mall)
 {
 	char			*content;
 	int				i;
@@ -77,21 +77,14 @@ char	*get_content(char **file, int line, int act, int mall)
 	return (content);
 }
 
-void	get_describe_len(int *name_len, int *cmd_len, int *len)
-{
-	*name_len = (int)ft_strlen(NAME_CMD_STRING);
-	*cmd_len = (int)ft_strlen(COMMENT_CMD_STRING);
-	*len = 0;
-}
-
-char	*get_describe(char **file, int *act, int choice)
+static char		*get_describe(char **file, int *act, int choice)
 {
 	int			len;
 	int			cmd_len;
 	int			name_len;
 	int			sav;
 
-	get_describe_len(&name_len, &cmd_len, &len);
+	ft_get_describe_len(&name_len, &cmd_len, &len);
 	sav = *act;
 	if (!choice)
 	{
@@ -101,7 +94,7 @@ char	*get_describe(char **file, int *act, int choice)
 			return (get_content(file, sav,
 						cont_start(&file[sav][name_len], 5), 0));
 		else
-			print_error(0, len);
+			ft_print_error(0, len);
 		return (NULL);
 	}
 	if (!strncmp(file[*act], COMMENT_CMD_STRING, cmd_len) && ((len =
@@ -109,7 +102,7 @@ char	*get_describe(char **file, int *act, int choice)
 	&& len <= COMMENT_LENGTH)
 		return (get_content(file, sav, cont_start(&file[sav][cmd_len], 8), 1));
 	else
-		print_error(1, len);
+		ft_print_error(1, len);
 	return (NULL);
 }
 
@@ -117,7 +110,7 @@ char	*get_describe(char **file, int *act, int choice)
 **	verif du nom et commentaire si un des deux renvoient NULL, erreur
 */
 
-char	**check_name_and_comment(char **file, int *act)
+char			**ft_check_com_nam(char **file, int *act)
 {
 	char	**champion_describe;
 
@@ -127,9 +120,9 @@ char	**check_name_and_comment(char **file, int *act)
 		ft_printf("Malloc error\nCheck your memory\n");
 		return (NULL);
 	}
-	skip_comment_and_empty_line(file, act);
+	ft_skip_empty(file, act);
 	champion_describe[0] = get_describe(file, act, 0);
-	skip_comment_and_empty_line(file, act);
+	ft_skip_empty(file, act);
 	champion_describe[1] = get_describe(file, act, 1);
 	champion_describe[2] = NULL;
 	if (!champion_describe[0] || !champion_describe[1])

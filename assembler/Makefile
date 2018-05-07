@@ -6,7 +6,7 @@
 #    By: atourner <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 10:42:44 by atourner          #+#    #+#              #
-#    Updated: 2018/05/06 13:09:40 by atourner         ###   ########.fr        #
+#    Updated: 2018/05/07 18:16:16 by atourner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC_ASSEMBLY = \
 			free_all.c\
 			utilities.c\
 			utilities2.c\
+			utilities3.c\
 			first_case.c\
 			second_case.c\
 			third_case.c\

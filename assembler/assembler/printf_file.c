@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/16 15:12:54 by atourner          #+#    #+#             */
-/*   Updated: 2018/04/16 16:41:54 by atourner         ###   ########.fr       */
+/*   Updated: 2018/05/07 17:57:05 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "op.h"
 #include "asm.h"
 
-char	*name_cor(char *name)
+static char		*name_cor(char *name)
 {
 	char	*ret;
 	int		i;
@@ -30,7 +30,7 @@ char	*name_cor(char *name)
 	return (ret);
 }
 
-void	print_in_file(t_print *to_print, char *name)
+void			ft_print_file(t_print *to_print, char *name)
 {
 	int		fd;
 	char	*ret;

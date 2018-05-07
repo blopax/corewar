@@ -14,14 +14,14 @@
 #include "asm.h"
 #include "op.h"
 
-int		free_and_ret(char **ar_str, int *tab, int ret)
+int		ft_free_and_ret(char **ar_str, int *tab, int ret)
 {
 	ft_free_ar((void**)ar_str);
 	free(tab);
 	return (ret);
 }
 
-int		free_chain(t_label *first, int ret)
+int		ft_free_chain(t_label *first, int ret)
 {
 	t_label *next;
 	t_label	*act;
