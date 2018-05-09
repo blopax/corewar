@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_corewar_vm.c                                    :+:      :+:    :+:   */
+/*   ft_str_isdigit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/26 17:56:29 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/09 16:06:04 by nvergnac         ###   ########.fr       */
+/*   Created: 2018/05/07 16:54:24 by nvergnac          #+#    #+#             */
+/*   Updated: 2018/05/09 16:39:56 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#include "libft.h"
 
-void	ft_show_player_info(t_info *info)
+int		ft_str_isdigit(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (i < MAX_PLAYERS)
+	while (str[i])
 	{
-		printf("player_nb :\t%d\n", info->players_info[i].number);
-		printf("player_fd :\t%d\n\n", info->players_info[i].fd);
+		if (str[i] != '-' && ft_isdigit(str[i]) == 0)
+			return (1);
 		i++;
 	}
-}
-
-int		main(int argc, char **argv)
-{
-	t_info	*info;
-
-	info = ft_init_info();
-	ft_check_argc(argc, argv, info);
-	printf("Check_arg_OK\n");
-	ft_define_players(argc, argv, info);
-	printf("SUCCESS\n");
-	ft_show_player_info(info);
 	return (0);
 }

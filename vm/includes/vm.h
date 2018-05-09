@@ -6,16 +6,17 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/05/02 19:30:11 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/07 18:53:09 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VM_H
 # define VM_H
 # include "op.h"
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include "stdlib.h"
 # include "unistd.h"
+# include "stdio.h"
 typedef struct		s_op
 {
 	char			*mnemonic;
@@ -67,7 +68,12 @@ typedef struct		s_info
 	int				players_nb;
 	t_player		players_info[MAX_PLAYERS];
 	char			argv[15];
+	int				player_one;
 }					t_info;
 
 int					ft_atoi_cor(const char *str);
+void				ft_error(int error_code);
+t_info				*ft_init_info(void);
+void				ft_check_argc(int argc, char **argv, t_info *info);
+void				ft_define_players(int argc, char **argv, t_info *info);
 #endif

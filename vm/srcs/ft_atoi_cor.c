@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/02 19:30:50 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/02 19:30:52 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/09 16:39:21 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int				ft_atoi_cor(const char *str)
 		result = result * 10 + str[i] - 48;
 		i++;
 		if (result > 2147483648 || (result == 2147483648 && sign == 1))
-			return (1);
+			ft_error(3);
 	}
 	return (sign * result);
 }
