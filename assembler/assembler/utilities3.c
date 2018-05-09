@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   utilities3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 15:06:29 by atourner          #+#    #+#             */
-/*   Updated: 2018/05/06 12:36:29 by atourner         ###   ########.fr       */
+/*   Created: 2018/05/07 18:09:02 by atourner          #+#    #+#             */
+/*   Updated: 2018/05/07 18:11:58 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "op.h"
+#include "asm.h"
+#include "ft_printf.h"
 
-void			ft_putstr_fd(char const *s, int fd)
+void		ft_get_describe_len(int *name_len, int *cmd_len, int *len)
 {
-	write(fd, s, (int)ft_strlen((char*)s));
-}
-
-void			ft_putnstr_fd(char const *s, int fd, int nb)
-{
-	write(fd, s, nb);
+	*name_len = (int)ft_strlen(NAME_CMD_STRING);
+	*cmd_len = (int)ft_strlen(COMMENT_CMD_STRING);
+	*len = 0;
 }

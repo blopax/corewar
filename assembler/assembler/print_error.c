@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 15:06:29 by atourner          #+#    #+#             */
-/*   Updated: 2018/05/06 12:36:29 by atourner         ###   ########.fr       */
+/*   Created: 2018/05/07 16:34:37 by atourner          #+#    #+#             */
+/*   Updated: 2018/05/07 16:34:39 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
+#include "asm.h"
+#include "op.h"
 
-void			ft_putstr_fd(char const *s, int fd)
+void		ft_print_error(int type, int len)
 {
-	write(fd, s, (int)ft_strlen((char*)s));
-}
+	char	str[9];
+	int		len_err;
 
-void			ft_putnstr_fd(char const *s, int fd, int nb)
-{
-	write(fd, s, nb);
+	if (type == 0)
+		ft_strcpy(str, "name\0");
+	else
+		ft_strcpy(str, "comment\0");
+	if (len <= 0)
+		ft_printf("Wrong %s format\n", str);
+	else
+	{
+		len_err = (type == 0 ? PROG_NAME_LENGTH : COMMENT_LENGTH);
+		ft_printf("Max %s len is %d\nYours is %d\n", str, len_err, len);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/16 15:10:56 by atourner          #+#    #+#             */
-/*   Updated: 2018/04/19 11:05:22 by atourner         ###   ########.fr       */
+/*   Updated: 2018/05/07 17:51:41 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static char		**realloc_ar(char **tmp, char **act, int nb)
 	return (new);
 }
 
-static	char	**read_file(int fd)
+static char		**read_file(int fd)
 {
 	char	*tmp;
 	int		nb;
@@ -45,7 +45,7 @@ static	char	**read_file(int fd)
 	return (act);
 }
 
-int				valid_name(char *name)
+int				ft_valid_name(char *name)
 {
 	unsigned int		i;
 
@@ -57,7 +57,7 @@ int				valid_name(char *name)
 	return (0);
 }
 
-t_print			*val_asm(int fd)
+t_print			*ft_val_asm(int fd)
 {
 	char			**file;
 	t_print			*ret;
@@ -68,7 +68,7 @@ t_print			*val_asm(int fd)
 		file = read_file(fd);
 		if (file)
 		{
-			ret = is_file_valid(file);
+			ret = ft_val_file(file);
 			ft_free_ar((void**)file);
 		}
 	}

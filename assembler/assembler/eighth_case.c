@@ -1,31 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   eighth_case.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/07 16:32:24 by atourner          #+#    #+#             */
+/*   Updated: 2018/05/07 17:51:59 by atourner         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 #include "ft_printf.h"
 #include "op.h"
 
 /*
-*	16 aff : RG
+**	16 aff : RG
 */
 
-int		*get_eighth_ocp()
+static int		*get_eighth_ocp(void)
 {
 	int		*ret;
 
 	ret = (int*)ft_memalloc(sizeof(int) * 3);
 	ret[2] = 4;
-	size_and_ocp(ret, 1, 6, 2);
+	ft_size_ocp(ret, 1, 6, 2);
 	return (ret);
 }
 
-int		eighth_case(char *line, char **split, int op, t_label *act)
+int				ft_case_8(char *line, char **split, int op, t_label *act)
 {
 	int		len;
 	char	*tmp;
 
-	if ((len = check_param(split[0], 1, &tmp)))
+	if ((len = ft_check_param(split[0], 1, &tmp)))
 	{
 		if ((*tmp == COMMENT_CHAR
-			|| (!*tmp && !split[1])) && !nb_letter(line, SEPARATOR_CHAR))
-			return (add_op(split, op, act, get_eighth_ocp()));
+			|| (!*tmp && !split[1])) && !ft_nb_letter(line, SEPARATOR_CHAR))
+			return (ft_add_op(split, op, act, get_eighth_ocp()));
 	}
 	return (0);
 }
