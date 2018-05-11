@@ -19,8 +19,8 @@ LIB = $(addprefix $(LIB_PATH), $(LIB_NAME))
 
 #srcs
 SRC_PATH =srcs/
-SRC_NAME = ft_corewar_vm.c op.c ft_atoi_cor.c ft_init_struct.c\
-		   ft_check_error.c ft_parsing_arg.c ft_vm.c
+SRC_NAME = ft_corewar_vm.c ft_atoi_cor.c ft_init_struct.c\
+		   ft_check_error.c ft_parsing_arg.c free.c op.c player_parsing.c
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 
 #obj
