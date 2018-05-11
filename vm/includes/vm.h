@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/05/07 18:53:09 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/11 16:00:32 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,6 @@ void				ft_error(int error_code);
 t_info				*ft_init_info(void);
 void				ft_check_argc(int argc, char **argv, t_info *info);
 void				ft_define_players(int argc, char **argv, t_info *info);
+t_proc				*ft_init_proc(int pc);
+void				ft_create_proc(t_info *info);
 #endif

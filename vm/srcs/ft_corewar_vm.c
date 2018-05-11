@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:56:29 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/09 16:06:04 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/11 16:00:36 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int		main(int argc, char **argv)
 	ft_define_players(argc, argv, info);
 	printf("SUCCESS\n");
 	ft_show_player_info(info);
+	ft_create_proc(info);
 	return (0);
 }

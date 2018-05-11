@@ -6,20 +6,20 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 15:28:11 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/09 16:43:10 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/11 15:57:04 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-t_proc	*ft_init_proc(void)
+t_proc	*ft_init_proc(int pc)
 {
 	t_proc	*new_proc;
 
 	new_proc = (t_proc*)malloc(sizeof(t_proc));
 	ft_bzero(new_proc->reg, sizeof(int) * 16);
 	new_proc->carry = 0;
-	new_proc->pc = 0;
+	new_proc->pc = pc;
 	new_proc->opcode = 0;
 	new_proc->ocp = 0;
 	new_proc->cycles_to_go = 0;
@@ -55,7 +55,7 @@ t_info	*ft_init_info(void)
 
 	new_info = (t_info*)malloc((sizeof(t_info)));
 	ft_bzero(new_info->board, MEM_SIZE);
-	new_info->first_processus = ft_init_proc();
+	new_info->first_processus = ft_init_proc(0);
 	new_info->cycles_to_die = CYCLE_TO_DIE;
 	new_info->cycles = 0;
 	new_info->check = 0;
