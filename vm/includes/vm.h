@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/05/11 18:33:52 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/14 18:28:28 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ typedef struct		s_player
 {
 	int				fd;
 	void			*header;
-	int				magic;
+	unsigned int	magic;
 	char			*name;
 	char			*comment;
-	int				size;
-	void			*program;
+	unsigned int	size;
+	unsigned char	*program;
 	int				live;
 	int				turn;
 	int				number;
@@ -57,7 +57,7 @@ typedef struct		s_player
 
 typedef struct		s_info
 {
-	char			board[MEM_SIZE];
+	unsigned char	board[MEM_SIZE];
 	t_proc			*first_processus;
 	int				cycles_to_die;
 	int				cycles;
@@ -80,4 +80,6 @@ t_proc				*ft_init_proc(int pc);
 void				ft_create_proc(t_info *info);
 int					get_player(t_player *player);
 int					set_vm(t_info *info);
+unsigned int		ft_ptr_to_uint(unsigned char *ptr, int size);
+void				free_player(t_player *player);
 #endif
