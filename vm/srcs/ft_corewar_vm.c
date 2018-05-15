@@ -23,11 +23,10 @@ void	ft_show_player_info(t_info *info)
 		printf("player_fd :\t%d\n", info->players_info[i].fd);
 		printf("player_header :\t%p\n", info->players_info[i].header);
 		printf("player_magic :\t%u\n", info->players_info[i].magic);
-//		printf("player_name :\t%p\n", (void *)info->players_info[i].name);
 		printf("player_name :\t%s\n", info->players_info[i].name);
 		printf("player_comment :\t%s\n", info->players_info[i].comment);
 		printf("player_size :\t%u\n", info->players_info[i].size);
-//		printf("player_program :\t%p\n", info->players_info[i].program);
+		printf("player_program :\t%p\n", info->players_info[i].program);
 		i++;
 	}
 }

@@ -60,7 +60,8 @@ int				get_header(t_player *player)
 	if (ret != count)
 		return (1);
 	player->magic = ft_ptr_to_uint((unsigned char *)(player->header), 4);
-	player->name = (char*)(player->header + 8);
+	printf("%u\n\n", player->magic);
+	player->name = (char*)(player->header + 4);
 	player->size = ft_ptr_to_uint((unsigned char *)(player->header + 8 + PROG_NAME_LENGTH), 4);
 	player->comment = (char*)(player->header + PROG_NAME_LENGTH + 12);
 	return (ft_check_header(player));
@@ -95,8 +96,7 @@ int				set_vm(t_info *info)
 	while (i < info->players_nb)
 	{
 		address = i * MEM_SIZE / info->players_nb;
-		
-		ft_memcpy(info->board + address, info->players_info[i].program,
+		ft_memcpy((void *)(info->board + address), (void *)(info->players_info[i].program),
 				(size_t)info->players_info[i].size);
 		i++;
 	}
