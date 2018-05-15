@@ -6,13 +6,14 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/05/14 18:28:28 by pclement         ###   ########.fr       */
+/*   Updated: 2018/05/15 17:21:41 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VM_H
 # define VM_H
 # include "op.h"
+# include "ft_op_ptr.h"
 # include "../libft/libft.h"
 # include "stdlib.h"
 # include "unistd.h"
@@ -82,4 +83,21 @@ int					get_player(t_player *player);
 int					set_vm(t_info *info);
 unsigned int		ft_ptr_to_uint(unsigned char *ptr, int size);
 void				free_player(t_player *player);
+int					ft_live(t_info *info, t_proc *proc);
+int					ft_load(t_info *info, t_proc *proc);
+int					ft_store(t_info *info, t_proc *proc);
+int					ft_add(t_info *info, t_proc *proc);
+int					ft_sub(t_info *info, t_proc *proc);
+int					ft_and(t_info *info, t_proc *proc);
+int					ft_or(t_info *info, t_proc *proc);
+int					ft_xor(t_info *info, t_proc *proc);
+int					ft_zjump(t_info *info, t_proc *proc);
+int					ft_load_indirect(t_info *info, t_proc *proc);
+int					ft_store_indirect(t_info *info, t_proc *proc);
+int					ft_fork(t_info *info, t_proc *proc);
+int					ft_long_load(t_info *info, t_proc *proc);
+int					ft_long_load_indirect(t_info *info, t_proc *proc);
+int					ft_long_fork(t_info *info, t_proc *proc);
+int					ft_aff(t_info *info, t_proc *proc);
+
 #endif
