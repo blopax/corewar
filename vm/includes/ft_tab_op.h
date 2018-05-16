@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_op_ptr.h                                        :+:      :+:    :+:   */
+/*   ft_tab_op.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/15 15:47:12 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/15 17:22:24 by nvergnac         ###   ########.fr       */
+/*   Created: 2018/05/16 15:04:00 by nvergnac          #+#    #+#             */
+/*   Updated: 2018/05/16 17:51:10 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_OP_PTR_H
-# define FT_OP_PTR_H
-
+#ifndef FT_TAB_OP_H
+# define FT_TAB_OP_H
 # include "vm.h"
 
 typedef struct		s_tab_op
 {
-	unsigned char	op;
-	int		(*f_op)(t_info*, t_proc *proc);
+	int		op;
+	int		(*f_op)(t_info*, t_proc*);
 }					t_tab_op;
 
 struct	s_tab_op	tabop[] =

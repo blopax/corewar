@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 15:28:11 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/16 14:59:12 by pclement         ###   ########.fr       */
+/*   Updated: 2018/05/16 19:36:57 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ t_proc	*ft_init_proc(int pc)
 	ft_bzero(new_proc->reg, sizeof(int) * 16);
 	new_proc->carry = 0;
 	new_proc->pc = pc;
-	new_proc->opcode = 0;
-	new_proc->ocp = 0;
-	new_proc->cycles_to_go = 0;
 	new_proc->alive = 0;
+	new_proc->op_size = 0;
 	new_proc->next = 0;
 	return (new_proc);
 }
@@ -66,5 +64,7 @@ t_info	*ft_init_info(void)
 	ft_init_players(new_info);
 	ft_bzero(new_info->argv, 15);
 	new_info->player_one = 1;
+	new_info->last_player_alive = 0;
+	new_info->countdown_to_die = 0;
 	return (new_info);
 }
