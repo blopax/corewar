@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/05/16 15:47:35 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/16 17:57:43 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct		s_op
 	char			*mnemonic;
 	int				param_nb;
 	int				param_size[3];
-	int				opc;
+	int				opcode;
 	int				cycle_nb;
 	char			*full_name;
 	short			codage_octal;
@@ -35,10 +35,9 @@ typedef struct		s_proc
 	int				reg[16];
 	char			carry;
 	int				pc;
-	int				opcode;
-	int				ocp;
-	int				cycles_to_go;
 	int				alive;
+	t_op			loaded_op;
+	short			op_size;
 	struct s_proc	*next;
 }					t_proc;
 
@@ -70,8 +69,9 @@ typedef struct		s_info
 	t_player		players_info[MAX_PLAYERS];
 	char			argv[15];
 	int				player_one;
+	int				last_player_alive;
+	int				countdown_to_die;
 }					t_info;
-
 
 int					ft_atoi_cor(const char *str);
 void				ft_error(int error_code);
