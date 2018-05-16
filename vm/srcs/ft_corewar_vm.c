@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:56:29 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/14 19:43:19 by pclement         ###   ########.fr       */
+/*   Updated: 2018/05/16 19:35:11 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,38 @@ void	ft_show_player_info(t_info *info)
 
 void	ft_show_board(t_info *info)
 {
-	int		i;
+	unsigned int	player;
+	unsigned int	i;
 
+	player = 0;
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		if (info->board[i] < 16)
-			printf("0");
-		printf("%x", info->board[i]);
-		if (i % 64 == 63)
-			printf("\n");
-		else
-			printf(" ");
-		i++;
+		while (i < player * MEM_SIZE / info->players_nb + info->players_info[player].size)
+		{
+			printf("\x1B[34m");
+			if (info->board[i] < 16)
+				printf("0");
+			printf("%x", info->board[i]);
+			i++;
+			if (i % 64 == 63)
+				printf("\n");
+			else
+				printf(" ");
+		}
+		printf("\x1B[37m");
+		player++;
+		while (i < player * MEM_SIZE / info->players_nb)
+		{
+			if (info->board[i] < 16)
+				printf("0");
+			printf("%x", info->board[i]);
+			i++;
+			if (i % 64 == 0)
+				printf("\n");
+			else
+				printf(" ");
+		}
 	}
 }
 
@@ -67,9 +86,10 @@ int		main(int argc, char **argv)
 		i++;
 	}
 	set_vm(info);
-	ft_show_player_info(info);
 //	ft_create_proc(info);
 	ft_show_board(info);
+	printf("_______________________\n");
+	ft_show_player_info(info);
 //	free_player(&(info->players_info[0]));
 	return (0);
 }

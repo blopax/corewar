@@ -6,14 +6,14 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/05/15 17:21:41 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/16 19:35:14 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VM_H
 # define VM_H
 # include "op.h"
-# include "ft_op_ptr.h"
+//# include "ft_op_ptr.h"
 # include "../libft/libft.h"
 # include "stdlib.h"
 # include "unistd.h"
