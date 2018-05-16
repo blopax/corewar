@@ -6,18 +6,18 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/05/15 17:21:41 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/16 15:47:35 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VM_H
 # define VM_H
 # include "op.h"
-# include "ft_op_ptr.h"
 # include "../libft/libft.h"
 # include "stdlib.h"
 # include "unistd.h"
 # include "stdio.h"
+
 typedef struct		s_op
 {
 	char			*mnemonic;
@@ -71,6 +71,7 @@ typedef struct		s_info
 	char			argv[15];
 	int				player_one;
 }					t_info;
+
 
 int					ft_atoi_cor(const char *str);
 void				ft_error(int error_code);
