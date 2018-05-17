@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 12:24:21 by pclement          #+#    #+#             */
-/*   Updated: 2018/05/14 19:45:09 by pclement         ###   ########.fr       */
+/*   Updated: 2018/05/16 14:36:59 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int				get_header(t_player *player)
 	if (ret != count)
 		return (1);
 	player->magic = ft_ptr_to_uint((unsigned char *)(player->header), 4);
-	printf("%u\n\n", player->magic);
 	player->name = (char*)(player->header + 4);
 	player->size = ft_ptr_to_uint((unsigned char *)(player->header + 8 + PROG_NAME_LENGTH), 4);
 	player->comment = (char*)(player->header + PROG_NAME_LENGTH + 12);
