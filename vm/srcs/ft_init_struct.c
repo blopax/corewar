@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 15:28:11 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/16 19:36:57 by pclement         ###   ########.fr       */
+/*   Updated: 2018/05/18 17:07:13 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@ t_proc	*ft_init_proc(int pc)
 {
 	t_proc	*new_proc;
 
-	new_proc = (t_proc*)malloc(sizeof(t_proc));
+	if (!(new_proc = (t_proc*)malloc(sizeof(t_proc))))
+		return (0);
 	ft_bzero(new_proc->reg, sizeof(int) * 16);
 	new_proc->carry = 0;
 	new_proc->pc = pc;
 	new_proc->alive = 0;
+	ft_bzero((void*)&(new_proc->loaded_op), sizeof(t_op));
 	new_proc->op_size = 0;
 	new_proc->next = 0;
+	new_proc->prev = 0;
 	return (new_proc);
 }
 

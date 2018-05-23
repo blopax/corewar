@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:56:29 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/17 15:45:33 by pclement         ###   ########.fr       */
+/*   Updated: 2018/05/23 17:42:41 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_show_board(t_info *info)
 				printf(" ");
 		}
 		player++;
-		printf("\x1B[34m");
+//		printf("\x1B[34m");
 		while (i < player * MEM_SIZE / info->players_nb)
 		{
 			if (info->board[i] < 16)
@@ -65,8 +65,9 @@ void	ft_show_board(t_info *info)
 			else
 				printf(" ");
 		}
-		printf("\x1B[37m");
+//		printf("\x1B[37m");
 	}
+	ft_putstr("\n");
 }
 
 
@@ -87,10 +88,12 @@ int		main(int argc, char **argv)
 		i++;
 	}
 	set_vm(info);
-//	ft_create_proc(info);
+	ft_create_proc(info);
 	ft_show_board(info);
 	printf("_______________________\n");
 	ft_show_player_info(info);
 //	free_player(&(info->players_info[0]));
+	ft_run_vm(info);
+	ft_show_board(info);
 	return (0);
 }

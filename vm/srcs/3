@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 17:08:34 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/23 17:17:27 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/21 16:27:58 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,52 +61,46 @@ void	ft_create_proc(t_info *info)
 	}
 }
 
-int		ft_preload_instruction(t_info *info, t_proc *proc)
+void	ft_reinit_lives(t_info *info)
 {
-	unsigned char i;
+	t_proc *proc_tmp;
 
-	i = *(info->board + proc->pc);
-	if (i == 0 || i > 16)
-		proc->pc = (proc->pc + 1) % MEM_SIZE;
-	else
+	proc_tmp = info->first_processus;
+	while (proc_tmp)
 	{
-		proc->loaded_op.mnemonic = g_op_tab[i - 1].mnemonic;
-		proc->loaded_op.param_nb = g_op_tab[i - 1].param_nb;
-		if ((proc->loaded_op.opcode = g_op_tab[i - 1].opcode) == 1)
-			proc->loaded_op.param_size[0] = T_DIR * 2;
-		else
-			proc->loaded_op.param_size[0] = g_op_tab[i - 1].param_size[0];
-		proc->loaded_op.param_size[1] = g_op_tab[i - 1].param_size[1];
-		proc->loaded_op.param_size[2] = g_op_tab[i - 1].param_size[2];
-		proc->loaded_op.cycle_nb = g_op_tab[i - 1].cycle_nb;
-		proc->loaded_op.full_name = g_op_tab[i - 1].full_name;
-		proc->loaded_op.codage_octal = g_op_tab[i - 1].codage_octal;
-		proc->loaded_op.dir_size = g_op_tab[i - 1].dir_size;
+		proc_tmp->alive = 0;
+		proc_tmp = proc_tmp->next;
 	}
+	info->total_lives = 0;
+	info->check = 0;
+	info->countdown_to_die = 0;
+}
+
+int		ft_flag(t_info *info)
+{
+	if (info->countdown_to_die == info->cycles_to_die)
+	{
+		if (info->total_lives > NBR_LIVE || info->check == MAX_CHECKS - 1)
+			info->cycles_to_die -= CYCLE_DELTA;
+		else
+			info->check++;
+		ft_reinit_lives(info);
+	}
+	if (info->cycles_to_die <= 0)
+		return (0);
 	return (1);
 }
+
 
 short	ft_get_op_size(t_op *loaded_op, unsigned char ocp)
 {
 	unsigned char	p[3];
 	int				i;
 
-	ft_putstr("OCP_VAL :\t");
-	ft_putnbr(ocp);
-	ft_putstr("\n");
 	i = 0;
-	p[0] = ocp / 64;
+	p[2] = ocp / 64;
 	p[1] = (ocp % 64) / 16;
-	p[2] = (ocp % 16) / 4;
-	ft_putstr("p0 :\t");
-	ft_putnbr(p[0]);
-	ft_putstr("\n");
-	ft_putstr("p1 :\t");
-	ft_putnbr(p[1]);
-	ft_putstr("\n");
-	ft_putstr("p2 :\t");
-	ft_putnbr(p[2]);
-	ft_putstr("\n");
+	p[0] = (ocp % 16) / 4;
 	while (i < 3)
 	{
 		if (p[i] == 0)
@@ -119,25 +113,41 @@ short	ft_get_op_size(t_op *loaded_op, unsigned char ocp)
 			loaded_op->param_size[i] = T_DIR;
 		else if (p[i] == IND_CODE)
 			loaded_op->param_size[i] = T_IND;
-//		if ((i == 0 && p[i] == 2) || (p[1] == 0 && p[2] != 2))
-//			return (0);
-//		ft_putnbr(i);
-//		ft_putstr("\n");
+		if ((i == 0 && p[i] == 0) || (p[1] == 0 && p[2] != 0))
+			return (0);
 		i++;
 	}
 	return (2 + loaded_op->param_size[0] + loaded_op->param_size[1] +
 			loaded_op->param_size[2]);
 }
 
+int		ft_preload_instruction(t_info *info, t_proc *proc)
+{
+	unsigned char i;
+
+	i = *(info->board + proc->pc);
+	if (i == 0 || i > 16)
+		proc->pc++;
+	else
+	{
+		proc->loaded_op.mnemonic = g_op_tab[i - 1].mnemonic;
+		proc->loaded_op.param_nb = g_op_tab[i - 1].param_nb;
+		proc->loaded_op.param_size[0] = g_op_tab[i - 1].param_size[0];
+		proc->loaded_op.param_size[1] = g_op_tab[i - 1].param_size[1];
+		proc->loaded_op.param_size[2] = g_op_tab[i - 1].param_size[2];
+		proc->loaded_op.opcode = g_op_tab[i - 1].opcode;
+		proc->loaded_op.cycle_nb = g_op_tab[i - 1].cycle_nb;
+		proc->loaded_op.full_name = g_op_tab[i - 1].full_name;
+		proc->loaded_op.codage_octal = g_op_tab[i - 1].codage_octal;
+		proc->loaded_op.dir_size = g_op_tab[i - 1].dir_size;
+	}
+	return (1);
+}
+
 int		ft_load_instruction(t_info *info, t_proc *proc)
 {
-
-	ft_putstr("codage octal :\t");
-	ft_putnbr(proc->loaded_op.codage_octal == 1);
-	ft_putstr("\n");
 	if (proc->loaded_op.codage_octal == 1)
 	{
-		ft_putstr("octal oui\n");
 		proc->op_size = ft_get_op_size(&(proc->loaded_op),
 				*(info->board + proc->pc + 1));
 	}
@@ -149,7 +159,7 @@ int		ft_load_instruction(t_info *info, t_proc *proc)
 	ft_putstr("ADV :\t");
 	ft_putnbr(proc->op_size);
 	ft_putstr("\n");
-	proc->pc = (proc->pc + proc->op_size) % MEM_SIZE;
+	proc->pc += proc->op_size;
 	return (1);
 }
 
@@ -182,9 +192,6 @@ void	ft_run_proc(t_info *info)
 			if (proc_tmp->loaded_op.opcode != 0)
 				ft_execute_instruction(info, proc_tmp);
 			ft_preload_instruction(info, proc_tmp);
-			ft_putstr("preoload opcode :\t");
-			ft_putnbr(proc_tmp->loaded_op.opcode);
-			ft_putstr("\n");
 		}
 		if (proc_tmp->loaded_op.cycle_nb > 0)
 			proc_tmp->loaded_op.cycle_nb--;
@@ -192,56 +199,18 @@ void	ft_run_proc(t_info *info)
 	}
 }
 
-void	ft_reinit_lives(t_info *info)
-{
-	t_proc *proc_tmp;
-
-	proc_tmp = info->first_processus;
-	while (proc_tmp)
-	{
-		proc_tmp->alive = 0;
-		proc_tmp = proc_tmp->next;
-	}
-	info->total_lives = 0;
-	info->countdown_to_die = 0;
-}
-
-int		ft_flag(t_info *info)
-{
-	if (info->countdown_to_die == info->cycles_to_die)
-	{
-		if (info->total_lives > NBR_LIVE || info->check == MAX_CHECKS - 1)
-		{
-			info->cycles_to_die -= CYCLE_DELTA;
-			info->check = 0;
-		}
-		else
-			info->check++;
-		ft_reinit_lives(info);
-	}
-	if (info->cycles_to_die <= 0)
-		return (0);
-	return (1);
-}
-
 void	ft_run_vm(t_info *info)
 {
-	while (ft_flag(info) == 1)
+	while (ft_flag(info))
 	{
 		ft_run_proc(info);
 		info->cycles++;
 		info->countdown_to_die++;
 		ft_putstr("Cycles :\t");
 		ft_putnbr(info->cycles);
-		ft_putstr("\t");
+		ft_putstr("\n");
 		ft_putstr("Cycles_to_die :\t");
 		ft_putnbr(info->cycles_to_die);
-		ft_putstr("\t");
-		ft_putstr("Countdown_to_die :\t");
-		ft_putnbr(info->countdown_to_die);
-		ft_putstr("\t");
-		ft_putstr("Checks :\t");
-		ft_putnbr(info->check);
 		ft_putstr("\n");
 	}
 }

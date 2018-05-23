@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/05/17 18:15:36 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/23 17:17:30 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct		s_proc
 	t_op			loaded_op;
 	short			op_size;
 	struct s_proc	*next;
+	struct s_proc	*prev;
 }					t_proc;
 
 typedef struct		s_player
@@ -82,7 +83,9 @@ t_proc				*ft_init_proc(int pc);
 void				ft_create_proc(t_info *info);
 int					get_player(t_player *player);
 int					set_vm(t_info *info);
+void				ft_run_vm(t_info *info);
 unsigned int		ft_ptr_to_uint(unsigned char *ptr, int size);
+void				ft_uint_to_ptr(unsigned char *ptr, int size, int value);
 void				free_player(t_player *player);
 int					ft_live(t_info *info, t_proc *proc);
 int					ft_load(t_info *info, t_proc *proc);

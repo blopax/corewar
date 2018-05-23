@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/13 18:57:13 by pclement          #+#    #+#             */
-/*   Updated: 2018/05/07 16:57:22 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/23 17:11:19 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,6 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_count_if(char **tab, int (*f)(char*));
 char				*ft_itoa_base(long value, char *base);
 char				*ft_safe_free(char *str);
+int					ft_power(int base, int power);
 
 #endif

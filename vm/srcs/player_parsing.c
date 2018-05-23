@@ -6,11 +6,29 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 12:24:21 by pclement          #+#    #+#             */
-/*   Updated: 2018/05/16 14:36:59 by pclement         ###   ########.fr       */
+/*   Updated: 2018/05/23 17:48:43 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/vm.h"
+
+void			ft_uint_to_ptr(unsigned char *ptr, int size, int value)
+{
+	int				i;
+	int				k;
+
+	i = 0;
+	k = size - 1;
+	while (i < size)
+	{
+		ptr[i] = value / ft_power(256, k);
+		ft_putstr("ptr[i] :\t");
+		ft_putnbr(ptr[i]);
+		ft_putstr("\n");
+		i++;
+		k--;
+	}
+}
 
 unsigned int	ft_ptr_to_uint(unsigned char *ptr, int size)
 {
