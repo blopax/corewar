@@ -6,11 +6,19 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 16:43:36 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/23 17:58:08 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/25 16:04:18 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+int	ft_idx_mod(int val)
+{
+	if (val < 0)
+		return (val % -MEM_SIZE);
+	return (val % MEM_SIZE);
+}
+
 
 int	ft_live(t_info *info, t_proc *proc)
 {
@@ -18,8 +26,8 @@ int	ft_live(t_info *info, t_proc *proc)
 	int	live_int;
 
 	i = 0;
-	live_int = ft_ptr_to_uint(info->board + proc->pc - proc->op_size + 1,
-			proc->loaded_op.param_size[0]);
+	live_int = ft_ptr_to_uint(info->board + ((proc->pc - proc->op_size + 1)
+				% MEM_SIZE), proc->loaded_op.param_size[0]);
 	while (i < info->players_nb)
 	{
 		if (info->players_info[i].number == live_int)
@@ -41,10 +49,11 @@ int	ft_load(t_info *info, t_proc *proc)
 
 	ft_putstr("Je commence LOAD\n");
 	proc->carry = (proc->carry + 1) % 2;
-	val = ft_ptr_to_uint(info->board + proc->pc - proc->op_size + 2,
+	val = ft_ptr_to_uint(info->board + ((proc->pc - proc->op_size + 2) % MEM_SIZE),
 			proc->loaded_op.param_size[0]);
-	reg_idx = ft_ptr_to_uint(info->board + proc->pc - proc->op_size +
-			proc->loaded_op.param_size[0] + 2, proc->loaded_op.param_size[1]);
+	reg_idx = ft_ptr_to_uint(info->board + ((2 + proc->pc - proc->op_size +
+			proc->loaded_op.param_size[0]) % MEM_SIZE),
+			proc->loaded_op.param_size[1]);
 	ft_putstr("val :\t");
 	ft_putnbr(val);
 	ft_putstr("\n");
@@ -68,24 +77,26 @@ int	ft_store(t_info *info, t_proc *proc)
 	ft_putstr("Je commence STORE\n");
 	val = 0;
 	reg_dest_idx = 0;
-	reg_src_idx = info->board[2 + proc->pc - proc->op_size];
+	reg_src_idx = info->board[(2 + proc->pc - proc->op_size) % MEM_SIZE];
 	if (reg_src_idx <= 0 || reg_src_idx > 16)
 		return (0);
 	if (info->board[1 + proc->pc - proc->op_size] == 80)
 	{
-		reg_dest_idx = info->board[2 + proc->pc - proc->op_size + proc->loaded_op.param_size[0]];
+		reg_dest_idx = info->board[(2 + proc->pc - proc->op_size +
+				proc->loaded_op.param_size[0]) % MEM_SIZE];
 		if (reg_dest_idx <= 0 || reg_dest_idx > 16)
 			return (0);
 		proc->reg[reg_dest_idx - 1] = proc->reg[reg_src_idx - 1];
 	}
 	if (info->board[1 + proc->pc - proc->op_size] == 112)
 	{
-		val = ft_ptr_to_uint(info->board + 2 + proc->pc - proc->op_size +
-				proc->loaded_op.param_size[0], proc->loaded_op.param_size[1]);
-		ft_uint_to_ptr(info->board + proc->pc - proc->op_size + val,
+		val = ft_ptr_to_uint(info->board + ((2 + proc->pc - proc->op_size +
+						proc->loaded_op.param_size[0]) % MEM_SIZE),
+				proc->loaded_op.param_size[1]);
+		ft_uint_to_ptr(info->board + ((proc->pc - proc->op_size + ft_idx_mod(val)) % MEM_SIZE),
 				REG_SIZE, proc->reg[reg_src_idx - 1]);
 	}
-	ft_putstr("val :\t");
+/*	ft_putstr("val :\t");
 	ft_putnbr(val);
 	ft_putstr("\n");
 	ft_putstr("reg_dest_idx :\t");
@@ -93,7 +104,7 @@ int	ft_store(t_info *info, t_proc *proc)
 	ft_putstr("\treg_src_idx :\t");
 	ft_putnbr(reg_src_idx);
 	ft_putstr("\n");
-	ft_putstr("I'm Storeded\n");
+	ft_putstr("I'm Storeded\n");*/
 	return (0);
 }
 
