@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 17:08:34 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/25 16:04:23 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/25 16:50:12 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,5 +243,7 @@ void	ft_run_vm(t_info *info)
 		ft_putstr("Checks :\t");
 		ft_putnbr(info->check);
 		ft_putstr("\n");
+		if (info->cycles >= 100)
+			break;
 	}
 }

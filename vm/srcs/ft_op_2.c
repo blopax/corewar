@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 15:15:08 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/16 15:47:31 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/25 18:19:42 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,7 @@ int	ft_xor(t_info *info, t_proc *proc)
 	return (0);
 }
 
-int	ft_zjump(t_info *info, t_proc *proc)
-{
-	(void)proc;
-	(void)info->players_nb;
-	return (0);
-}
 
-int	ft_load_indirect(t_info *info, t_proc *proc)
-{
-	(void)proc;
-	(void)info->players_nb;
-	return (0);
-}
 
 int	ft_store_indirect(t_info *info, t_proc *proc)
 {
