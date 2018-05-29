@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/05/25 17:13:41 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/29 16:28:52 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int					get_player(t_player *player);
 int					set_vm(t_info *info);
 void				ft_run_vm(t_info *info);
 unsigned int		ft_ptr_to_uint(unsigned char *ptr, int size);
-void				ft_uint_to_ptr(unsigned char *ptr, int size,
+void				ft_uint_to_ptr(t_info *info, unsigned int ptr, int size,
 		unsigned int value);
 void				free_player(t_player *player);
 int					ft_live(t_info *info, t_proc *proc);

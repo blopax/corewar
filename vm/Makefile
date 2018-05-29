@@ -21,7 +21,7 @@ LIB = $(addprefix $(LIB_PATH), $(LIB_NAME))
 SRC_PATH =srcs/
 SRC_NAME = ft_corewar_vm.c ft_atoi_cor.c ft_init_struct.c\
 		   ft_check_error.c ft_parsing_arg.c free.c player_parsing.c\
-		   ft_op_1.c ft_op_2.c ft_vm.c
+		   ft_op_1.c ft_op_2.c ft_vm.c ft_utilities.c
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 
 #obj
