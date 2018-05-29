@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 16:43:36 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/29 16:52:15 by pclement         ###   ########.fr       */
+/*   Updated: 2018/05/29 17:05:08 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,7 @@ int	ft_store(t_info *info, t_proc *proc)
 		val = ft_ptr_to_uint(info->board + ((2 + proc->pc - proc->op_size +
 						proc->loaded_op.param_size[0]) % MEM_SIZE),
 				proc->loaded_op.param_size[1]);
-		ft_uint_to_ptr(info->board + ((proc->pc - proc->op_size + ft_idx_mod(val)) % MEM_SIZE),
-				REG_SIZE, proc->reg[reg_src_idx - 1]);
+		ft_uint_to_ptr(info, (proc->pc - proc->op_size + ft_idx_mod(val)) % MEM_SIZE, REG_SIZE, proc->reg[reg_src_idx - 1]);
 	}
 	ft_putstr("val :\t");
 	ft_putnbr(val);
@@ -184,26 +183,46 @@ int	ft_zjump(t_info *info, t_proc *proc)
 
 int	ft_load_indirect(t_info *info, t_proc *proc)
 {
-	int val;
+	int val1;
+	int val1_bis;
+	int val2;
 	int reg_idx;
 
 	ft_putstr("Je commence LOAD INDEX\n");
-	proc->carry = (proc->carry + 1) % 2;
-	val = ft_ptr_to_uint(info->board + ((proc->pc - proc->op_size + 2) % MEM_SIZE),
-			proc->loaded_op.param_size[0]);
-	reg_idx = ft_ptr_to_uint(info->board + ((2 + proc->pc - proc->op_size +
-			proc->loaded_op.param_size[0]) % MEM_SIZE),
+	val1 = ft_ptr_to_uint(info->board + ((proc->pc - proc->op_size + 2)
+					% MEM_SIZE), proc->loaded_op.param_size[0]);
+	val1_bis = ft_ptr_to_uint(info->board + ((2 + proc->pc - proc->op_size +
+					ft_idx_mod(val1)) % MEM_SIZE), proc->loaded_op.param_size[0]);
+	val2 = ft_ptr_to_uint(info->board + ((proc->pc - proc->op_size + 2 +
+					proc->loaded_op.param_size[0]) % MEM_SIZE),
 			proc->loaded_op.param_size[1]);
-	ft_putstr("val :\t");
-	ft_putnbr(val);
+	reg_idx = ft_ptr_to_uint(info->board + ((2 + proc->pc - proc->op_size +
+			proc->loaded_op.param_size[0] + proc->loaded_op.param_size[1])
+				% MEM_SIZE), proc->loaded_op.param_size[2]);
+	ft_putstr("val1 :\t");
+	ft_putnbr(val1);
 	ft_putstr("\n");
-	ft_putstr("reg_idx :\t");
-	ft_putnbr(reg_idx);
+	ft_putstr("val1_bis :\t");
+	ft_putnbr(val1_bis);
+	ft_putstr("\n");
+	ft_putstr("val2 :\t");
+	ft_putnbr(val2);
 	ft_putstr("\n");
 	if (reg_idx < 1 || reg_idx > 16)
 		return (0);
-	proc->reg[reg_idx - 1] = val;
+	if (info->board[1 + proc->pc - proc->op_size] == 228)
+	{
+		proc->reg[reg_idx - 1] = ft_ptr_to_uint(info->board +
+				((proc->pc - proc->op_size +
+				  ft_idx_mod(ft_idx_mod(val1_bis) + val2))
+					 % MEM_SIZE), REG_SIZE);
+	}
+	if (info->board[1 + proc->pc - proc->op_size] == 164)
+	{
+		proc->reg[reg_idx - 1] = ft_ptr_to_uint(info->board + ((proc->pc - proc->op_size + val1 + val2) % MEM_SIZE), REG_SIZE);
+	}
+	proc->carry = (proc->carry + 1) % 2;
 	ft_putstr("\n");
-	ft_putstr("I'm Loaded\n");
+	ft_putstr("I'm Loaded indexed\n");
 	return (0);
 }

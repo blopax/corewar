@@ -6,44 +6,11 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 12:24:21 by pclement          #+#    #+#             */
-/*   Updated: 2018/05/25 17:13:44 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/29 16:50:29 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/vm.h"
-
-void			ft_uint_to_ptr(unsigned char *ptr, int size, unsigned int value)
-{
-	int				i;
-	int				k;
-
-	i = 0;
-	k = size - 1;
-	while (i < size)
-	{
-		ptr[i] = value / ft_power(256, k);
-		ft_putstr("ptr[i] :\t");
-		ft_putnbr(ptr[i]);
-		ft_putstr("\n");
-		i++;
-		k--;
-	}
-}
-
-unsigned int	ft_ptr_to_uint(unsigned char *ptr, int size)
-{
-	int				i;
-	unsigned int	result;
-
-	i = 0;
-	result = 0;
-	while (i < size)
-	{
-		result = result * 256 + ptr[i];
-		i++;
-	}
-	return (result);
-}
+#include "vm.h"
 
 int				ft_check_header(t_player *player)
 {
