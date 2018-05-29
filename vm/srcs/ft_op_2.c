@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 15:15:08 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/25 18:19:42 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/29 16:52:20 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 int	ft_and(t_info *info, t_proc *proc)
 {
+	int		param1;
+	int		param2;
+	int		result;
+
+	proc->loaded_op
 	(void)proc;
 	(void)info->players_nb;
 	return (0);
