@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/05/29 17:40:41 by pclement         ###   ########.fr       */
+/*   Updated: 2018/05/29 20:26:57 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,12 @@ void				ft_create_proc(t_info *info);
 int					get_player(t_player *player);
 int					set_vm(t_info *info);
 void				ft_run_vm(t_info *info);
+unsigned int		ft_ptr_to_uint_parsing(unsigned char *ptr, int size);
 unsigned int		ft_ptr_to_uint(t_info *info, unsigned int ptr, int size);
 void				ft_uint_to_ptr(t_info *info, unsigned int ptr, int size,
 		unsigned int value);
 void				ft_modif_carry(t_proc *proc, int carry_value);
+int					ft_idx_mod(int val);
 void				free_player(t_player *player);
 int					ft_live(t_info *info, t_proc *proc);
 int					ft_load(t_info *info, t_proc *proc);

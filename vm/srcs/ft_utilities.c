@@ -6,11 +6,18 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 16:49:52 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/29 17:38:18 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/29 20:07:43 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+int	ft_idx_mod(int val)
+{
+	if (val < 0)
+		return (val % -MEM_SIZE);
+	return (val % MEM_SIZE);
+}
 
 void			ft_modif_carry(t_proc *proc, int carry_value)
 {
@@ -47,7 +54,22 @@ unsigned int	ft_ptr_to_uint(t_info *info, unsigned int ptr, int size)
 	{
 		result = result * 256 + info->board[ptr];
 		i++;
-		ptr = (ptr + i) % MEM_SIZE;
+		ptr = (ptr + 1) % MEM_SIZE;
+	}
+	return (result);
+}
+
+unsigned int	ft_ptr_to_uint_parsing(unsigned char *ptr, int size)
+{
+	int				i;
+	unsigned int	result;
+
+	i = 0;
+	result = 0;
+	while (i < size)
+	{
+		result = result * 256 + ptr[i];
+		i++;
 	}
 	return (result);
 }
