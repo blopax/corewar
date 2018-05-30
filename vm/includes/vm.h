@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/05/29 20:07:41 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/30 18:21:28 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 # include "stdlib.h"
 # include "unistd.h"
 # include "stdio.h"
+# define P_SIZE proc->loaded_op.param_size
+
 
 typedef struct		s_op
 {
 	char			*mnemonic;
 	int				param_nb;
-	int				param_size[3];
+	int				param_size[9];
 	int				opcode;
 	int				cycle_nb;
 	char			*full_name;
@@ -32,7 +34,7 @@ typedef struct		s_op
 
 typedef struct		s_proc
 {
-	unsigned int				reg[16];
+	unsigned int	reg[16];
 	char			carry;
 	int				pc;
 	int				alive;
@@ -107,5 +109,18 @@ int					ft_long_load(t_info *info, t_proc *proc);
 int					ft_long_load_indirect(t_info *info, t_proc *proc);
 int					ft_long_fork(t_info *info, t_proc *proc);
 int					ft_aff(t_info *info, t_proc *proc);
+int					ft_param_84(t_info *info, t_proc *proc, int, int);
+int					ft_param_88(t_info *info, t_proc *proc, int, int);
+int					ft_param_100(t_info *info, t_proc *proc, int, int);
+int					ft_param_104(t_info *info, t_proc *proc, int, int);
+int					ft_param_116(t_info *info, t_proc *proc, int, int);
+int					ft_param_120(t_info *info, t_proc *proc, int, int);
+int					ft_param_148(t_info *info, t_proc *proc, int, int);
+int					ft_param_164(t_info *info, t_proc *proc, int, int);
+int					ft_param_180(t_info *info, t_proc *proc, int, int);
+int					ft_param_212(t_info *info, t_proc *proc, int, int);
+int					ft_param_228(t_info *info, t_proc *proc, int, int);
+int					ft_param_244(t_info *info, t_proc *proc, int, int);
+
 
 #endif
