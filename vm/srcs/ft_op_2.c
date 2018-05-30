@@ -6,32 +6,11 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 15:15:08 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/29 20:14:59 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/29 20:25:09 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-int	ft_and(t_info *info, t_proc *proc)
-{
-	(void)proc;
-	(void)info->players_nb;
-	return (0);
-}
-
-int	ft_or(t_info *info, t_proc *proc)
-{
-	(void)proc;
-	(void)info->players_nb;
-	return (0);
-}
-
-int	ft_xor(t_info *info, t_proc *proc)
-{
-	(void)proc;
-	(void)info->players_nb;
-	return (0);
-}
 
 int	ft_fork(t_info *info, t_proc *proc)
 {
