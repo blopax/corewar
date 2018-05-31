@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 17:08:34 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/30 18:46:07 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/31 18:41:51 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,20 +112,20 @@ short	ft_get_op_size(t_op *loaded_op, unsigned char ocp)
 		if (p[i] == 0)
 			loaded_op->param_size[i] = 0;
 		else if (p[i] == REG_CODE)
-			loaded_op->param_size[i] = T_REG;
+			loaded_op->param_size[i] = 1;
 		else if (p[i] == DIR_CODE && loaded_op->dir_size == 0)
-			loaded_op->param_size[i] = T_DIR * 2;
+			loaded_op->param_size[i] = 4;
 		else if (p[i] == DIR_CODE && loaded_op->dir_size == 1)
-			loaded_op->param_size[i] = T_DIR;
+			loaded_op->param_size[i] = 2;
 		else if (p[i] == IND_CODE)
-			loaded_op->param_size[i] = T_IND;
+			loaded_op->param_size[i] = 2;
 //		if ((i == 0 && p[i] == 2) || (p[1] == 0 && p[2] != 2))
 //			return (0);
 //		ft_putnbr(i);
 //		ft_putstr("\n");
 		i++;
 	}
-	return (2 + loaded_op->param_size[0] + loaded_op->param_size[1] +
+	return (loaded_op->param_size[0] + loaded_op->param_size[1] +
 			loaded_op->param_size[2]);
 }
 

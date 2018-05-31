@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 16:19:11 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/21 18:59:52 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/31 18:24:56 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@
 # define MAX_CHECKS				10
 # define T_REG					1
 # define T_DIR					2
-//A VERIFIER
-# define T_IND					2
-//A VERIFIER
+# define T_IND					4
 # define T_LAB					8
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)

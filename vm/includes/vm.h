@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/05/30 18:47:37 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/05/31 18:53:49 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void				ft_uint_to_ptr(t_info *info, unsigned int ptr, int size,
 		unsigned int value);
 void				ft_modif_carry(t_proc *proc, int carry_value);
 int					ft_idx_mod(int val);
+int					ft_idx_mod_bis(int val);
 void				free_player(t_player *player);
 int					ft_live(t_info *info, t_proc *proc);
 int					ft_load(t_info *info, t_proc *proc);
@@ -109,6 +110,8 @@ int					ft_long_load(t_info *info, t_proc *proc);
 int					ft_long_load_indirect(t_info *info, t_proc *proc);
 int					ft_long_fork(t_info *info, t_proc *proc);
 int					ft_aff(t_info *info, t_proc *proc);
+int					ft_get_param(t_info *info, t_proc *proc, int param,
+					int ocp);
 int					ft_param_84(t_info *info, t_proc *proc, int, int);
 int					ft_param_88(t_info *info, t_proc *proc, int, int);
 int					ft_param_100(t_info *info, t_proc *proc, int, int);
