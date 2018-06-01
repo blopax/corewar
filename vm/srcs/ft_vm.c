@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 17:08:34 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/31 18:41:51 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/01 15:18:56 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int		ft_preload_instruction(t_info *info, t_proc *proc)
 		proc->loaded_op.cycle_nb = g_op_tab[i - 1].cycle_nb;
 		proc->loaded_op.full_name = g_op_tab[i - 1].full_name;
 		proc->loaded_op.codage_octal = g_op_tab[i - 1].codage_octal;
-		proc->loaded_op.dir_size = g_op_tab[i - 1].dir_size;
+		proc->loaded_op.dir_size = 4 - 2 * g_op_tab[i - 1].dir_size;
 	}
 	return (1);
 }
@@ -144,7 +144,7 @@ int		ft_load_instruction(t_info *info, t_proc *proc)
 	}
 	else
 	{
-		proc->op_size = 1 + proc->loaded_op.param_size[0] +
+		proc->op_size = proc->loaded_op.param_size[0] +
 			proc->loaded_op.param_size[1] + proc->loaded_op.param_size[2];
 	}
 	ft_putstr("ADV :\t");
