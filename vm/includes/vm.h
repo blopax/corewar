@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/05/31 18:53:49 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/01 17:41:56 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct		s_proc
 	int				alive;
 	t_op			loaded_op;
 	short			op_size;
+	short			error;
 	struct s_proc	*next;
 	struct s_proc	*prev;
 }					t_proc;
@@ -91,8 +92,7 @@ unsigned int		ft_ptr_to_uint(t_info *info, unsigned int ptr, int size);
 void				ft_uint_to_ptr(t_info *info, unsigned int ptr, int size,
 		unsigned int value);
 void				ft_modif_carry(t_proc *proc, int carry_value);
-int					ft_idx_mod(int val);
-int					ft_idx_mod_bis(int val);
+int					ft_idx_mod(t_proc *proc, unsigned int val);
 void				free_player(t_player *player);
 int					ft_live(t_info *info, t_proc *proc);
 int					ft_load(t_info *info, t_proc *proc);
@@ -112,18 +112,18 @@ int					ft_long_fork(t_info *info, t_proc *proc);
 int					ft_aff(t_info *info, t_proc *proc);
 int					ft_get_param(t_info *info, t_proc *proc, int param,
 					int ocp);
-int					ft_param_84(t_info *info, t_proc *proc, int, int);
-int					ft_param_88(t_info *info, t_proc *proc, int, int);
-int					ft_param_100(t_info *info, t_proc *proc, int, int);
-int					ft_param_104(t_info *info, t_proc *proc, int, int);
-int					ft_param_116(t_info *info, t_proc *proc, int, int);
-int					ft_param_120(t_info *info, t_proc *proc, int, int);
-int					ft_param_148(t_info *info, t_proc *proc, int, int);
-int					ft_param_164(t_info *info, t_proc *proc, int, int);
-int					ft_param_180(t_info *info, t_proc *proc, int, int);
-int					ft_param_212(t_info *info, t_proc *proc, int, int);
-int					ft_param_228(t_info *info, t_proc *proc, int, int);
-int					ft_param_244(t_info *info, t_proc *proc, int, int);
+int					ft_param_84(t_info *info, t_proc *proc, int param);
+int					ft_param_88(t_info *info, t_proc *proc, int param);
+int					ft_param_100(t_info *info, t_proc *proc, int param);
+int					ft_param_104(t_info *info, t_proc *proc, int param);
+int					ft_param_116(t_info *info, t_proc *proc, int param);
+int					ft_param_120(t_info *info, t_proc *proc, int param);
+int					ft_param_148(t_info *info, t_proc *proc, int param);
+int					ft_param_164(t_info *info, t_proc *proc, int param);
+int					ft_param_180(t_info *info, t_proc *proc, int param);
+int					ft_param_212(t_info *info, t_proc *proc, int param);
+int					ft_param_228(t_info *info, t_proc *proc, int param);
+int					ft_param_244(t_info *info, t_proc *proc, int param);
 
 
 #endif

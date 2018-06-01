@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 20:13:38 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/31 19:08:50 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/01 17:38:14 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	ft_store(t_info *info, t_proc *proc)
 		val = ft_ptr_to_uint(info, ((2 + proc->pc - proc->op_size +
 						P_SIZE[0]) % MEM_SIZE),
 				P_SIZE[1]);
-		ft_uint_to_ptr(info, (proc->pc - proc->op_size + ft_idx_mod(val)) % MEM_SIZE, REG_SIZE, proc->reg[reg_src_idx - 1]);
+		ft_uint_to_ptr(info, (proc->pc - proc->op_size + ft_idx_mod(proc, val)) % MEM_SIZE, REG_SIZE, proc->reg[reg_src_idx - 1]);
 	}
 	ft_putstr("val :\t");
 	ft_putnbr(val);

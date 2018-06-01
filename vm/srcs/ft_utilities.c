@@ -6,24 +6,19 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 16:49:52 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/31 18:53:46 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/01 17:36:29 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int	ft_idx_mod_bis(int val)
+int	ft_idx_mod(t_proc *proc, unsigned int val)
 {
-	if (val % MEM_SIZE > (MEM_SIZE / 2))
+	if (proc->loaded_op.opcode == 13 || proc->loaded_op.opcode == 14)
+		return (val % MEM_SIZE);
+	if (val > (65535 / 2))
 		return ((val % MEM_SIZE) % -IDX_MOD);
 	return ((val % MEM_SIZE) % IDX_MOD);
-}
-
-int	ft_idx_mod(int val)
-{
-	if (val < 0)
-		return (val % -IDX_MOD);
-	return (val % IDX_MOD);
 }
 
 void			ft_modif_carry(t_proc *proc, int carry_value)

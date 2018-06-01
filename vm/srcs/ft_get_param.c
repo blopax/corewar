@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 17:37:08 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/31 19:08:54 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/01 17:42:08 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,186 +17,297 @@ int		ft_get_param(t_info *info, t_proc *proc, int param, int ocp)
 {
 	int	i;
 	int	j;
-//	int	flag;
+	//	int	flag;
 
 	i = 0;
 	j = 0;
 	while (i < 12)
 	{
 		if (ocp == tab_ocp[i].ocp)
-			return (tab_ocp[i].f_op(info, proc, param, ocp));
+			return (tab_ocp[i].f_op(info, proc, param));
 		i++;
 	}
 	return (0);
 }
 
-int		ft_param_84(t_info *info, t_proc *proc, int param, int ocp)
+int		ft_param_84(t_info *info, t_proc *proc, int param)
 {
-	if (ocp == 84)
+	int reg;
+
+	reg = 0;
+	reg = ft_ptr_to_uint(info, (proc->pc + param) % MEM_SIZE, T_REG);
+	if (reg < 1 || reg > 16)
+	{
+		proc->error = 1;
+		return (0);
+	}
+	return (proc->reg[reg - 1]);
+}
+
+int		ft_param_88(t_info *info, t_proc *proc, int param)
+{
+	int reg;
+
+	reg = 0;
+	if (param == 0 || param == 1)
+	{
+		reg = ft_ptr_to_uint(info, (proc->pc + param) % MEM_SIZE, T_REG);
+		if (reg < 1 || reg > 16)
 		{
-			if (param == 0)
-			{
-				return (proc->reg[ft_ptr_to_uint(info, proc->pc % MEM_SIZE,
-							P_SIZE[1]) - 1]);
-			}
-			if (param == 1)
-			{
-				return (proc->reg[ft_ptr_to_uint(info, (proc->pc + P_SIZE[0])
-							% MEM_SIZE, P_SIZE[1]) - 1]);
-			}
-			if (param == 2)
-			{
-				return (proc->reg[ft_ptr_to_uint(info, (proc->pc + P_SIZE[0]
-								+ P_SIZE[1]) % MEM_SIZE, P_SIZE[2]) - 1]);
-			}
+			proc->error = 1;
+			return (0);
 		}
+		return (proc->reg[reg - 1]);
+	}
+	if (param == 2)
+	{
+		return (ft_ptr_to_uint(info, (proc->pc + P_SIZE[0]
+						+ P_SIZE[1]) % MEM_SIZE, P_SIZE[2]));
+	}
 	return (0);
 }
 
-int		ft_param_88(t_info *info, t_proc *proc, int param, int ocp)
+int		ft_param_100(t_info *info, t_proc *proc, int param)
 {
-	if (ocp == 88)
+	int reg;
+
+	reg = 0;
+	if (param == 0 || param == 2)
+	{
+		reg = ft_ptr_to_uint(info, (proc->pc + P_SIZE[0] + P_SIZE[1]) %
+				MEM_SIZE, T_REG);
+		if (param == 0)
+			reg = ft_ptr_to_uint(info, proc->pc, T_REG);
+		if (reg < 1 || reg > 16)
 		{
-			if (param == 0)
-			{
-				return (proc->reg[ft_ptr_to_uint(info, proc->pc % MEM_SIZE,
-							P_SIZE[1]) - 1]);
-			}
-			if (param == 1)
-			{
-				return (proc->reg[ft_ptr_to_uint(info, (proc->pc + P_SIZE[0])
-							% MEM_SIZE, P_SIZE[1]) - 1]);
-			}
-			if (param == 2)
-			{
-				return (ft_ptr_to_uint(info, (proc->pc + P_SIZE[0]
-								+ P_SIZE[1]) % MEM_SIZE, P_SIZE[2]));
-			}
+			proc->error = 1;
+			return (0);
 		}
+		return (proc->reg[reg - 1]);
+	}
+	if (param == 1)
+	{
+		return (ft_ptr_to_uint(info, (proc->pc + P_SIZE[0])
+					% MEM_SIZE, P_SIZE[1]));
+	}
 	return (0);
 }
 
-int		ft_param_100(t_info *info, t_proc *proc, int param, int ocp)
+int		ft_param_104(t_info *info, t_proc *proc, int param)
 {
-	if (ocp == 100)
+	int reg;
+
+	reg = 0;
+	if (param == 0)
+	{
+		reg = ft_ptr_to_uint(info, proc->pc, T_REG);
+		if (reg < 1 || reg > 16)
 		{
-			if (param == 0)
-			{
-				return (proc->reg[ft_ptr_to_uint(info, proc->pc % MEM_SIZE,
-							P_SIZE[1]) - 1]);
-			}
-			if (param == 1)
-			{
-				return (ft_ptr_to_uint(info, (proc->pc + P_SIZE[0])
-							% MEM_SIZE, P_SIZE[1]));
-			}
-			if (param == 2)
-			{
-				return (proc->reg[ft_ptr_to_uint(info, (proc->pc + P_SIZE[0]
-								+ P_SIZE[1]) % MEM_SIZE, P_SIZE[2]) - 1]);
-			}
+			proc->error = 1;
+			return (0);
 		}
+		return (proc->reg[reg - 1]);
+	}
+	if (param == 1)
+	{
+		return (ft_ptr_to_uint(info, (proc->pc + P_SIZE[0])
+					% MEM_SIZE, P_SIZE[1]));
+	}
+	if (param == 2)
+	{
+		return (ft_ptr_to_uint(info, (proc->pc + P_SIZE[0]
+						+ P_SIZE[1]) % MEM_SIZE, P_SIZE[2]));
+	}
 	return (0);
 }
 
-int		ft_param_104(t_info *info, t_proc *proc, int param, int ocp)
+int		ft_param_116(t_info *info, t_proc *proc, int param)
 {
-	if (ocp == 104)
+	int reg;
+
+	reg = 0;
+	if (param == 0 || param == 2)
+	{
+		reg = ft_ptr_to_uint(info, (proc->pc + P_SIZE[0] + P_SIZE[1]) %
+				MEM_SIZE, T_REG);
+		if (param == 0)
+			reg = ft_ptr_to_uint(info, proc->pc, T_REG);
+		if (reg < 1 || reg > 16)
 		{
-			if (param == 0)
-			{
-				return (proc->reg[ft_ptr_to_uint(info, proc->pc % MEM_SIZE,
-							P_SIZE[1]) - 1]);
-			}
-			if (param == 1)
-			{
-				return (ft_ptr_to_uint(info, (proc->pc + P_SIZE[0])
-							% MEM_SIZE, P_SIZE[1]));
-			}
-			if (param == 2)
-			{
-				return (ft_ptr_to_uint(info, (proc->pc + P_SIZE[0]
-								+ P_SIZE[1]) % MEM_SIZE, P_SIZE[2]));
-			}
+			proc->error = 1;
+			return (0);
 		}
+		return (proc->reg[reg - 1]);
+	}
+	if (param == 1)
+	{
+		return (ft_ptr_to_uint(info, (proc->pc - 2 +
+			ft_idx_mod(proc, ft_ptr_to_uint(info, proc->pc + P_SIZE[0],
+				P_SIZE[1]))) % MEM_SIZE, proc->loaded_op.dir_size));
+	}
 	return (0);
 }
 
-int		ft_param_116(t_info *info, t_proc *proc, int param, int ocp)
+int		ft_param_120(t_info *info, t_proc *proc, int param)
 {
-	if (ocp == 116)
+	int reg;
+
+	reg = 0;
+	if (param == 0)
+	{
+		reg = ft_ptr_to_uint(info, proc->pc, T_REG);
+		if (reg < 1 || reg > 16)
 		{
-			if (param == 0)
-			{
-				return (proc->reg[ft_ptr_to_uint(info, proc->pc % MEM_SIZE,
-							P_SIZE[1]) - 1]);
-			}
-			if (param == 1)
-			{
-				return (ft_ptr_to_uint(info, (proc->pc + ft_idx_mod((-2 + ft_ptr_to_uint(info, proc->pc + P_SIZE[0], P_SIZE[1])))) % MEM_SIZE, 4));
-			}
-			if (param == 2)
-			{
-				return (proc->reg[ft_ptr_to_uint(info, (proc->pc + P_SIZE[0]
-								+ P_SIZE[1]) % MEM_SIZE, P_SIZE[2]) - 1]);
-			}
+			proc->error = 1;
+			return (0);
 		}
+		return (proc->reg[reg - 1]);
+	}
+	if (param == 1)
+	{
+		return (ft_ptr_to_uint(info, (proc->pc - 2 +
+					ft_idx_mod(proc, ft_ptr_to_uint(info, proc->pc + P_SIZE[0],
+						P_SIZE[1]))) % MEM_SIZE, proc->loaded_op.dir_size));
+	}
+	if (param == 2)
+	{
+		return (ft_ptr_to_uint(info, (proc->pc + P_SIZE[0]
+						+ P_SIZE[1]) % MEM_SIZE, P_SIZE[2]));
+	}
 	return (0);
 }
 
-int		ft_param_120(t_info *info, t_proc *proc, int param, int ocp)
+int		ft_param_148(t_info *info, t_proc *proc, int param)
 {
-	(void)info->board;
-	(void)proc->reg[0];
-	(void)param;
-	(void)ocp;
-	return (0);
+	int reg;
+
+	reg = 0;
+	if (param == 0)
+		return (ft_ptr_to_uint(info, proc->pc, P_SIZE[2]));
+	reg = ft_ptr_to_uint(info, (proc->pc + P_SIZE[0] + (param - 1)) % MEM_SIZE,
+			T_REG);
+	if (reg < 1 || reg > 16)
+	{
+		proc->error = 1;
+		return (0);
+	}
+	return (proc->reg[reg - 1]);
 }
-int		ft_param_148(t_info *info, t_proc *proc, int param, int ocp)
+
+	int		ft_param_164(t_info *info, t_proc *proc, int param)
 {
-	(void)info->board;
-	(void)proc->reg[0];
-	(void)param;
-	(void)ocp;
-	return (0);
+	int reg;
+
+	reg = 0;
+	if (param == 0)
+		return (ft_ptr_to_uint(info, proc->pc, P_SIZE[2]));
+	if (param == 1)
+	{
+		return (ft_ptr_to_uint(info, (proc->pc + P_SIZE[0]) % MEM_SIZE,
+				P_SIZE[2]));
+	}
+	reg = ft_ptr_to_uint(info, (proc->pc + P_SIZE[0] + P_SIZE[1]) % MEM_SIZE,
+			T_REG);
+	if (reg < 1 || reg > 16)
+	{
+		proc->error = 1;
+		return (0);
+	}
+	return (proc->reg[reg - 1]);
 }
-int		ft_param_164(t_info *info, t_proc *proc, int param, int ocp)
+int		ft_param_180(t_info *info, t_proc *proc, int param)
 {
-	(void)info->board;
-	(void)proc->reg[0];
-	(void)param;
-	(void)ocp;
-	return (0);
+	int reg;
+
+	reg = 0;
+	if (param == 0)
+		return (ft_ptr_to_uint(info, proc->pc, P_SIZE[2]));
+	if (param == 1)
+	{
+		return (ft_ptr_to_uint(info, (proc->pc - 2 +
+			ft_idx_mod(proc, ft_ptr_to_uint(info, (proc->pc + P_SIZE[0])
+				% MEM_SIZE,P_SIZE[1]))) % MEM_SIZE, proc->loaded_op.dir_size));
+	}
+	reg = ft_ptr_to_uint(info, (proc->pc + P_SIZE[0] + P_SIZE[1]) % MEM_SIZE,
+			T_REG);
+	if (reg < 1 || reg > 16)
+	{
+		proc->error = 1;
+		return (0);
+	}
+	return (proc->reg[reg - 1]);
 }
-int		ft_param_180(t_info *info, t_proc *proc, int param, int ocp)
+
+int		ft_param_212(t_info *info, t_proc *proc, int param)
 {
-	(void)info->board;
-	(void)proc->reg[0];
-	(void)param;
-	(void)ocp;
-	return (0);
+	int reg;
+
+	reg = 0;
+	if (param == 0)
+	{
+		return (ft_ptr_to_uint(info, (proc->pc - 2 +
+					ft_idx_mod(proc, ft_ptr_to_uint(info, proc->pc,
+						P_SIZE[1]))) % MEM_SIZE, proc->loaded_op.dir_size));
+	}
+	reg = ft_ptr_to_uint(info, (proc->pc + P_SIZE[0] + (param - 1)) % MEM_SIZE,
+			T_REG);
+	if (reg < 1 || reg > 16)
+	{
+		proc->error = 1;
+		return (0);
+	}
+	return (proc->reg[reg - 1]);
 }
-int		ft_param_212(t_info *info, t_proc *proc, int param, int ocp)
+
+int		ft_param_228(t_info *info, t_proc *proc, int param)
 {
-	(void)info->board;
-	(void)proc->reg[0];
-	(void)param;
-	(void)ocp;
-	return (0);
+	int reg;
+
+	reg = 0;
+	if (param == 0)
+	{
+		return (ft_ptr_to_uint(info, (proc->pc - 2 +
+					ft_idx_mod(proc, ft_ptr_to_uint(info, proc->pc,
+						P_SIZE[1]))) % MEM_SIZE, proc->loaded_op.dir_size));
+	}
+	if (param == 1)
+	{
+		return (ft_ptr_to_uint(info, (proc->pc + P_SIZE[0]) % MEM_SIZE,
+				P_SIZE[2]));
+	}
+	reg = ft_ptr_to_uint(info, (proc->pc + P_SIZE[0] + P_SIZE[1]) % MEM_SIZE,
+			T_REG);
+	if (reg < 1 || reg > 16)
+	{
+		proc->error = 1;
+		return (0);
+	}
+	return (proc->reg[reg - 1]);
 }
-int		ft_param_228(t_info *info, t_proc *proc, int param, int ocp)
+
+int		ft_param_244(t_info *info, t_proc *proc, int param)
 {
-	(void)info->board;
-	(void)proc->reg[0];
-	(void)param;
-	(void)ocp;
-	return (0);
-}
-int		ft_param_244(t_info *info, t_proc *proc, int param, int ocp)
-{
-	(void)info->board;
-	(void)proc->reg[0];
-	(void)param;
-	(void)ocp;
-	return (0);
+	int reg;
+
+	reg = 0;
+	if (param == 0)
+	{
+		return (ft_ptr_to_uint(info, (proc->pc - 2 +
+					ft_idx_mod(proc, ft_ptr_to_uint(info, proc->pc,
+						P_SIZE[1]))) % MEM_SIZE, proc->loaded_op.dir_size));
+	}
+	if (param == 1)
+	{
+		return (ft_ptr_to_uint(info, (proc->pc - 2 +
+			ft_idx_mod(proc, ft_ptr_to_uint(info, (proc->pc + P_SIZE[0])
+				% MEM_SIZE,P_SIZE[1]))) % MEM_SIZE, proc->loaded_op.dir_size));
+	}
+	reg = ft_ptr_to_uint(info, (proc->pc + P_SIZE[0] + P_SIZE[1]) % MEM_SIZE,
+			T_REG);
+	if (reg < 1 || reg > 16)
+	{
+		proc->error = 1;
+		return (0);
+	}
+	return (proc->reg[reg - 1]);
 }
