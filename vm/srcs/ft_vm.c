@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 17:08:34 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/04 16:36:15 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/04 19:09:43 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		ft_preload_instruction(t_info *info, t_proc *proc)
 		proc->loaded_op.full_name = g_op_tab[i - 1].full_name;
 		proc->loaded_op.dir_size = 4 - (2 * g_op_tab[i - 1].dir_size);
 	}
-	ft_putstr("----------PRELOAD----------\n");
+/*	ft_putstr("----------PRELOAD----------\n");
 	ft_putstr("P_SIZE[0] :\t");
 	ft_putnbr(P_SIZE[0]);
 	ft_putstr("\n");
@@ -95,7 +95,7 @@ int		ft_preload_instruction(t_info *info, t_proc *proc)
 	ft_putnbr(P_SIZE[2]);
 	ft_putstr("\n");
 	ft_putstr("----------PRELOAD----------\n");
-	ft_putstr("\n");
+	ft_putstr("\n");*/
 	return (1);
 }
 
@@ -111,7 +111,7 @@ short	ft_get_op_size(t_proc *proc, unsigned char ocp)
 	p[0] = ocp / 64;
 	p[1] = (ocp % 64) / 16;
 	p[2] = (ocp % 16) / 4;
-	ft_putstr("p0 :\t");
+/*	ft_putstr("p0 :\t");
 	ft_putnbr(p[0]);
 	ft_putstr("\n");
 	ft_putstr("p1 :\t");
@@ -119,7 +119,7 @@ short	ft_get_op_size(t_proc *proc, unsigned char ocp)
 	ft_putstr("\n");
 	ft_putstr("p2 :\t");
 	ft_putnbr(p[2]);
-	ft_putstr("\n");
+	ft_putstr("\n");*/
 	while (i < 3)
 	{
 		if (p[i] == 0)
@@ -136,15 +136,9 @@ short	ft_get_op_size(t_proc *proc, unsigned char ocp)
 		//			return (0);
 		//		ft_putnbr(i);
 		//		ft_putstr("\n");
-		ft_putstr("i :\t");
-		ft_putnbr(i);
-		ft_putstr("\t");
-		ft_putstr("p[i] :\t");
-		ft_putnbr(p[i]);
-		ft_putstr("\n");
 		i++;
 	}
-	ft_putstr("----------GET_OP_SIZE----------\n");
+/*	ft_putstr("----------GET_OP_SIZE----------\n");
 	ft_putstr("P_SIZE[0] :\t");
 	ft_putnbr(P_SIZE[0]);
 	ft_putstr("\n");
@@ -155,7 +149,7 @@ short	ft_get_op_size(t_proc *proc, unsigned char ocp)
 	ft_putnbr(P_SIZE[2]);
 	ft_putstr("\n");
 	ft_putstr("----------GET_OP_SIZE----------\n");
-	ft_putstr("\n");
+	ft_putstr("\n");*/
 	return (P_SIZE[0] + P_SIZE[1] + P_SIZE[2]);
 }
 

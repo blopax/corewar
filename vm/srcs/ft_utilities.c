@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 16:49:52 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/04 17:13:59 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/04 19:09:52 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 unsigned int	ft_mod_memsize(int val)
 {
 	if (val < 0)
-		return (-((-val) % MEM_SIZE));
+		return (4096 + val);
 	else
 		return (val % MEM_SIZE);
 }
