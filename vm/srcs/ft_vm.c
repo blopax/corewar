@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 17:08:34 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/01 15:18:56 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/04 16:36:15 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int		ft_preload_instruction(t_info *info, t_proc *proc)
 {
 	unsigned char i;
 
+	ft_putstr("Je preoload :\n");
 	i = *(info->board + proc->pc);
 	if (i == 0 || i > 16)
 		proc->pc = (proc->pc + 1) % MEM_SIZE;
@@ -78,15 +79,27 @@ int		ft_preload_instruction(t_info *info, t_proc *proc)
 			proc->loaded_op.param_size[0] = g_op_tab[i - 1].param_size[0];
 		proc->loaded_op.param_size[1] = g_op_tab[i - 1].param_size[1];
 		proc->loaded_op.param_size[2] = g_op_tab[i - 1].param_size[2];
+		proc->loaded_op.codage_octal = g_op_tab[i - 1].codage_octal;
 		proc->loaded_op.cycle_nb = g_op_tab[i - 1].cycle_nb;
 		proc->loaded_op.full_name = g_op_tab[i - 1].full_name;
-		proc->loaded_op.codage_octal = g_op_tab[i - 1].codage_octal;
-		proc->loaded_op.dir_size = 4 - 2 * g_op_tab[i - 1].dir_size;
+		proc->loaded_op.dir_size = 4 - (2 * g_op_tab[i - 1].dir_size);
 	}
+	ft_putstr("----------PRELOAD----------\n");
+	ft_putstr("P_SIZE[0] :\t");
+	ft_putnbr(P_SIZE[0]);
+	ft_putstr("\n");
+	ft_putstr("P_SIZE[1] :\t");
+	ft_putnbr(P_SIZE[1]);
+	ft_putstr("\n");
+	ft_putstr("P_SIZE[2] :\t");
+	ft_putnbr(P_SIZE[2]);
+	ft_putstr("\n");
+	ft_putstr("----------PRELOAD----------\n");
+	ft_putstr("\n");
 	return (1);
 }
 
-short	ft_get_op_size(t_op *loaded_op, unsigned char ocp)
+short	ft_get_op_size(t_proc *proc, unsigned char ocp)
 {
 	unsigned char	p[3];
 	int				i;
@@ -110,37 +123,51 @@ short	ft_get_op_size(t_op *loaded_op, unsigned char ocp)
 	while (i < 3)
 	{
 		if (p[i] == 0)
-			loaded_op->param_size[i] = 0;
+			P_SIZE[i] = 0;
 		else if (p[i] == REG_CODE)
-			loaded_op->param_size[i] = 1;
-		else if (p[i] == DIR_CODE && loaded_op->dir_size == 0)
-			loaded_op->param_size[i] = 4;
-		else if (p[i] == DIR_CODE && loaded_op->dir_size == 1)
-			loaded_op->param_size[i] = 2;
+			P_SIZE[i] = 1;
+		else if (p[i] == DIR_CODE && proc->loaded_op.dir_size == 4)
+			P_SIZE[i] = 4;
+		else if (p[i] == DIR_CODE && proc->loaded_op.dir_size == 2)
+			P_SIZE[i] = 2;
 		else if (p[i] == IND_CODE)
-			loaded_op->param_size[i] = 2;
-//		if ((i == 0 && p[i] == 2) || (p[1] == 0 && p[2] != 2))
-//			return (0);
-//		ft_putnbr(i);
-//		ft_putstr("\n");
+			P_SIZE[i] = 2;
+		//		if ((i == 0 && p[i] == 2) || (p[1] == 0 && p[2] != 2))
+		//			return (0);
+		//		ft_putnbr(i);
+		//		ft_putstr("\n");
+		ft_putstr("i :\t");
+		ft_putnbr(i);
+		ft_putstr("\t");
+		ft_putstr("p[i] :\t");
+		ft_putnbr(p[i]);
+		ft_putstr("\n");
 		i++;
 	}
-	return (loaded_op->param_size[0] + loaded_op->param_size[1] +
-			loaded_op->param_size[2]);
+	ft_putstr("----------GET_OP_SIZE----------\n");
+	ft_putstr("P_SIZE[0] :\t");
+	ft_putnbr(P_SIZE[0]);
+	ft_putstr("\n");
+	ft_putstr("P_SIZE[1] :\t");
+	ft_putnbr(P_SIZE[1]);
+	ft_putstr("\n");
+	ft_putstr("P_SIZE[2] :\t");
+	ft_putnbr(P_SIZE[2]);
+	ft_putstr("\n");
+	ft_putstr("----------GET_OP_SIZE----------\n");
+	ft_putstr("\n");
+	return (P_SIZE[0] + P_SIZE[1] + P_SIZE[2]);
 }
 
 int		ft_load_instruction(t_info *info, t_proc *proc)
 {
 
 	ft_putstr("codage octal :\t");
-	ft_putnbr(proc->loaded_op.codage_octal == 1);
-	ft_putstr("\n");
 	if (proc->loaded_op.codage_octal == 1)
 	{
 		ft_putstr("octal oui\n");
-		proc->op_size = ft_get_op_size(&(proc->loaded_op),
-				*(info->board + proc->pc + 1));
 		proc->pc = (proc->pc + 1) % MEM_SIZE;
+		proc->op_size = ft_get_op_size(proc, *(info->board + proc->pc));
 	}
 	else
 	{
@@ -244,6 +271,9 @@ void	ft_run_vm(t_info *info)
 		ft_putstr("\t");
 		ft_putstr("Checks :\t");
 		ft_putnbr(info->check);
+		ft_putstr("\t");
+		ft_putstr("PC :\t");
+		ft_putnbr(info->first_processus->pc);
 		ft_putstr("\n");
 		if (info->cycles >= 100)
 			break;

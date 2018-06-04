@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 20:05:21 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/01 17:36:26 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/04 16:36:12 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,42 +15,32 @@
 int	ft_load_indirect(t_info *info, t_proc *proc)
 {
 	int val1;
-	int val1_bis;
 	int val2;
 	int reg_idx;
 
 	ft_putstr("Je commence LOAD INDEX\n");
-	val1 = ft_ptr_to_uint(info, ((proc->pc + 2)
+/*	val1 = ft_ptr_to_uint(info, ((proc->pc + 2)
 					% MEM_SIZE), P_SIZE[0]);
 	val1_bis = ft_ptr_to_uint(info, ((proc->pc +
 					ft_idx_mod(proc, val1)) % MEM_SIZE), P_SIZE[0]);
 	val2 = ft_ptr_to_uint(info, ((proc->pc + 2 +
-					P_SIZE[0]) % MEM_SIZE),
-			P_SIZE[1]);
-	reg_idx = ft_ptr_to_uint(info, ((proc->pc +
-			P_SIZE[0] + P_SIZE[1])
+					P_SIZE[0]) % MEM_SIZE), P_SIZE[1]);*/
+	val1 = ft_get_param(info, proc, 0, info->board[(proc->pc - 1) % MEM_SIZE]);
+	val2 = ft_get_param(info, proc, 1, info->board[(proc->pc - 1) % MEM_SIZE]);
+	reg_idx = ft_ptr_to_uint(info, ((proc->pc + P_SIZE[0] + P_SIZE[1])
 				% MEM_SIZE), P_SIZE[2]);
 	ft_putstr("val1 :\t");
 	ft_putnbr(val1);
 	ft_putstr("\n");
-	ft_putstr("val1_bis :\t");
-	ft_putnbr(val1_bis);
-	ft_putstr("\n");
 	ft_putstr("val2 :\t");
 	ft_putnbr(val2);
 	ft_putstr("\n");
-	if (reg_idx < 1 || reg_idx > 16)
+	if (reg_idx < 1 || reg_idx > 16 || proc->error == 1)
 		return (0);
-	if (info->board[1 + proc->pc] == 228)
-	{
-		proc->reg[reg_idx - 1] = ft_ptr_to_uint(info,
-				(proc->pc +
-				  ft_idx_mod(proc, val1_bis + val2)) % MEM_SIZE, REG_SIZE);
-	}
-	if (info->board[1 + proc->pc] == 164)
-	{
 		proc->reg[reg_idx - 1] = ft_ptr_to_uint(info, (proc->pc + val1 + val2) % MEM_SIZE, REG_SIZE);
-	}
+	ft_putstr("reg_value :\t");
+	ft_putnbr(proc->reg[reg_idx - 1]);
+	ft_putstr("\n");
 	(proc->reg[reg_idx - 1] == 0) ? ft_modif_carry(proc, 1) :
 		ft_modif_carry(proc, 0);
 	ft_putstr("\n");
@@ -72,8 +62,10 @@ int	ft_store_indirect(t_info *info, t_proc *proc)
 		return (0);
 	val1 = ft_get_param(info, proc, 1, info->board[(proc->pc - 1) % MEM_SIZE]);
 	val2 = ft_get_param(info, proc, 2, info->board[(proc->pc - 1) % MEM_SIZE]);
-	ft_uint_to_ptr(info, (proc->pc - 2 + ft_idx_mod(proc, val1 + val2)) % MEM_SIZE,
-			REG_SIZE, proc->reg[reg_idx - 1]);
+	ft_putstr("val apres IDX_MOD :\t");
+	ft_putnbr(ft_idx_mod(proc, val1 + val2) % MEM_SIZE);
+	ft_putstr("\n");
+	ft_uint_to_ptr(info, (proc->pc - 2 + ft_idx_mod(proc, val1 + val2)) % MEM_SIZE, REG_SIZE, proc->reg[reg_idx - 1]);
 	ft_putstr("val1 :\t");
 	ft_putnbr(val1);
 	ft_putstr("\n");
