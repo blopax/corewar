@@ -5,11 +5,11 @@
 #		add r9, r5, r3
 #		st r3, 40
 #		sub r9, r5, r3
-		ld %2048, r1
+		ld %-1, r10
 		ldi 4, %0, r4
 #		st r4, -128
-		sti r4, 8, %0
-		ld %704, r1
+		sti r4, r10, %0
+		ld %2049, r1
 
 
 		sti r4, 7, %0
