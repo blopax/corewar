@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/06/04 14:44:36 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/04 17:01:21 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void				ft_uint_to_ptr(t_info *info, unsigned int ptr, int size,
 		unsigned int value);
 void				ft_modif_carry(t_proc *proc, int carry_value);
 int					ft_idx_mod(t_proc *proc, unsigned int val);
+unsigned int		ft_mod_memsize(int val);
 void				free_player(t_player *player);
 int					ft_live(t_info *info, t_proc *proc);
 int					ft_load(t_info *info, t_proc *proc);
