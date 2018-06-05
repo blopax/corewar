@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 17:08:34 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/05 19:45:36 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/05 19:58:20 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,10 +156,9 @@ short	ft_get_op_size(t_proc *proc, unsigned char ocp)
 int		ft_load_instruction(t_info *info, t_proc *proc)
 {
 
-	ft_putstr("codage octal :\t");
 	if (proc->loaded_op.codage_octal == 1)
 	{
-		ft_putstr("octal oui\n");
+		ft_putstr("Presence d'un codage octal (LE PC AVANCE de 1 + 1 AVANT EXECUTE\n puis de OPSIZE apres avoir EXECUTED)\n");
 		proc->pc = (proc->pc + 1) % MEM_SIZE;
 		proc->op_size = ft_get_op_size(proc, *(info->board + proc->pc));
 	}
@@ -168,7 +167,7 @@ int		ft_load_instruction(t_info *info, t_proc *proc)
 		proc->op_size = proc->loaded_op.param_size[0] +
 			proc->loaded_op.param_size[1] + proc->loaded_op.param_size[2];
 	}
-	ft_putstr("ADV :\t");
+	ft_putstr("OP_SIZE :\t");
 	ft_putnbr(proc->op_size);
 	ft_putstr("\n");
 	proc->pc = (proc->pc + 1) % MEM_SIZE;
@@ -187,6 +186,7 @@ t_proc	*ft_last(t_proc *proc)
 
 void	ft_execute_instruction(t_info *info, t_proc *proc)
 {
+	ft_putstr("=====-----EXECUTE-----=====\n");
 	ft_load_instruction(info, proc);
 	tabop[proc->loaded_op.opcode - 1].f_op(info, proc);
 	proc->error = 0;
@@ -259,9 +259,6 @@ void	ft_run_vm(t_info *info)
 {
 	while (ft_flag(info) == 1)
 	{
-		ft_run_proc(info);
-		info->cycles++;
-		info->countdown_to_die++;
 		ft_putstr("Cycles :\t");
 		ft_putnbr(info->cycles);
 		ft_putstr("\t");
@@ -277,6 +274,9 @@ void	ft_run_vm(t_info *info)
 		ft_putstr("PC :\t");
 		ft_putnbr(info->first_processus->pc);
 		ft_putstr("\n");
+		ft_run_proc(info);
+		info->cycles++;
+		info->countdown_to_die++;
 		if (info->cycles >= 1500)
 			break;
 	}
