@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 15:15:08 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/05 17:13:42 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/05 19:46:54 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,3 @@ int	ft_long_load_indirect(t_info *info, t_proc *proc)
 }
 
 
-int	ft_aff(t_info *info, t_proc *proc)
-{
-	(void)proc;
-	(void)info->players_nb;
-	return (0);
-}
