@@ -6,18 +6,26 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 16:49:52 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/01 17:36:29 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/04 19:09:52 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+unsigned int	ft_mod_memsize(int val)
+{
+	if (val < 0)
+		return (4096 + val);
+	else
+		return (val % MEM_SIZE);
+}
 
 int	ft_idx_mod(t_proc *proc, unsigned int val)
 {
 	if (proc->loaded_op.opcode == 13 || proc->loaded_op.opcode == 14)
 		return (val % MEM_SIZE);
 	if (val > (65535 / 2))
-		return ((val % MEM_SIZE) % -IDX_MOD);
+		return (-(-(val % MEM_SIZE) % IDX_MOD));
 	return ((val % MEM_SIZE) % IDX_MOD);
 }
 

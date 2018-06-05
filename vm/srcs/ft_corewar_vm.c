@@ -47,7 +47,7 @@ void	ft_show_board(t_info *info)
 				printf("0");
 			printf("%x", info->board[i]);
 			i++;
-			if (i % 64 == 63)
+			if (i % 64 == 0)
 				printf("\n");
 			else
 				printf(" ");
