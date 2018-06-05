@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 16:49:52 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/04 19:09:52 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/05 15:13:43 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ unsigned int	ft_mod_memsize(int val)
 
 int	ft_idx_mod(t_proc *proc, unsigned int val)
 {
+	val = val % 65536;
 	if (proc->loaded_op.opcode == 13 || proc->loaded_op.opcode == 14)
 		return (val % MEM_SIZE);
 	if (val > (65535 / 2))
@@ -41,6 +42,7 @@ void			ft_uint_to_ptr(t_info *info, unsigned int ptr, int size, unsigned int val
 
 	i = 0;
 	k = size - 1;
+	ptr = ft_mod_memsize(ptr);
 	while (i < size)
 	{
 		info->board[ptr] = value / ft_power(256, k);
@@ -60,6 +62,7 @@ unsigned int	ft_ptr_to_uint(t_info *info, unsigned int ptr, int size)
 
 	i = 0;
 	result = 0;
+	ptr = ft_mod_memsize(ptr);
 	while (i < size)
 	{
 		result = result * 256 + info->board[ptr];
