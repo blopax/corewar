@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 20:05:21 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/04 19:09:48 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/05 15:13:41 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_load_indirect(t_info *info, t_proc *proc)
 	ft_putstr("\n");
 	if (reg_idx < 1 || reg_idx > 16 || proc->error == 1)
 		return (0);
-		proc->reg[reg_idx - 1] = ft_ptr_to_uint(info, ft_mod_memsize(proc->pc - 2 + val1 + val2), REG_SIZE);
+		proc->reg[reg_idx - 1] = ft_ptr_to_uint(info, proc->pc - 2 + val1 + val2, REG_SIZE);
 	ft_putstr("reg_value :\t");
 	ft_putnbr(proc->reg[reg_idx - 1]);
 	ft_putstr("\n");
@@ -62,7 +62,7 @@ int	ft_store_indirect(t_info *info, t_proc *proc)
 		return (0);
 	val1 = ft_get_param(info, proc, 1, info->board[ft_mod_memsize(proc->pc - 1)]);
 	val2 = ft_get_param(info, proc, 2, info->board[ft_mod_memsize(proc->pc - 1)]);
-	ft_uint_to_ptr(info, ft_mod_memsize(proc->pc - 2 + ft_idx_mod(proc, val1 + val2)), REG_SIZE, proc->reg[reg_idx - 1]);
+	ft_uint_to_ptr(info, proc->pc - 2 + ft_idx_mod(proc, val1 + val2), REG_SIZE, proc->reg[reg_idx - 1]);
 	ft_putstr("val1 :\t");
 	ft_putnbr(val1);
 	ft_putstr("\n");
