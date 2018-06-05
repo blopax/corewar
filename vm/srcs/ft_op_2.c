@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 15:15:08 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/29 20:25:09 by pclement         ###   ########.fr       */
+/*   Updated: 2018/06/05 16:13:55 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,3 @@ int	ft_long_fork(t_info *info, t_proc *proc)
 	return (0);
 }
 
-int	ft_aff(t_info *info, t_proc *proc)
-{
-	(void)proc;
-	(void)info->players_nb;
-	return (0);
-}

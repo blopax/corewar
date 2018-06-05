@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 20:13:38 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/01 17:38:14 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/05 16:33:07 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,18 @@ int	ft_store(t_info *info, t_proc *proc)
 	ft_putnbr(reg_src_idx);
 	ft_putstr("\n");
 	ft_putstr("I'm Storeded\n");
+	return (0);
+}
+
+int		ft_aff(t_info *info, t_proc *proc)
+{
+	int		reg_idx;
+
+	reg_idx = info->board[proc->pc];
+	if (reg_idx < 1 || reg_idx > 16)
+		return (0);
+	ft_putstr("\n________________________________JE COMMENCE AFF\n");
+	ft_putchar(proc->reg[reg_idx - 1]);
+	ft_putstr("\n________________________________Jai AFF\n");
 	return (0);
 }
