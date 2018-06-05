@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:56:29 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/29 19:59:10 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/05 18:42:42 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,29 @@ void	ft_show_board(t_info *info)
 				printf(" ");
 		}
 		player++;
-		printf("\x1B[34m");
 		while (i < player * MEM_SIZE / info->players_nb)
 		{
-			if (info->board[i] < 16)
-				printf("0");
-			printf("%x", info->board[i]);
+			if (info->board[i] == 0)
+			{
+				printf("\x1B[34m");
+				printf("00");
+				printf("\x1B[37m");
+			}
+			else
+			{
+				if (info->board[i] < 16)
+					printf("0");
+				printf("%x", info->board[i]);
+			}
 			i++;
 			if (i % 64 == 0)
 				printf("\n");
 			else
 				printf(" ");
 		}
-		printf("\x1B[37m");
 	}
 	ft_putstr("\n");
 }
-
 
 int		main(int argc, char **argv)
 {

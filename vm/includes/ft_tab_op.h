@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 15:04:00 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/16 17:51:10 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/05 16:22:51 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ struct	s_tab_op	tabop[] =
 	{10, &ft_load_indirect},
 	{11, &ft_store_indirect},
 	{12, &ft_fork},
-	{13, &ft_long_load},
-	{14, &ft_long_load_indirect},
+	{13, &ft_load},
+	{14, &ft_load_indirect},
 	{15, &ft_long_fork},
 	{16, &ft_aff},
 };
