@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 20:08:45 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/05 19:58:21 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/06 12:08:05 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	ft_zjump(t_info *info, t_proc *proc)
 	if (proc->carry != 1)
 		return (0);
 	jmp_val = ft_ptr_to_uint(info, proc->pc, P_SIZE[0]);
-	proc->pc = ft_mod_memsize(proc->pc + jmp_val);
+	proc->pc = ft_mod_memsize(proc->pc - 1 - proc->op_size + jmp_val);
 	ft_putstr("J'ai JUMPED\n");
 	return (0);
 }
