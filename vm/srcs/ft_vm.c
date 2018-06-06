@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 17:08:34 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/04 19:09:43 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/05 19:58:20 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ int		ft_preload_instruction(t_info *info, t_proc *proc)
 {
 	unsigned char i;
 
-	ft_putstr("Je preoload :\n");
 	i = *(info->board + proc->pc);
 	if (i == 0 || i > 16)
 		proc->pc = (proc->pc + 1) % MEM_SIZE;
 	else
 	{
+		ft_putstr("Je preoload :\n");
 		proc->loaded_op.mnemonic = g_op_tab[i - 1].mnemonic;
 		proc->loaded_op.param_nb = g_op_tab[i - 1].param_nb;
 		if ((proc->loaded_op.opcode = g_op_tab[i - 1].opcode) == 1)
@@ -84,18 +84,18 @@ int		ft_preload_instruction(t_info *info, t_proc *proc)
 		proc->loaded_op.full_name = g_op_tab[i - 1].full_name;
 		proc->loaded_op.dir_size = 4 - (2 * g_op_tab[i - 1].dir_size);
 	}
-/*	ft_putstr("----------PRELOAD----------\n");
-	ft_putstr("P_SIZE[0] :\t");
-	ft_putnbr(P_SIZE[0]);
-	ft_putstr("\n");
-	ft_putstr("P_SIZE[1] :\t");
-	ft_putnbr(P_SIZE[1]);
-	ft_putstr("\n");
-	ft_putstr("P_SIZE[2] :\t");
-	ft_putnbr(P_SIZE[2]);
-	ft_putstr("\n");
-	ft_putstr("----------PRELOAD----------\n");
-	ft_putstr("\n");*/
+	/*	ft_putstr("----------PRELOAD----------\n");
+		ft_putstr("P_SIZE[0] :\t");
+		ft_putnbr(P_SIZE[0]);
+		ft_putstr("\n");
+		ft_putstr("P_SIZE[1] :\t");
+		ft_putnbr(P_SIZE[1]);
+		ft_putstr("\n");
+		ft_putstr("P_SIZE[2] :\t");
+		ft_putnbr(P_SIZE[2]);
+		ft_putstr("\n");
+		ft_putstr("----------PRELOAD----------\n");
+		ft_putstr("\n");*/
 	return (1);
 }
 
@@ -111,15 +111,15 @@ short	ft_get_op_size(t_proc *proc, unsigned char ocp)
 	p[0] = ocp / 64;
 	p[1] = (ocp % 64) / 16;
 	p[2] = (ocp % 16) / 4;
-/*	ft_putstr("p0 :\t");
-	ft_putnbr(p[0]);
-	ft_putstr("\n");
-	ft_putstr("p1 :\t");
-	ft_putnbr(p[1]);
-	ft_putstr("\n");
-	ft_putstr("p2 :\t");
-	ft_putnbr(p[2]);
-	ft_putstr("\n");*/
+	/*	ft_putstr("p0 :\t");
+		ft_putnbr(p[0]);
+		ft_putstr("\n");
+		ft_putstr("p1 :\t");
+		ft_putnbr(p[1]);
+		ft_putstr("\n");
+		ft_putstr("p2 :\t");
+		ft_putnbr(p[2]);
+		ft_putstr("\n");*/
 	while (i < 3)
 	{
 		if (p[i] == 0)
@@ -138,28 +138,27 @@ short	ft_get_op_size(t_proc *proc, unsigned char ocp)
 		//		ft_putstr("\n");
 		i++;
 	}
-/*	ft_putstr("----------GET_OP_SIZE----------\n");
-	ft_putstr("P_SIZE[0] :\t");
-	ft_putnbr(P_SIZE[0]);
-	ft_putstr("\n");
-	ft_putstr("P_SIZE[1] :\t");
-	ft_putnbr(P_SIZE[1]);
-	ft_putstr("\n");
-	ft_putstr("P_SIZE[2] :\t");
-	ft_putnbr(P_SIZE[2]);
-	ft_putstr("\n");
-	ft_putstr("----------GET_OP_SIZE----------\n");
-	ft_putstr("\n");*/
+	/*	ft_putstr("----------GET_OP_SIZE----------\n");
+		ft_putstr("P_SIZE[0] :\t");
+		ft_putnbr(P_SIZE[0]);
+		ft_putstr("\n");
+		ft_putstr("P_SIZE[1] :\t");
+		ft_putnbr(P_SIZE[1]);
+		ft_putstr("\n");
+		ft_putstr("P_SIZE[2] :\t");
+		ft_putnbr(P_SIZE[2]);
+		ft_putstr("\n");
+		ft_putstr("----------GET_OP_SIZE----------\n");
+		ft_putstr("\n");*/
 	return (P_SIZE[0] + P_SIZE[1] + P_SIZE[2]);
 }
 
 int		ft_load_instruction(t_info *info, t_proc *proc)
 {
 
-	ft_putstr("codage octal :\t");
 	if (proc->loaded_op.codage_octal == 1)
 	{
-		ft_putstr("octal oui\n");
+		ft_putstr("Presence d'un codage octal (LE PC AVANCE de 1 + 1 AVANT EXECUTE\n puis de OPSIZE apres avoir EXECUTED)\n");
 		proc->pc = (proc->pc + 1) % MEM_SIZE;
 		proc->op_size = ft_get_op_size(proc, *(info->board + proc->pc));
 	}
@@ -168,7 +167,7 @@ int		ft_load_instruction(t_info *info, t_proc *proc)
 		proc->op_size = proc->loaded_op.param_size[0] +
 			proc->loaded_op.param_size[1] + proc->loaded_op.param_size[2];
 	}
-	ft_putstr("ADV :\t");
+	ft_putstr("OP_SIZE :\t");
 	ft_putnbr(proc->op_size);
 	ft_putstr("\n");
 	proc->pc = (proc->pc + 1) % MEM_SIZE;
@@ -187,8 +186,10 @@ t_proc	*ft_last(t_proc *proc)
 
 void	ft_execute_instruction(t_info *info, t_proc *proc)
 {
+	ft_putstr("=====-----EXECUTE-----=====\n");
 	ft_load_instruction(info, proc);
 	tabop[proc->loaded_op.opcode - 1].f_op(info, proc);
+	proc->error = 0;
 	proc->pc = (proc->pc + proc->op_size) % MEM_SIZE;
 	ft_bzero((void*)&(proc->loaded_op), sizeof(t_op));
 }
@@ -200,17 +201,23 @@ void	ft_run_proc(t_info *info)
 	proc_tmp = ft_last(info->first_processus);
 	while (proc_tmp)
 	{
-		if (proc_tmp->loaded_op.cycle_nb == 0)
+		if (proc_tmp->alive != -1)
 		{
-			if (proc_tmp->loaded_op.opcode != 0)
-				ft_execute_instruction(info, proc_tmp);
-			ft_preload_instruction(info, proc_tmp);
-			ft_putstr("preoload opcode :\t");
-			ft_putnbr(proc_tmp->loaded_op.opcode);
-			ft_putstr("\n");
+			if (proc_tmp->loaded_op.cycle_nb == 0)
+			{
+				if (proc_tmp->loaded_op.opcode != 0)
+					ft_execute_instruction(info, proc_tmp);
+				ft_preload_instruction(info, proc_tmp);
+				if (proc_tmp->loaded_op.opcode != 0)
+				{
+					ft_putstr("preoload opcode :\t");
+					ft_putnbr(proc_tmp->loaded_op.opcode);
+					ft_putstr("\n");
+				}
+			}
+			if (proc_tmp->loaded_op.cycle_nb > 0)
+				proc_tmp->loaded_op.cycle_nb--;
 		}
-		if (proc_tmp->loaded_op.cycle_nb > 0)
-			proc_tmp->loaded_op.cycle_nb--;
 		proc_tmp = proc_tmp->prev;
 	}
 }
@@ -237,6 +244,7 @@ int		ft_flag(t_info *info)
 		{
 			info->cycles_to_die -= CYCLE_DELTA;
 			info->check = 0;
+			ft_kill_proc(info);
 		}
 		else
 			info->check++;
@@ -251,9 +259,6 @@ void	ft_run_vm(t_info *info)
 {
 	while (ft_flag(info) == 1)
 	{
-		ft_run_proc(info);
-		info->cycles++;
-		info->countdown_to_die++;
 		ft_putstr("Cycles :\t");
 		ft_putnbr(info->cycles);
 		ft_putstr("\t");
@@ -269,7 +274,10 @@ void	ft_run_vm(t_info *info)
 		ft_putstr("PC :\t");
 		ft_putnbr(info->first_processus->pc);
 		ft_putstr("\n");
-		if (info->cycles >= 100)
+		ft_run_proc(info);
+		info->cycles++;
+		info->countdown_to_die++;
+		if (info->cycles >= 1500)
 			break;
 	}
 }

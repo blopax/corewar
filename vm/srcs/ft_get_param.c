@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 17:37:08 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/05 15:13:45 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/05 18:42:11 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		ft_get_param(t_info *info, t_proc *proc, int param, int ocp)
 			return (tab_ocp[i].f_op(info, proc, param));
 		i++;
 	}
+	proc->error = 1;
 	return (0);
 }
 

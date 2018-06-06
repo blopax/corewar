@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 15:28:11 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/18 17:07:13 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/05 16:09:15 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@ t_proc	*ft_init_proc(int pc)
 		return (0);
 	ft_bzero(new_proc->reg, sizeof(int) * 16);
 	new_proc->carry = 0;
-	new_proc->pc = pc;
+	new_proc->pc = ft_mod_memsize(pc);
 	new_proc->alive = 0;
 	ft_bzero((void*)&(new_proc->loaded_op), sizeof(t_op));
 	new_proc->op_size = 0;
+	new_proc->error = 0;
 	new_proc->next = 0;
 	new_proc->prev = 0;
 	return (new_proc);
