@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 20:13:38 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/05 19:47:33 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/06 14:22:44 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	ft_live(t_info *info, t_proc *proc)
 			ft_putstr(" is alive \n");
 			info->players_info[i].live++;
 			proc->alive = 1;
+			info->last_player_alive = info->players_info[i].number - 1;
 		}
 		i++;
 	}

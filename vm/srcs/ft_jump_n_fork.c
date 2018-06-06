@@ -6,11 +6,27 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 20:08:45 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/06 12:15:56 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/06 14:22:41 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+int	ft_check_proc_alive(t_info *info)
+{
+	t_proc *proc_tmp;
+	int		proc_alive;
+
+	proc_alive = 0;
+	proc_tmp = info->first_processus;
+	while (proc_tmp)
+	{
+		if (proc_tmp->alive != -1)
+			proc_alive++;
+		proc_tmp = proc_tmp->next;
+	}
+	return (proc_alive);
+}
 
 void	ft_kill_proc(t_info *info)
 {
@@ -19,8 +35,11 @@ void	ft_kill_proc(t_info *info)
 	proc_tmp = info->first_processus;
 	while (proc_tmp)
 	{
-		if (proc_tmp->alive == 0)
+		if (proc_tmp->alive <= 0)
+		{
+			ft_putstr("KIIIIIIIIILLLLLLLLLLLLLLLLLLLLLLLLLL PROOOOOOOOCCCCCCCCCCCCCCCCCCCC\n");
 			proc_tmp->alive = -1;
+		}
 		else
 			proc_tmp->alive = 0;
 		proc_tmp = proc_tmp->next;

@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 17:08:34 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/06 12:15:07 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/06 14:22:36 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,14 +226,6 @@ void	ft_run_proc(t_info *info)
 
 void	ft_reinit_lives(t_info *info)
 {
-	t_proc *proc_tmp;
-
-	proc_tmp = info->first_processus;
-	while (proc_tmp)
-	{
-		proc_tmp->alive = 0;
-		proc_tmp = proc_tmp->next;
-	}
 	info->total_lives = 0;
 	info->countdown_to_die = 0;
 }
@@ -242,17 +234,19 @@ int		ft_flag(t_info *info)
 {
 	if (info->countdown_to_die == info->cycles_to_die)
 	{
+		ft_kill_proc(info);
 		if (info->total_lives > NBR_LIVE || info->check == MAX_CHECKS - 1)
 		{
 			info->cycles_to_die -= CYCLE_DELTA;
 			info->check = 0;
-			ft_kill_proc(info);
 		}
 		else
 			info->check++;
-		ft_reinit_lives(info);
+		info->total_lives = 0;
+		info->countdown_to_die = 0;
+		//ft_reinit_lives(info);
 	}
-	if (info->cycles_to_die <= 0)
+	if (info->cycles_to_die <= 0 || ft_check_proc_alive(info) == 0)
 		return (0);
 	return (1);
 }
@@ -279,7 +273,13 @@ void	ft_run_vm(t_info *info)
 		ft_run_proc(info);
 		info->cycles++;
 		info->countdown_to_die++;
-		if (info->cycles >= 1500)
-			break;
+//		if (info->cycles >= 1500)
+//			break;
 	}
+	ft_putstr("LE GRAND GAGNANT EST LE JOUEUR :\t");
+	ft_putnbr(info->last_player_alive);
+	ft_putstr("\tNOMME :\t");
+	ft_putstr(info->players_info[info->last_player_alive].name);
+	ft_putstr("\n");
+
 }
