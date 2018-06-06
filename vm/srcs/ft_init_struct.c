@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 15:28:11 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/06 13:24:29 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/06 14:35:55 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_info	*ft_init_info(void)
 	new_info->check = 0;
 	new_info->lives_threshold = NBR_LIVE;
 	new_info->total_lives = 0;
-	new_info->dump = 0;
+	new_info->dump = -1;
 	new_info->players_nb = 0;
 	ft_init_players(new_info);
 	ft_bzero(new_info->argv, 15);

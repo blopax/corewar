@@ -22,7 +22,7 @@ SRC_PATH =srcs/
 SRC_NAME = ft_corewar_vm.c ft_atoi_cor.c ft_init_struct.c\
 		   ft_check_error.c ft_parsing_arg.c free.c player_parsing.c\
 		   ft_basic_op.c ft_mathematical_op.c ft_indirect_op.c\
-		   ft_op_2.c ft_vm.c ft_utilities.c ft_jump_n_fork.c ft_get_param.c\
+		   ft_vm.c ft_utilities.c ft_jump_n_fork.c ft_get_param.c\
 		   ft_binary_op.c
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 
