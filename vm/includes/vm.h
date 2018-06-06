@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/06/06 15:59:33 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/06 17:18:52 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ typedef struct		s_info
 	int				countdown_to_die;
 }					t_info;
 
-int					ft_atoi_cor(const char *str);
-void				ft_error(int error_code);
+int					ft_atoi_cor(const char *str, t_info *info);
+void				ft_error(int error_code, t_info *info);
 t_info				*ft_init_info(void);
 void				ft_check_argc(int argc, char **argv, t_info *info);
 void				ft_define_players(int argc, char **argv, t_info *info);

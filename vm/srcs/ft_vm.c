@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 17:08:34 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/06 15:59:23 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/06 17:33:33 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_create_proc(t_info *info)
 	proc_tmp = info->first_processus;
 	while (i < info->players_nb)
 	{
-		proc_tmp->reg[0] = i ;
+		proc_tmp->reg[0] = i;
 		proc_tmp->next = ft_init_proc((MEM_SIZE / info->players_nb) * k);
 		proc_tmp->next->prev = proc_tmp;
 		proc_tmp = proc_tmp->next;
@@ -278,13 +278,13 @@ void	ft_run_vm(t_info *info)
 		ft_run_proc(info);
 		info->cycles++;
 		info->countdown_to_die++;
-//		if (info->cycles >= 1500)
-//			break;
 	}
-	ft_putstr("LE GRAND GAGNANT EST LE JOUEUR :\t");
-	ft_putnbr(info->last_player_alive + 1);
-	ft_putstr("\tNOMME :\t");
-	ft_putstr(info->players_info[info->last_player_alive].name);
-	ft_putstr("\n");
-
+	if (info->dump == -1)
+	{
+		ft_putstr("LE GRAND GAGNANT EST LE JOUEUR :\t");
+		ft_putnbr(info->last_player_alive + 1);
+		ft_putstr("\tNOMME :\t");
+		ft_putstr(info->players_info[info->last_player_alive].name);
+		ft_putstr("\n");
+	}
 }

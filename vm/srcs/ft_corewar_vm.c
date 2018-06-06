@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:56:29 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/06 15:58:31 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/06 17:33:37 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,10 @@ int		main(int argc, char **argv)
 	t_info	*info;
 	int		i;
 
+	i = 0;
 	info = ft_init_info();
 	ft_check_argc(argc, argv, info);
-//	printf("Check_arg_OK\n");
 	ft_define_players(argc, argv, info);
-//	printf("SUCCESS\n");
-	i = 0;
 	while (i < info->players_nb)
 	{
 		get_player(&(info->players_info[i]));
@@ -98,9 +96,7 @@ int		main(int argc, char **argv)
 	ft_show_board(info);
 	printf("_______________________\n");
 	ft_show_player_info(info);
-//	free_player(&(info->players_info[0]));
 	ft_run_vm(info);
-//	ft_show_board(info);
 	ft_free_all(info);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 20:13:38 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/06 14:22:44 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/06 16:29:35 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	ft_load(t_info *info, t_proc *proc)
 	int val;
 	int reg_idx;
 
+	val = 0;
 	ft_putstr("Je commence LOAD\n");
 	reg_idx = ft_ptr_to_uint(info, proc->pc + P_SIZE[0], P_SIZE[1]);
 	if (info->board[ft_mod_memsize(proc->pc - 1)] == 144)
