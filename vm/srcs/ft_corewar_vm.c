@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:56:29 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/06 15:58:31 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/05 19:47:18 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ int		main(int argc, char **argv)
 	ft_show_player_info(info);
 //	free_player(&(info->players_info[0]));
 	ft_run_vm(info);
-//	ft_show_board(info);
-	ft_free_all(info);
+	ft_show_board(info);
 	return (0);
 }

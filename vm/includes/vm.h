@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/06/06 15:59:33 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/06 13:12:03 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,7 @@ int					set_vm(t_info *info);
 void				ft_run_vm(t_info *info);
 t_proc				*ft_last(t_proc *proc);
 void				ft_kill_proc(t_info *info);
-int					ft_check_proc_alive(t_info *info);
-void				ft_show_board(t_info *info);
+int				ft_check_proc_alive(t_info *info);
 unsigned int		ft_ptr_to_uint_parsing(unsigned char *ptr, int size);
 unsigned int		ft_ptr_to_uint(t_info *info, unsigned int ptr, int size);
 void				ft_uint_to_ptr(t_info *info, unsigned int ptr, int size,
@@ -99,7 +98,6 @@ void				ft_modif_carry(t_proc *proc, int carry_value);
 int					ft_idx_mod(t_proc *proc, unsigned int val);
 unsigned int		ft_mod_memsize(int val);
 void				free_player(t_player *player);
-int					ft_free_all(t_info *info);
 int					ft_live(t_info *info, t_proc *proc);
 int					ft_load(t_info *info, t_proc *proc);
 int					ft_store(t_info *info, t_proc *proc);

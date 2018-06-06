@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 17:08:34 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/06 15:59:23 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/06 14:22:36 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,11 +232,6 @@ void	ft_reinit_lives(t_info *info)
 
 int		ft_flag(t_info *info)
 {
-	if (info->dump >= 0 && info->dump == info->cycles)
-	{
-		ft_show_board(info);
-		return (0);
-	}
 	if (info->countdown_to_die == info->cycles_to_die)
 	{
 		ft_kill_proc(info);
@@ -282,7 +277,7 @@ void	ft_run_vm(t_info *info)
 //			break;
 	}
 	ft_putstr("LE GRAND GAGNANT EST LE JOUEUR :\t");
-	ft_putnbr(info->last_player_alive + 1);
+	ft_putnbr(info->last_player_alive);
 	ft_putstr("\tNOMME :\t");
 	ft_putstr(info->players_info[info->last_player_alive].name);
 	ft_putstr("\n");
