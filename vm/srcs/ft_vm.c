@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 17:08:34 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/05 19:58:20 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/06 12:15:07 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,11 @@ void	ft_create_proc(t_info *info)
 	proc_tmp = info->first_processus;
 	while (i < info->players_nb)
 	{
+		proc_tmp->reg[0] = i ;
 		proc_tmp->next = ft_init_proc((MEM_SIZE / info->players_nb) * k);
 		proc_tmp->next->prev = proc_tmp;
 		proc_tmp = proc_tmp->next;
+		proc_tmp->reg[0] = i + 1;
 		ft_putnbr(proc_tmp->pc);
 		ft_putstr("\n");
 		i++;
