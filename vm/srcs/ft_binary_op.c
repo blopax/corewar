@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 20:14:06 by pclement          #+#    #+#             */
-/*   Updated: 2018/06/06 15:37:06 by pclement         ###   ########.fr       */
+/*   Updated: 2018/06/05 16:33:05 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	ft_and(t_info *info, t_proc *proc)
 			info->board[ft_mod_memsize(proc->pc - 1)]);
 	reg_idx = ft_ptr_to_uint(info,
 			(proc->pc + P_SIZE[0] + P_SIZE[1]), P_SIZE[2]);
-	val = 0;
 	if (reg_idx < 1 || reg_idx > 16)
 		return (0);
 	val = param0 & param1;
@@ -64,7 +63,6 @@ int	ft_or(t_info *info, t_proc *proc)
 			info->board[ft_mod_memsize(proc->pc - 1)]);
 	reg_idx = ft_ptr_to_uint(info,
 			(proc->pc + P_SIZE[0] + P_SIZE[1]) % MEM_SIZE, P_SIZE[2]);
-	val = 0;
 	if (reg_idx < 1 || reg_idx > 16)
 		return (0);
 	val = param0 | param1;
@@ -90,7 +88,6 @@ int	ft_xor(t_info *info, t_proc *proc)
 			info->board[ft_mod_memsize(proc->pc - 1)]);
 	reg_idx = ft_ptr_to_uint(info,
 			(proc->pc + P_SIZE[0] + P_SIZE[1]) % MEM_SIZE, P_SIZE[2]);
-	val = 0;
 	if (reg_idx < 1 || reg_idx > 16)
 		return (0);
 	val = param0 ^ param1;

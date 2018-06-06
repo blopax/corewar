@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 15:29:38 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/05/09 16:40:52 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/06 14:40:42 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_check_argc(int argc, char **argv, t_info *info)
 	if (argc == 1)
 	{
 		ft_putstr("Error : No parameters detected.\nusage : ./corewar ");
-		ft_putstr("[-dump n] [-n] -player1.cor [-n] -player2.cor...\n");
+		ft_putstr("[-dump x] [-n1] -player1.cor [-n2] -player2.cor...\n");
 		exit (0);
 	}
 	if (argc > MAX_ARG)

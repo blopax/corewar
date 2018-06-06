@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 15:30:38 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/06 15:45:36 by pclement         ###   ########.fr       */
+/*   Updated: 2018/06/06 15:59:31 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_check_player_number(t_info *info)
 	int k;
 
 	i = 0;
-	k = 0;
 	while (i < info->players_nb)
 	{
 		k = i + 1;

@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 12:24:21 by pclement          #+#    #+#             */
-/*   Updated: 2018/06/06 15:53:38 by pclement         ###   ########.fr       */
+/*   Updated: 2018/05/29 17:54:23 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int				ft_check_header(t_player *player)
 {
 	int		i;
 
-	i = 0;
 	if (player->magic != COREWAR_EXEC_MAGIC)
 		return (1);
+	i = 0;
 	while (i < 4)
 	{
 		if (player->name[PROG_NAME_LENGTH + i] != 0)
