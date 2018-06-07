@@ -51,12 +51,25 @@ void	ft_init_players(t_info *new_info)
 	}
 }
 
+void	ft_init_live_board(long int *live_board)
+{
+	int	i;
+
+	i = 0;
+	while (i < MEM_SIZE)
+	{
+		live_board[i] = 5000000000;
+		i++;
+	}
+}
+
 t_info	*ft_init_info(void)
 {
 	t_info	*new_info;
 
 	new_info = (t_info*)malloc((sizeof(t_info)));
 	ft_bzero(new_info->board, MEM_SIZE);
+	ft_init_live_board(new_info->live_board);
 	new_info->first_processus = ft_init_proc(0);
 	new_info->cycles_to_die = CYCLE_TO_DIE;
 	new_info->cycles = 0;

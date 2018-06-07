@@ -77,6 +77,25 @@ void	ft_show_board(t_info *info)
 	ft_putstr("\n");
 }
 
+void	ft_show_live_board(t_info *info)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < MEM_SIZE)
+	{
+		if (info->live_board[i] != 5000000000)
+		{
+			ft_putstr("There has been a live detected at position ");
+			ft_putnbr(i);
+			ft_putstr(" for player ");
+			ft_putnbr(info->live_board[i]);
+			ft_putstr("\n");
+		}
+		i++;
+	}
+}
+
 int		main(int argc, char **argv)
 {
 	t_info	*info;
@@ -97,6 +116,8 @@ int		main(int argc, char **argv)
 	printf("_______________________\n");
 	ft_show_player_info(info);
 	ft_run_vm(info);
+	ft_show_board(info);
+	ft_show_live_board(info);
 	ft_free_all(info);
 	return (0);
 }

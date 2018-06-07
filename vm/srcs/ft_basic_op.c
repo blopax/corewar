@@ -12,6 +12,23 @@
 
 #include "vm.h"
 
+int	ft_live_write(t_info *info, t_proc *proc, int live_int)
+{
+	int		i;
+
+	i = 0;
+	ft_putstr("Player ");
+	ft_putnbr(info->players_info[i].number);
+	ft_putstr(" is alive \n");
+	while (i < P_SIZE[0])
+	{
+		info->live_board[(proc->pc + i) % MEM_SIZE] = live_int;
+		i++;
+	}
+	return (0);
+}
+
+
 int	ft_live(t_info *info, t_proc *proc)
 {
 	int i;
@@ -24,9 +41,7 @@ int	ft_live(t_info *info, t_proc *proc)
 		if (info->players_info[i].number == live_int)
 		{
 			info->total_lives++;
-			ft_putstr("Player ");
-			ft_putnbr(info->players_info[i].number);
-			ft_putstr(" is alive \n");
+			ft_live_write(info, proc, live_int);
 			info->players_info[i].live++;
 			proc->alive = 1;
 			info->last_player_alive = info->players_info[i].number - 1;

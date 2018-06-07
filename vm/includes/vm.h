@@ -62,6 +62,7 @@ typedef struct		s_player
 typedef struct		s_info
 {
 	unsigned char	board[MEM_SIZE];
+	long int		live_board[MEM_SIZE];
 	t_proc			*first_processus;
 	int				cycles_to_die;
 	int				cycles;
