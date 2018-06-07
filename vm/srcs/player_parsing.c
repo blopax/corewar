@@ -16,9 +16,9 @@ int				ft_check_header(t_player *player)
 {
 	int		i;
 
+	i = 0;
 	if (player->magic != COREWAR_EXEC_MAGIC)
 		return (1);
-	i = 0;
 	while (i < 4)
 	{
 		if (player->name[PROG_NAME_LENGTH + i] != 0)
@@ -77,6 +77,7 @@ int				set_vm(t_info *info)
 	int		i;
 
 	i = 0;
+	address = 0;
 	while (i < info->players_nb)
 	{
 		address = i * MEM_SIZE / info->players_nb;

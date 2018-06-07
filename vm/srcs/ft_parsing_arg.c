@@ -31,6 +31,7 @@ void	ft_check_player_number(t_info *info)
 	int k;
 
 	i = 0;
+	k = 0;
 	while (i < info->players_nb)
 	{
 		k = i + 1;
