@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 17:08:34 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/06 17:33:33 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/11 17:57:03 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ void	ft_create_proc(t_info *info)
 	i = 1;
 	k = 1;
 	proc_tmp = info->first_processus;
+	proc_tmp->reg[0] = info->players_info[0].number;
 	while (i < info->players_nb)
 	{
-		proc_tmp->reg[0] = i;
 		proc_tmp->next = ft_init_proc((MEM_SIZE / info->players_nb) * k);
 		proc_tmp->next->prev = proc_tmp;
 		proc_tmp = proc_tmp->next;
-		proc_tmp->reg[0] = i + 1;
+		proc_tmp->reg[0] = info->players_info[i].number;
 		ft_putnbr(proc_tmp->pc);
 		ft_putstr("\n");
 		i++;
@@ -239,9 +239,9 @@ int		ft_flag(t_info *info)
 	}
 	if (info->countdown_to_die == info->cycles_to_die)
 	{
-		ft_kill_proc(info);
 		if (info->total_lives > NBR_LIVE || info->check == MAX_CHECKS - 1)
 		{
+			ft_kill_proc(info);
 			info->cycles_to_die -= CYCLE_DELTA;
 			info->check = 0;
 		}
