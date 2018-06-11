@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/06/06 17:18:52 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/11 17:51:26 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ int					ft_param_180(t_info *info, t_proc *proc, int param);
 int					ft_param_212(t_info *info, t_proc *proc, int param);
 int					ft_param_228(t_info *info, t_proc *proc, int param);
 int					ft_param_244(t_info *info, t_proc *proc, int param);
+void				ft_init_live_board(long int *live_board);
 
 
 #endif
