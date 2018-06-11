@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 12:24:21 by pclement          #+#    #+#             */
-/*   Updated: 2018/05/29 17:54:23 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/11 17:47:57 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int				ft_check_header(t_player *player)
 			return (1);
 		i++;
 	}
+	if (player->size > CHAMP_MAX_SIZE)
+		return (1);
 	return (0);
 }
 
