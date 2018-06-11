@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:56:29 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/06 17:33:37 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/11 17:15:19 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ int		main(int argc, char **argv)
 	ft_define_players(argc, argv, info);
 	while (i < info->players_nb)
 	{
-		get_player(&(info->players_info[i]));
+		if (get_player(&(info->players_info[i])) != 0)
+			ft_error(7, info);
 		i++;
 	}
 	set_vm(info);

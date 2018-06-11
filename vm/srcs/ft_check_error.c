@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 15:29:38 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/06 17:14:46 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/11 17:14:17 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	ft_error(int error_code, t_info *info)
 		ft_putstr("Two players have the same number.\n");
 	if (error_code == 6)
 		ft_putstr("Incorrect -dump int value or no value.\n");
+	if (error_code == 7)
+		ft_putstr("Incorrect .cor parameter.\n");
 	ft_free_all(info);
 	exit (0);
 }
