@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 20:13:38 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/12 15:57:04 by pclement         ###   ########.fr       */
+/*   Updated: 2018/06/12 17:21:46 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		ft_live(t_info *info, t_proc *proc)
 		if (info->players_info[i].number == live_int)
 		{
 			info->total_lives++;
-			ft_live_write(info, proc, live_int);
+//			ft_live_write(info, proc, live_int);
 			info->players_info[i].live++;
 			proc->alive = 1;
 			info->last_player_alive = info->players_info[i].number - 1;
