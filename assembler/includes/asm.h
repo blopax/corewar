@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/16 15:18:55 by atourner          #+#    #+#             */
-/*   Updated: 2018/05/07 18:17:34 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/12 17:26:16 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ int					ft_add_act_op(unsigned char *ret, t_op *op,
 		t_label *first, int *i);
 void				ft_print_error(int type, int len);
 void				ft_get_describe_len(int *name_len, int *cmd_len, int *len);
+int					ft_strncmp_s(char **file, int *act, int choice);
 
 #endif

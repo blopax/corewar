@@ -17,6 +17,7 @@
 # include "stdlib.h"
 # include "unistd.h"
 # include "stdio.h"
+# include <ncurses.h>
 # define P_SIZE proc->loaded_op.param_size
 
 
@@ -132,6 +133,10 @@ int					ft_param_212(t_info *info, t_proc *proc, int param);
 int					ft_param_228(t_info *info, t_proc *proc, int param);
 int					ft_param_244(t_info *info, t_proc *proc, int param);
 void				ft_init_live_board(long int *live_board);
+void				ft_visu(t_info *info);
+void				print_pikachu(t_info *info, WINDOW *player);
+void				print_bulbasaur(t_info *info, WINDOW *player);
+
 
 
 #endif

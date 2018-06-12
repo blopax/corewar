@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 12:35:22 by atourner          #+#    #+#             */
-/*   Updated: 2018/05/07 17:41:05 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/12 16:38:49 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int				ft_add_act_op(unsigned char *ret, t_op *op,
 	if (first)
 		ret[*i += 1] = op->op;
 	if (op->op != 1 && op->op != 9 && op->op != 12
-			&& op->op != 15 && op->op != 16)
+			&& op->op != 15)
 		ret[*i += 1] = op->ocp;
 	while (bitwise)
 	{
