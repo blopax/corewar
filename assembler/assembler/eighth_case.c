@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 16:32:24 by atourner          #+#    #+#             */
-/*   Updated: 2018/05/07 17:51:59 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/12 16:39:33 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int		*get_eighth_ocp(void)
 
 	ret = (int*)ft_memalloc(sizeof(int) * 3);
 	ret[2] = 4;
-	ft_size_ocp(ret, 1, 6, 2);
+	ft_size_ocp(ret, 1, 6, 3);
 	return (ret);
 }
 
