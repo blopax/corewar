@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 17:37:08 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/05 18:42:11 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/12 16:13:51 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int		ft_get_param(t_info *info, t_proc *proc, int param, int ocp)
 {
 	int	i;
 	int	j;
-	//	int	flag;
 
 	i = 0;
 	j = 0;
@@ -33,7 +32,7 @@ int		ft_get_param(t_info *info, t_proc *proc, int param, int ocp)
 
 int		ft_param_84(t_info *info, t_proc *proc, int param)
 {
-	int reg;
+	int	reg;
 
 	reg = 0;
 	reg = ft_ptr_to_uint(info, proc->pc + param, T_REG);
@@ -193,7 +192,7 @@ int		ft_param_148(t_info *info, t_proc *proc, int param)
 	return (proc->reg[reg - 1]);
 }
 
-	int		ft_param_164(t_info *info, t_proc *proc, int param)
+int		ft_param_164(t_info *info, t_proc *proc, int param)
 {
 	int reg;
 
@@ -214,6 +213,7 @@ int		ft_param_148(t_info *info, t_proc *proc, int param)
 	}
 	return (proc->reg[reg - 1]);
 }
+
 int		ft_param_180(t_info *info, t_proc *proc, int param)
 {
 	int reg;
@@ -225,7 +225,7 @@ int		ft_param_180(t_info *info, t_proc *proc, int param)
 	{
 		return (ft_ptr_to_uint(info, proc->pc - 2 +
 			ft_idx_mod(proc, ft_ptr_to_uint(info, (proc->pc + P_SIZE[0])
-				% MEM_SIZE,P_SIZE[1])), proc->loaded_op.dir_size));
+				% MEM_SIZE, P_SIZE[1])), proc->loaded_op.dir_size));
 	}
 	reg = ft_ptr_to_uint(info, proc->pc + P_SIZE[0] + P_SIZE[1],
 			T_REG);
