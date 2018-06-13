@@ -65,7 +65,10 @@ t_label				*ft_get_label(char **file, int line)
 		if (!file[line])
 			break ;
 		if (get_current_label(file, &line, &first) < 0)
+		{
+			ft_free_chain(first, 0);
 			return (NULL);
+		}
 	}
 	return (first);
 }

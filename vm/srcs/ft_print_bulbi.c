@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <vm.h>
+#include "vm.h"
 
 static void		print_third_part(WINDOW *player, int x, int y)
 {

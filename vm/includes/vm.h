@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/06/13 15:40:10 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/13 16:17:03 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct		s_info
 	int				visual;
 	int				players_nb;
 	t_player		players_info[MAX_PLAYERS];
-	char			argv[16];
+	char			argv[15];
 	int				player_one;
 	int				last_player_alive;
 	int				countdown_to_die;
@@ -139,11 +139,11 @@ int					ft_init_ncurse(WINDOW **board, WINDOW **player);
 void				print_pikachu(t_info *info, WINDOW *player);
 void				print_bulbasaur(t_info *info, WINDOW *player);
 void				wait_plz(int ms);
-void				get_ev(WINDOW *board, char c);
 void				is_proc(int i, t_proc *act, WINDOW *board);
 void				ft_pause(WINDOW *board);
 void				change_music();
 void				launch_end(t_info *info, WINDOW *player);
 void				wprint_player(WINDOW *player, t_info *info, int g_wait_time);
+void				ft_hahaaa(t_proc *act);
 
 #endif

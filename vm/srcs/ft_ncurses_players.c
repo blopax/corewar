@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ncurses_players.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
+/*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/13 14:57:17 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/13 14:57:20 by nvergnac         ###   ########.fr       */
+/*   Created: 2018/06/13 12:35:51 by atourner          #+#    #+#             */
+/*   Updated: 2018/06/13 15:07:07 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-char		*str_chrreplace(char *str)
+static char	*str_chrreplace(char *str)
 {
 	int		i;
 	char	*name;
@@ -27,7 +27,7 @@ char		*str_chrreplace(char *str)
 	return (name);
 }
 
-void	wprint_player(WINDOW *player, t_info *info, int g_wait_time)
+void		wprint_player(WINDOW *player, t_info *info, int g_wait_time)
 {
 	int		i;
 	char	*name;
@@ -37,9 +37,12 @@ void	wprint_player(WINDOW *player, t_info *info, int g_wait_time)
 	{
 		wattron(player, COLOR_PAIR(5 + i));
 		name = str_chrreplace(info->players_info[i].name);
-		mvwprintw(player, i * 4 + 1, 1, "Joueur %d -> %d", i, info->players_info[i].number);
-		mvwprintw(player, i * 4 + 2, 1, "\tName : %s", name);
-		mvwprintw(player, i * 4 + 3, 1, "\tLive : %d", info->players_info[i].live);
+		mvwprintw(player, i * 4 + 1, 1,
+				"Joueur %d -> %d", i, info->players_info[i].number);
+		mvwprintw(player, i * 4 + 2, 1,
+				"\tName : %s", name);
+		mvwprintw(player, i * 4 + 3, 1,
+				"\tLive : %d", info->players_info[i].live);
 		ft_strdel(&name);
 		i++;
 	}
@@ -47,7 +50,8 @@ void	wprint_player(WINDOW *player, t_info *info, int g_wait_time)
 	mvwprintw(player, --i * 4 + 5, 1, "Cycle to die : %d", info->cycles_to_die);
 	mvwprintw(player, i * 4 + 6, 1, "Actual cycle : %d", info->cycles);
 	mvwprintw(player, i * 4 + 7, 1, "Check : %d / 8", info->check);
-	mvwprintw(player, i * 4 + 8, 1, "Count_to_die : %d", info->countdown_to_die);
+	mvwprintw(player, i * 4 + 8, 1,
+			"Count_to_die : %d", info->countdown_to_die);
 	mvwprintw(player, i * 4 + 9, 1, "Total_live : %d", info->total_lives);
 	mvwprintw(player, i * 4 + 10, 1, "Wait time : %d ms", g_wait_time);
 }
