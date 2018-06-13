@@ -6,14 +6,14 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 18:20:57 by atourner          #+#    #+#             */
-/*   Updated: 2018/06/12 18:35:21 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/13 13:59:22 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <time.h>
 #include "vm.h"
 
-void		option_ncurses()
+static void	option_ncurses(void)
 {
 	curs_set(0);
 	cbreak();
@@ -58,13 +58,13 @@ void		is_proc(int i, t_proc *act, WINDOW *board)
 {
 	while (act)
 	{
-		if (act->pc == i && act->alive != -1)
+		if (act->pc == i && act->alive > -1)
 		{
 			if (act->carry)
 				wattron(board, COLOR_PAIR(3));
 			else
 				wattron(board, COLOR_PAIR(2));
-			break;
+			break ;
 		}
 		act = act->next;
 	}

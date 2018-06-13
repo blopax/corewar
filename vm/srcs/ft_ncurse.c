@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 14:59:59 by atourner          #+#    #+#             */
-/*   Updated: 2018/06/12 18:05:53 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/13 14:00:38 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static int		g_wait_time = 1;
 static int		g_continu_visu = 1;
 
-void		get_ev(WINDOW *board, char c)
+static void	get_ev(WINDOW *board, char c)
 {
 	if (c == ' ')
 		ft_pause(board);
@@ -36,7 +36,7 @@ void		get_ev(WINDOW *board, char c)
 		g_continu_visu = 0;
 }
 
-void		print_board(t_info *info, WINDOW *board, int ret)
+static void	print_board(t_info *info, WINDOW *board, int ret)
 {
 	int		i;
 	char	c;
@@ -46,7 +46,8 @@ void		print_board(t_info *info, WINDOW *board, int ret)
 	{
 		wattron(board, COLOR_PAIR(1));
 		is_proc(i, info->first_processus, board);
-		mvwprintw(board, (i / 64) + 1, ((i % 64) + 1) * 3, "%.2x", info->board[i]);
+		mvwprintw(board, (i / 64) + 1, ((i % 64) + 1) * 3,
+				"%.2x", info->board[i]);
 		if (!ret && i % 64 == 0)
 		{
 			wrefresh(board);
@@ -61,9 +62,8 @@ void		print_board(t_info *info, WINDOW *board, int ret)
 		get_ev(board, c);
 }
 
-void		print_player(t_info *info, WINDOW *player)
+static void	print_player(t_info *info, WINDOW *player)
 {
-
 	wprint_player(player, info, g_wait_time);
 	print_bulbasaur(info, player);
 	print_pikachu(info, player);
@@ -85,10 +85,11 @@ void		ft_visu(t_info *info, int end)
 		print_board(info, board, ret);
 		print_player(info, player);
 	}
+	ft_hahaaa(info->first_processus);
 	if (end)
 	{
 		launch_end(info, player);
-		while(wgetch(board) == ERR)
+		while (wgetch(board) == ERR)
 			;
 		system("pkill afplay");
 		delwin(board);

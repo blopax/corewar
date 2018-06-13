@@ -35,10 +35,10 @@ void	ft_kill_proc(t_info *info)
 	proc_tmp = info->first_processus;
 	while (proc_tmp)
 	{
-		if (proc_tmp->alive <= 0)
-			proc_tmp->alive = -1;
-		else
+		if (proc_tmp->alive > 0)
 			proc_tmp->alive = 0;
+		else if (proc_tmp->alive == 0)
+			proc_tmp->alive = -1;
 		proc_tmp = proc_tmp->next;
 	}
 }
