@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 16:49:52 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/13 14:41:27 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/13 16:51:42 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ int				ft_idx_mod(t_proc *proc, unsigned int val)
 	if (val > (65535 / 2))
 		return (-(-(val % MEM_SIZE) % IDX_MOD));
 	return ((val % MEM_SIZE) % IDX_MOD);
-}
-
-void			ft_modif_carry(t_proc *proc, int carry_value)
-{
-	proc->carry = carry_value;
 }
 
 void			ft_uint_to_ptr(t_info *info, unsigned int ptr,

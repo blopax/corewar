@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/06/13 16:17:03 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/13 17:20:22 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void				ft_create_proc(t_info *info);
 int					get_player(t_player *player);
 int					set_vm(t_info *info);
 void				ft_run_vm(t_info *info);
+short				ft_get_op_size(t_proc *proc, unsigned char ocp);
+int					ft_flag(t_info *info);
 t_proc				*ft_last(t_proc *proc);
 void				ft_kill_proc(t_info *info);
 int					ft_check_proc_alive(t_info *info);
