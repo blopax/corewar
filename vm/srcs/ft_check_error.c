@@ -6,11 +6,24 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 15:29:38 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/12 16:00:01 by pclement         ###   ########.fr       */
+/*   Updated: 2018/06/13 16:15:15 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+void	ft_usage(t_info *info)
+{
+		ft_putstr("Error : No parameters detected.\nusage : ./corewar ");
+		ft_putstr("[-visual] [-dump [x]] [-n [n1]] player1.cor ");
+		ft_putstr("[-n [n2]] player2.cor [-n [n3]] player3.cor ");
+		ft_putstr("[-n [n4]] player4.cor...\n\n");
+		ft_putstr("-visual :\tEnable ncurse visual for Corewar.\n");
+		ft_putstr("-dump :\t\tDump the memory at the 'n' cycle.\n");
+		ft_putstr("-n :\t\tChange player's R1 value\n");
+		ft_free_all(info);
+		exit(0);
+}
 
 void	ft_error(int error_code, t_info *info)
 {
@@ -28,6 +41,9 @@ void	ft_error(int error_code, t_info *info)
 		ft_putstr("Incorrect -dump int value or no value.\n");
 	if (error_code == 7)
 		ft_putstr("Incorrect .cor parameter.\n");
+	if (error_code == 8)
+		ft_putstr("No player detected.\n");
+	ft_usage(info);
 	ft_free_all(info);
 	exit(0);
 }
@@ -35,17 +51,17 @@ void	ft_error(int error_code, t_info *info)
 void	ft_check_argc(int argc, char **argv, t_info *info)
 {
 	if (argc == 1)
-	{
-		ft_putstr("Error : No parameters detected.\nusage : ./corewar ");
-		ft_putstr("[-dump x] [-n1] -player1.cor [-n2] -player2.cor...\n");
-		ft_free_all(info);
-		exit(0);
-	}
+		ft_usage(info);
 	if (argc > MAX_ARG)
 	{
 		ft_putstr("Error : Too many parameters.\n");
 		ft_free_all(info);
 		exit(0);
+	}
+	if (ft_strcmp("-visual", argv[1]) == 0)
+	{
+		info->argv[1] = 1;
+		info->visual = 1;
 	}
 	if (ft_strcmp("-dump", argv[1]) == 0)
 	{
