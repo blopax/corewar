@@ -6,38 +6,18 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:56:29 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/12 16:51:23 by pclement         ###   ########.fr       */
+/*   Updated: 2018/06/13 16:06:30 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	ft_show_player_info(t_info *info)
-{
-	int	i;
-
-	i = 0;
-	while (i < info->players_nb)
-	{
-		printf("player_nb :\t%d\n", info->players_info[i].number);
-		printf("player_fd :\t%d\n", info->players_info[i].fd);
-		printf("player_header :\t%p\n", info->players_info[i].header);
-		printf("player_magic :\t%u\n", info->players_info[i].magic);
-		printf("player_name :\t%s\n", info->players_info[i].name);
-		printf("player_comment :\t%s\n", info->players_info[i].comment);
-		printf("player_size :\t%u\n", info->players_info[i].size);
-		printf("player_program :\t%p\n", info->players_info[i].program);
-		printf("_______________________\n");
-		i++;
-	}
-}
-
 void	ft_nl_space(int i)
 {
 	if (i % 64 == 0)
-		printf("\n");
+		ft_putstr("\n");
 	else
-		printf(" ");
+		ft_putstr(" ");
 }
 
 void	ft_show_board(t_info *info)
@@ -50,12 +30,12 @@ void	ft_show_board(t_info *info)
 	while (i < MEM_SIZE)
 	{
 		if (info->board[i] == 0)
-			printf("\x1B[34m00\x1B[37m");
+			ft_putstr("\x1B[34m00\x1B[37m");
 		else
 		{
 			if (info->board[i] < 16)
-				printf("0");
-			printf("%x", info->board[i]);
+				ft_putstr("0");
+			ft_putstr(ft_itoa_base(info->board[i], "0123456789abcdef"));
 		}
 		i++;
 		ft_nl_space(i);
