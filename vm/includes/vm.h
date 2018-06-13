@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/06/13 14:01:12 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/13 16:17:03 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct		s_info
 	int				lives_threshold;
 	int				total_lives;
 	int				dump;
+	int				visual;
 	int				players_nb;
 	t_player		players_info[MAX_PLAYERS];
 	char			argv[15];
