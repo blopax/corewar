@@ -77,6 +77,6 @@ void		launch_end(t_info *info, WINDOW *player)
 	mvwprintw(player, (info->players_nb - 1) * 4 + 14, 1,
 		"Winner is player %d :", info->last_player_alive);
 	mvwprintw(player, (info->players_nb - 1) * 4 + 15, 1,
-		"\t%s", info->players_info[info->last_player_alive].name);
+		"\t%s", info->players_info[info->last_player_alive - 1].name);
 	wrefresh(player);
 }
