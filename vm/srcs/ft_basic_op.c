@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 20:13:38 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/12 17:21:46 by pclement         ###   ########.fr       */
+/*   Updated: 2018/06/13 14:56:44 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int		ft_live(t_info *info, t_proc *proc)
 
 	i = 0;
 	live_int = ft_ptr_to_uint(info, proc->pc, P_SIZE[0]);
+	proc->alive = 1;
 	while (i < info->players_nb)
 	{
 		if (info->players_info[i].number == live_int)
@@ -42,8 +43,7 @@ int		ft_live(t_info *info, t_proc *proc)
 			info->total_lives++;
 //			ft_live_write(info, proc, live_int);
 			info->players_info[i].live++;
-			proc->alive = 1;
-			info->last_player_alive = info->players_info[i].number - 1;
+			info->last_player_alive = info->players_info[i].number;
 		}
 		i++;
 	}

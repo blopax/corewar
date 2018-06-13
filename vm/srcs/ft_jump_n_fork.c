@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 20:08:45 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/12 16:24:04 by pclement         ###   ########.fr       */
+/*   Updated: 2018/06/13 14:57:43 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_check_proc_alive(t_info *info)
 	proc_tmp = info->first_processus;
 	while (proc_tmp)
 	{
-		if (proc_tmp->alive != -1)
+		if (proc_tmp->alive >= 0)
 			proc_alive++;
 		proc_tmp = proc_tmp->next;
 	}
