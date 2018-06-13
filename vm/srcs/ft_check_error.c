@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 15:29:38 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/13 16:15:15 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/13 16:47:06 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	ft_usage(t_info *info)
 {
-		ft_putstr("Error : No parameters detected.\nusage : ./corewar ");
-		ft_putstr("[-visual] [-dump [x]] [-n [n1]] player1.cor ");
-		ft_putstr("[-n [n2]] player2.cor [-n [n3]] player3.cor ");
-		ft_putstr("[-n [n4]] player4.cor...\n\n");
-		ft_putstr("-visual :\tEnable ncurse visual for Corewar.\n");
-		ft_putstr("-dump :\t\tDump the memory at the 'n' cycle.\n");
-		ft_putstr("-n :\t\tChange player's R1 value\n");
-		ft_free_all(info);
-		exit(0);
+	ft_putstr("Error : No parameters detected.\nusage : ./corewar ");
+	ft_putstr("[-visual] [-dump [x]] [-n [n1]] player1.cor ");
+	ft_putstr("[-n [n2]] player2.cor [-n [n3]] player3.cor ");
+	ft_putstr("[-n [n4]] player4.cor...\n\n");
+	ft_putstr("-visual :\tEnable ncurse visual for Corewar.\n");
+	ft_putstr("-dump :\t\tDump the memory at the 'n' cycle.\n");
+	ft_putstr("-n :\t\tChange player's R1 value\n");
+	ft_free_all(info);
+	exit(0);
 }
 
 void	ft_error(int error_code, t_info *info)
