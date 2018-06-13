@@ -5,7 +5,5 @@
 #		add r9, r5, r3
 #		st r3, 40
 #		sub r9, r5, r3
-		ld 260, r10
-		fork %513
-		lfork %513
+		st r1, 515
 		zjmp %-40
