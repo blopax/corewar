@@ -49,7 +49,7 @@ void		wprint_player(WINDOW *player, t_info *info, int g_wait_time)
 	wattron(player, COLOR_PAIR(1));
 	mvwprintw(player, --i * 4 + 5, 1, "Cycle to die : %d", info->cycles_to_die);
 	mvwprintw(player, i * 4 + 6, 1, "Actual cycle : %d", info->cycles);
-	mvwprintw(player, i * 4 + 7, 1, "Check : %d / 8", info->check);
+	mvwprintw(player, i * 4 + 7, 1, "Check : %d / 9", info->check);
 	mvwprintw(player, i * 4 + 8, 1,
 			"Count_to_die : %d", info->countdown_to_die);
 	mvwprintw(player, i * 4 + 9, 1, "Total_live : %d", info->total_lives);
