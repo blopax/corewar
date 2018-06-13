@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 16:49:52 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/11 20:02:10 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/13 14:41:27 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ unsigned int	ft_mod_memsize(int val)
 		return (val % MEM_SIZE);
 }
 
-int	ft_idx_mod(t_proc *proc, unsigned int val)
+int				ft_idx_mod(t_proc *proc, unsigned int val)
 {
 	val = val % 65536;
 	if (proc->loaded_op.opcode == 13 || proc->loaded_op.opcode == 14)
-			return (val % MEM_SIZE);
+		return (val % MEM_SIZE);
 	if (val > (65535 / 2))
 		return (-(-(val % MEM_SIZE) % IDX_MOD));
 	return ((val % MEM_SIZE) % IDX_MOD);
@@ -35,7 +35,8 @@ void			ft_modif_carry(t_proc *proc, int carry_value)
 	proc->carry = carry_value;
 }
 
-void			ft_uint_to_ptr(t_info *info, unsigned int ptr, int size, unsigned int value)
+void			ft_uint_to_ptr(t_info *info, unsigned int ptr,
+		int size, unsigned int value)
 {
 	int				i;
 	int				k;
@@ -46,9 +47,6 @@ void			ft_uint_to_ptr(t_info *info, unsigned int ptr, int size, unsigned int val
 	while (i < size)
 	{
 		info->board[ptr] = value / ft_power(256, k);
-		ft_putstr("ptr[i] :\t");
-		ft_putnbr(info->board[ptr]);
-		ft_putstr("\n");
 		ptr = (ptr + 1) % MEM_SIZE;
 		i++;
 		k--;

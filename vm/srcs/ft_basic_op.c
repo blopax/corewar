@@ -6,13 +6,13 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 20:13:38 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/11 20:02:07 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/13 14:56:44 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int	ft_live_write(t_info *info, t_proc *proc, int live_int)
+int		ft_live_write(t_info *info, t_proc *proc, int live_int)
 {
 	int		i;
 
@@ -28,21 +28,21 @@ int	ft_live_write(t_info *info, t_proc *proc, int live_int)
 	return (0);
 }
 
-int	ft_live(t_info *info, t_proc *proc)
+int		ft_live(t_info *info, t_proc *proc)
 {
 	int i;
 	int	live_int;
 
 	i = 0;
 	live_int = ft_ptr_to_uint(info, proc->pc, P_SIZE[0]);
+	proc->alive = 1;
 	while (i < info->players_nb)
 	{
 		if (info->players_info[i].number == live_int)
 		{
 			info->total_lives++;
-			ft_live_write(info, proc, live_int);
+//			ft_live_write(info, proc, live_int);
 			info->players_info[i].live++;
-			proc->alive = 1;
 			info->last_player_alive = info->players_info[i].number;
 		}
 		i++;
@@ -50,7 +50,7 @@ int	ft_live(t_info *info, t_proc *proc)
 	return (0);
 }
 
-int	ft_load(t_info *info, t_proc *proc)
+int		ft_load(t_info *info, t_proc *proc)
 {
 	int val;
 	int reg_idx;
@@ -72,7 +72,7 @@ int	ft_load(t_info *info, t_proc *proc)
 	return (0);
 }
 
-int	ft_store(t_info *info, t_proc *proc)
+int		ft_store(t_info *info, t_proc *proc)
 {
 	int val;
 	int reg_src_idx;

@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:56:29 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/11 17:47:59 by pclement         ###   ########.fr       */
+/*   Updated: 2018/06/12 16:51:23 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@ void	ft_show_player_info(t_info *info)
 	}
 }
 
+void	ft_nl_space(int i)
+{
+	if (i % 64 == 0)
+		printf("\n");
+	else
+		printf(" ");
+}
+
 void	ft_show_board(t_info *info)
 {
 	unsigned int	player;
@@ -41,38 +49,16 @@ void	ft_show_board(t_info *info)
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		while (i < player * MEM_SIZE / info->players_nb + info->players_info[player].size)
+		if (info->board[i] == 0)
+			printf("\x1B[34m00\x1B[37m");
+		else
 		{
 			if (info->board[i] < 16)
 				printf("0");
 			printf("%x", info->board[i]);
-			i++;
-			if (i % 64 == 0)
-				printf("\n");
-			else
-				printf(" ");
 		}
-		player++;
-		while (i < player * MEM_SIZE / info->players_nb)
-		{
-			if (info->board[i] == 0)
-			{
-				printf("\x1B[34m");
-				printf("00");
-				printf("\x1B[37m");
-			}
-			else
-			{
-				if (info->board[i] < 16)
-					printf("0");
-				printf("%x", info->board[i]);
-			}
-			i++;
-			if (i % 64 == 0)
-				printf("\n");
-			else
-				printf(" ");
-		}
+		i++;
+		ft_nl_space(i);
 	}
 	ft_putstr("\n");
 }
@@ -113,12 +99,7 @@ int		main(int argc, char **argv)
 	}
 	set_vm(info);
 	ft_create_proc(info);
-	ft_show_board(info);
-	printf("_______________________\n");
-	ft_show_player_info(info);
 	ft_run_vm(info);
-	ft_show_board(info);
-	ft_show_live_board(info);
 	ft_free_all(info);
 	return (0);
 }

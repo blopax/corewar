@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 16:34:52 by atourner          #+#    #+#             */
-/*   Updated: 2018/05/07 18:15:56 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/12 17:27:10 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int		cont_start(char *file, int start)
 	int		i;
 
 	i = 0;
-	while (file[i] && ft_iswhitespace(file[i]))
+	while (file[i] && (ft_iswhitespace(file[i]) || file[i] != '\"'))
 		i++;
 	if (file[i] == '\"')
 		return (i + 1 + start);
@@ -88,8 +88,8 @@ static char		*get_describe(char **file, int *act, int choice)
 	sav = *act;
 	if (!choice)
 	{
-		if (!strncmp(file[*act], NAME_CMD_STRING, name_len) && ((len =
-		get_len(file, cont_start(&file[*act][name_len], name_len), act)) > 0)
+		if (!ft_strncmp_s(file, act, choice) && ((len = get_len(file,
+		cont_start(&file[*act][name_len], name_len), act)) > 0)
 		&& len <= PROG_NAME_LENGTH)
 			return (get_content(file, sav,
 						cont_start(&file[sav][name_len], 5), 0));
@@ -97,7 +97,7 @@ static char		*get_describe(char **file, int *act, int choice)
 			ft_print_error(0, len);
 		return (NULL);
 	}
-	if (!strncmp(file[*act], COMMENT_CMD_STRING, cmd_len) && ((len =
+	if (!ft_strncmp_s(file, act, choice) && ((len =
 	get_len(file, cont_start(&file[*act][cmd_len], cmd_len), act)) >= 0)
 	&& len <= COMMENT_LENGTH)
 		return (get_content(file, sav, cont_start(&file[sav][cmd_len], 8), 1));

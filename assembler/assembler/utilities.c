@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 12:32:20 by atourner          #+#    #+#             */
-/*   Updated: 2018/05/07 17:58:33 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/12 16:51:05 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,16 @@
 void		ft_skip_empty(char **file, int *line)
 {
 	int		i;
+	char	*tmp;
 
 	i = 0;
 	while (file[*line])
 	{
-		if (!ft_iswhitespace(file[*line][i]) && file[*line][i])
-			if (file[*line][i] != '#')
-				return ;
-		if (!file[*line][i] || file[*line][i] == '#')
-		{
-			i = -1;
+		tmp = ft_skip_space(file[*line]);
+		if (*tmp == '#' || !*tmp)
 			*line += 1;
-		}
-		i++;
+		else
+			return ;
 	}
 }
 
@@ -45,9 +42,9 @@ int			ft_letter_lab_name(char test)
 	char		*label_chars;
 	char		*save;
 
-	if (!(label_chars = (char*)malloc(sizeof(char) * ft_strlen(LABEL_CHARS))))
+	if (!(label_chars = ft_strnew(ft_strlen(LABEL_CHARS) + 1)))
 		return (0);
-	ft_strcpy(label_chars, LABEL_CHARS);
+	ft_strncpy(label_chars, LABEL_CHARS, 37);
 	save = label_chars;
 	while (*label_chars)
 		if (*label_chars == test)

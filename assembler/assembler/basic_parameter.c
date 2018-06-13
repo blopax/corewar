@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 12:02:59 by atourner          #+#    #+#             */
-/*   Updated: 2018/05/06 13:53:10 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/11 15:05:20 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		ft_is_id(char *line)
 	else if (line[i] == ':')
 	{
 		while (ft_letter_lab_name(line[++i]))
-			i++;
+			;
 		if (line[i] && !ft_iswhitespace(line[i]) && line[i] != '#')
 			return (0);
 	}

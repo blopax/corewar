@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 12:24:21 by pclement          #+#    #+#             */
-/*   Updated: 2018/06/11 17:47:57 by pclement         ###   ########.fr       */
+/*   Updated: 2018/06/13 14:57:39 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int				get_header(t_player *player)
 	int		ret;
 	int		count;
 
-
 	ret = 0;
 	count = PROG_NAME_LENGTH + COMMENT_LENGTH + 16;
 	if (!(player->header = (void *)malloc(sizeof(void) * count)))
@@ -46,9 +45,11 @@ int				get_header(t_player *player)
 	ret = read(player->fd, player->header, count);
 	if (ret != count)
 		return (1);
-	player->magic = ft_ptr_to_uint_parsing((unsigned char *)(player->header), 4);
+	player->magic = ft_ptr_to_uint_parsing(
+			(unsigned char *)(player->header), 4);
 	player->name = (char*)(player->header + 4);
-	player->size = ft_ptr_to_uint_parsing((unsigned char *)(player->header + 8 + PROG_NAME_LENGTH), 4);
+	player->size = ft_ptr_to_uint_parsing((unsigned char *)(player->header
+				+ 8 + PROG_NAME_LENGTH), 4);
 	player->comment = (char*)(player->header + PROG_NAME_LENGTH + 12);
 	return (ft_check_header(player));
 }
@@ -83,7 +84,8 @@ int				set_vm(t_info *info)
 	while (i < info->players_nb)
 	{
 		address = i * MEM_SIZE / info->players_nb;
-		ft_memcpy((void *)(info->board + address), (void *)(info->players_info[i].program),
+		ft_memcpy((void *)(info->board + address),
+				(void *)(info->players_info[i].program),
 				(size_t)info->players_info[i].size);
 		i++;
 	}

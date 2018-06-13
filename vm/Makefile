@@ -15,6 +15,7 @@ DEPENDENCIES = includes/vm.h includes/op.h Makefile
 #libs
 LIB_PATH = libft/
 LIB_NAME = libft.a
+LIB_NCURSES = -lncurses
 LIB = $(addprefix $(LIB_PATH), $(LIB_NAME))
 
 #srcs
@@ -23,7 +24,8 @@ SRC_NAME = ft_corewar_vm.c ft_atoi_cor.c ft_init_struct.c\
 		   ft_check_error.c ft_parsing_arg.c ft_free.c player_parsing.c\
 		   ft_basic_op.c ft_mathematical_op.c ft_indirect_op.c\
 		   ft_vm.c ft_utilities.c ft_jump_n_fork.c ft_get_param.c\
-		   ft_binary_op.c
+		   ft_binary_op.c ft_ncurse.c ft_print_bulbi.c ft_print_pika.c\
+		   ft_init_ncurses.c ft_ncurse_ev.c ft_ncurses_players.c
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 
 #obj
@@ -52,7 +54,7 @@ END_COLOUR = \x1b[0m
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(LFLAGS) $(OBJ) -o $@
+	$(CC) $(LFLAGS) $(OBJ) $(LIB_NCURSES) -o $@
 	@echo "$(GREEN) Binary compilation succesfull$(END_COLOUR)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)/%.c $(DEPENDENCIES) $(LIB)
