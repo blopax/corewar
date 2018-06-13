@@ -69,3 +69,17 @@ void		is_proc(int i, t_proc *act, WINDOW *board)
 		act = act->next;
 	}
 }
+
+void		is_live(int i, t_info *info, WINDOW *board)
+{
+	int		act_player;
+
+	act_player = 0;
+	if (info->live_board[i] != 5000000000)
+	{
+		while (act_player < info->players_nb &&
+			info->live_board[i] != info->players_info[act_player].number)
+			act_player++;
+		wattron(board, COLOR_PAIR(act_player + 5));
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 12:07:33 by atourner          #+#    #+#             */
-/*   Updated: 2018/05/06 12:07:42 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/13 17:46:35 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 int		ft_free_and_ret(char **ar_str, int *tab, int ret)
 {
 	ft_free_ar((void**)ar_str);
-	free(tab);
+	if (tab)
+		free(tab);
 	return (ret);
 }
 

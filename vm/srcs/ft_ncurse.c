@@ -46,6 +46,7 @@ static void	print_board(t_info *info, WINDOW *board, int ret)
 	{
 		wattron(board, COLOR_PAIR(1));
 		is_proc(i, info->first_processus, board);
+		is_live(i, info, board);
 		mvwprintw(board, (i / 64) + 1, ((i % 64) + 1) * 3,
 				"%.2x", info->board[i]);
 		if (!ret && i % 64 == 0)
