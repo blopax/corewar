@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/06/11 17:51:26 by pclement         ###   ########.fr       */
+/*   Updated: 2018/06/12 18:37:21 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,10 +133,16 @@ int					ft_param_212(t_info *info, t_proc *proc, int param);
 int					ft_param_228(t_info *info, t_proc *proc, int param);
 int					ft_param_244(t_info *info, t_proc *proc, int param);
 void				ft_init_live_board(long int *live_board);
-void				ft_visu(t_info *info);
+void				ft_visu(t_info *info, int end);
+int					ft_init_ncurse(WINDOW **board, WINDOW **player);
 void				print_pikachu(t_info *info, WINDOW *player);
 void				print_bulbasaur(t_info *info, WINDOW *player);
-
-
+void				wait_plz(int ms);
+void				get_ev(WINDOW *board, char c);
+void				is_proc(int i, t_proc *act, WINDOW *board);
+void				ft_pause(WINDOW *board);
+void				change_music();
+void				launch_end(t_info *info, WINDOW *player);
+void				wprint_player(WINDOW *player, t_info *info, int g_wait_time);
 
 #endif

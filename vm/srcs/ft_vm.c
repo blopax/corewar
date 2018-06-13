@@ -204,13 +204,14 @@ void	ft_run_vm(t_info *info)
 {
 	while (ft_flag(info) == 1)
 	{
-		ft_visu(info);
+		ft_visu(info, 0);
 		ft_run_proc(info);
 		info->cycles++;
 		info->countdown_to_die++;
-	}
+	}	
 	if (info->dump == -1)
 	{
+		ft_visu(info, 1);
 		ft_putstr("LE GRAND GAGNANT EST LE JOUEUR :\t");
 		ft_putnbr(info->last_player_alive + 1);
 		ft_putstr("\tNOMME :\t");

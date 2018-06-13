@@ -42,9 +42,9 @@ int			ft_letter_lab_name(char test)
 	char		*label_chars;
 	char		*save;
 
-	if (!(label_chars = (char*)malloc(sizeof(char) * ft_strlen(LABEL_CHARS))))
+	if (!(label_chars = ft_strnew(ft_strlen(LABEL_CHARS) + 1)))
 		return (0);
-	ft_strcpy(label_chars, LABEL_CHARS);
+	ft_strncpy(label_chars, LABEL_CHARS, 37);
 	save = label_chars;
 	while (*label_chars)
 		if (*label_chars == test)
