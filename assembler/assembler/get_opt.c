@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 16:34:22 by atourner          #+#    #+#             */
-/*   Updated: 2018/06/12 19:34:00 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/13 16:16:31 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,6 @@ static int		get_act_opt(char **file, int *line, t_label *act)
 			return (-1);
 		if (file[*line])
 			*line += 1;
-			for (t_op *actO = act->op; actO; actO = actO->next)
-			{
-				if (actO->op == 0)
-					ft_printf("file %s line %d lab %s\n", file[*line], *line, act->name);
-			}
 	}
 	return (0);
 }
