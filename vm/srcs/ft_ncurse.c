@@ -85,8 +85,8 @@ void		ft_visu(t_info *info, int end)
 		ret = ft_init_ncurse(&board, &player);
 		print_board(info, board, ret);
 		print_player(info, player);
+		ft_hahaaa(info->first_processus);
 	}
-	ft_hahaaa(info->first_processus);
 	if (end)
 	{
 		launch_end(info, player);
