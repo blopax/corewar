@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 20:13:38 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/13 17:23:46 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/13 18:23:08 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ int		ft_live_write(t_info *info, t_proc *proc, int live_int)
 	int		i;
 
 	i = 0;
-	ft_putstr("Player ");
-	ft_putnbr(info->players_info[i].number);
-	ft_putstr(" is alive \n");
 	while (i < P_SIZE[0])
 	{
 		info->live_board[(proc->pc + i) % MEM_SIZE] = live_int;
@@ -40,6 +37,7 @@ int		ft_live(t_info *info, t_proc *proc)
 	{
 		if (info->players_info[i].number == live_int)
 		{
+			ft_live_write(info, proc, live_int);
 			info->total_lives++;
 			info->players_info[i].live++;
 			info->last_player_alive = info->players_info[i].number;
