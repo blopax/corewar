@@ -145,5 +145,6 @@ void				change_music();
 void				launch_end(t_info *info, WINDOW *player);
 void				wprint_player(WINDOW *player, t_info *info, int g_wait_time);
 void				ft_hahaaa(t_proc *act);
+void				is_live(int i, t_info *info, WINDOW *board);
 
 #endif

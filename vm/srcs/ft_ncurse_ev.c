@@ -27,11 +27,11 @@ void		ft_hahaaa(t_proc *act)
 	dead = 0;
 	while (act)
 	{
-			if (act->alive == -1)
-			{
-				dead = 1;
-				act->alive = -2;
-			}
+		if (act->alive == -1)
+		{
+			dead = 1;
+			act->alive = -2;
+		}
 		act = act->next;
 	}
 	if (dead)
