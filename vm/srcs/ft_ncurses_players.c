@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:35:51 by atourner          #+#    #+#             */
-/*   Updated: 2018/06/14 15:03:26 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/14 18:48:43 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ static char	*str_chrreplace(char *str)
 static void	wprint_player_and_stuff(WINDOW *player, t_info *info, int i,
 		char *name)
 {
-		mvwprintw(player, i * 4 + 1, 1,
-				"Joueur %d -> %d", i + 1, info->players_info[i].number);
-		mvwprintw(player, i * 4 + 2, 1,
-				"\tName : %s", name);
-		mvwprintw(player, i * 4 + 3, 1,
-				"\tLive : %d", info->players_info[i].live);
+	mvwprintw(player, i * 4 + 1, 1,
+			"Joueur %d -> %d", i + 1, info->players_info[i].number);
+	mvwprintw(player, i * 4 + 2, 1,
+			"\tName : %s", name);
+	mvwprintw(player, i * 4 + 3, 1,
+			"\tLive : %d", info->players_info[i].live);
 }
 
 static void	wprint_proc(WINDOW *player, t_info *info, int i)

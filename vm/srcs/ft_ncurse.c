@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 14:59:59 by atourner          #+#    #+#             */
-/*   Updated: 2018/06/14 17:53:26 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/14 18:48:31 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static int		g_wait_time = 1;
 static int		g_continu_visu = 1;
 
-void	get_ev(WINDOW *board, char c)
+void		get_ev(WINDOW *board, char c)
 {
 	if (c == ' ')
 		ft_pause(board);
