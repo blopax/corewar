@@ -19,15 +19,15 @@ void		ft_print_error(int type, int len)
 	char	str[9];
 	int		len_err;
 
-	if (type == 0)
+	if (type == 1)
 		ft_strcpy(str, "name\0");
 	else
 		ft_strcpy(str, "comment\0");
-	if (len <= 0)
+	if (len <= 1)
 		ft_printf("Wrong %s format\n", str);
 	else
 	{
-		len_err = (type == 0 ? PROG_NAME_LENGTH : COMMENT_LENGTH);
+		len_err = (type == 1 ? PROG_NAME_LENGTH : COMMENT_LENGTH);
 		ft_printf("Max %s len is %d\nYours is %d\n", str, len_err, len);
 	}
 }

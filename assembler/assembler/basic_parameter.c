@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/06 12:02:59 by atourner          #+#    #+#             */
-/*   Updated: 2018/06/13 16:39:21 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/11 15:05:20 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,8 @@ int		ft_is_rg(char *line)
 
 	i = 0;
 	if (line[i] == 'r' && ft_isdigit(line[i + 1]) && ++i)
-	{
 		while (ft_isdigit(line[i]))
 			i++;
-		if (i > 3 || (i == 3 && ft_strncmp(&line[1], "16", 2) > 0))
-			return (0);
-	}
 	else
 		return (0);
 	return (i);

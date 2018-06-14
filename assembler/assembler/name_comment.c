@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 16:34:52 by atourner          #+#    #+#             */
-/*   Updated: 2018/06/12 17:27:10 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/14 10:09:21 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,46 @@
 #include "asm.h"
 #include "op.h"
 
-static int		get_len(char **file, int i, int *act)
+static int		get_len(char **file, int i, int act)
 {
-	unsigned int	line;
 	unsigned int	len;
 
-	if (i < 0)
+	if (i < 0 || !file[act])
 		return (-1);
-	line = *act;
 	len = 0;
-	while (file[line] && file[line][i] != '\"')
+	while (file[act] && file[act][i] != '\"')
 	{
-		if (!file[line][i])
+		if (!file[act][i])
 		{
-			if (!file[line + 1])
+			if (!file[act + 1])
 				return (-1);
 			i = -1;
-			line++;
+			act++;
 		}
 		i++;
 		len++;
 	}
-	*act = line + 1;
-	return (len);
+	if (!file[act])
+		return (-1);
+	return (ft_noth_after(&file[act][i + 1], len));
 }
 
-static int		cont_start(char *file, int start)
+static int		cont_start(char *file, int start, int *start_in_f)
 {
-	int		i;
+	char	*tmp;
 
-	i = 0;
-	while (file[i] && (ft_iswhitespace(file[i]) || file[i] != '\"'))
-		i++;
-	if (file[i] == '\"')
-		return (i + 1 + start);
+	if (!file)
+		return (-1);
+	tmp = ft_skip_space(file);
+	if (*tmp == '\"')
+	{
+		*start_in_f = tmp - file + 1 + start;
+		return (tmp - file + 1 + start);
+	}
 	return (-1);
 }
 
-static char		*get_content(char **file, int line, int act, int mall)
+static char		*get_content(char **file, int *line, int act, int mall)
 {
 	char			*content;
 	int				i;
@@ -61,49 +63,50 @@ static char		*get_content(char **file, int line, int act, int mall)
 	if ((content = ft_strnew((mall == 0 ? PROG_NAME_LENGTH : COMMENT_LENGTH))))
 	{
 		len = act;
-		while (file[line][len] != '\"')
+		while (file[*line][len] != '\"')
 		{
-			content[i] = file[line][len];
-			if (!file[line][len])
+			content[i] = file[*line][len];
+			if (!file[*line][len])
 			{
 				len = -1;
 				content[i] = '\n';
-				line++;
+				*line += 1;
 			}
 			len++;
 			i++;
 		}
 	}
+	*line += 1;
 	return (content);
 }
 
-static char		*get_describe(char **file, int *act, int choice)
+static void		get_describe(char **file, int *act, int choice,
+	char **champion_describe)
 {
 	int			len;
 	int			cmd_len;
 	int			name_len;
-	int			sav;
+	int			start;
 
 	ft_get_describe_len(&name_len, &cmd_len, &len);
-	sav = *act;
-	if (!choice)
-	{
-		if (!ft_strncmp_s(file, act, choice) && ((len = get_len(file,
-		cont_start(&file[*act][name_len], name_len), act)) > 0)
+	choice = ft_strncmp_s(file[*act]);
+	if (choice == 1 && ((len = get_len(file,
+	cont_start(&file[*act][name_len], name_len, &start), *act)) > 0)
 		&& len <= PROG_NAME_LENGTH)
-			return (get_content(file, sav,
-						cont_start(&file[sav][name_len], 5), 0));
-		else
-			ft_print_error(0, len);
-		return (NULL);
+	{
+		if (!champion_describe[0])
+			champion_describe[0] = get_content(file, act, start, 0);
+		return ;
 	}
-	if (!ft_strncmp_s(file, act, choice) && ((len =
-	get_len(file, cont_start(&file[*act][cmd_len], cmd_len), act)) >= 0)
+	else if (choice == 2 && ((len = get_len(file,
+		cont_start(&file[*act][cmd_len], cmd_len, &start), *act)) >= 0)
 	&& len <= COMMENT_LENGTH)
-		return (get_content(file, sav, cont_start(&file[sav][cmd_len], 8), 1));
-	else
-		ft_print_error(1, len);
-	return (NULL);
+	{
+		if (!champion_describe[1])
+			champion_describe[1] = get_content(file, act, start, 1);
+		return ;
+	}
+	ft_print_error(choice, len);
 }
 
 /*
@@ -115,15 +118,16 @@ char			**ft_check_com_nam(char **file, int *act)
 	char	**champion_describe;
 
 	*act = 0;
-	if (!(champion_describe = (char**)malloc(sizeof(char*) * 3)))
+	if (!(champion_describe = (char**)ft_memalloc(sizeof(char*) * 3)))
 	{
 		ft_printf("Malloc error\nCheck your memory\n");
 		return (NULL);
 	}
 	ft_skip_empty(file, act);
-	champion_describe[0] = get_describe(file, act, 0);
+	get_describe(file, act, 0, champion_describe);
 	ft_skip_empty(file, act);
-	champion_describe[1] = get_describe(file, act, 1);
+	if (champion_describe[0] || champion_describe[1])
+		get_describe(file, act, 0, champion_describe);
 	champion_describe[2] = NULL;
 	if (!champion_describe[0] || !champion_describe[1])
 	{

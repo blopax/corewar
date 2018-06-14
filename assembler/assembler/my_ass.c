@@ -18,7 +18,7 @@
 **	si file est null, erreur, sinon je l'imprime dans le fichier
 */
 
-int		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_print		*file;
 

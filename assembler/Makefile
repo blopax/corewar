@@ -6,7 +6,7 @@
 #    By: atourner <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 10:42:44 by atourner          #+#    #+#              #
-#    Updated: 2018/06/13 09:18:11 by atourner         ###   ########.fr        #
+#    Updated: 2018/06/14 10:01:08 by atourner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ LIB:
 	@make -C $(LIB_PATH)
 
 %.o : %.c
-	@gcc -o $@ -c $< -I$(LIB_PATH)/includes -Iincludes
+	@gcc -o $@ $(FLAGS) -c $< -I$(LIB_PATH)/includes -Iincludes
 
 $(NAME) : $(COMP_NAME)
 	@gcc -o $(NAME) $(COMP_NAME) $(LIB_PATH)/libftprintf.a

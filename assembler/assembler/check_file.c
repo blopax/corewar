@@ -32,6 +32,17 @@ static char		**realloc_ar(char **tmp, char **act, int nb)
 	return (new);
 }
 
+static int		ft_test_line(char *line)
+{
+	char	*tmp;
+
+	tmp = ft_skip_space(line);
+	if (*tmp == '.' || *tmp == '#' || !*tmp || ft_isascii(*tmp))
+		return (1);
+	ft_strdel(&line);
+	return (0);
+}
+
 static char		**read_file(int fd)
 {
 	char	*tmp;
@@ -40,7 +51,7 @@ static char		**read_file(int fd)
 
 	nb = 0;
 	act = NULL;
-	while (get_next_line(fd, &tmp))
+	while (get_next_line(fd, &tmp) > 0 && ft_test_line(tmp))
 		act = realloc_ar(&tmp, act, ++nb);
 	return (act);
 }

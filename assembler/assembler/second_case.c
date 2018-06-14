@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 16:35:04 by atourner          #+#    #+#             */
-/*   Updated: 2018/06/13 18:01:36 by atourner         ###   ########.fr       */
+/*   Updated: 2018/05/07 17:57:30 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ int				ft_case_2(char *line, char **split, int op, t_label *act)
 	{
 		len = ft_check_param(ft_skip_space(split[0]), 6, &tmp);
 		if (!len || *tmp)
-			return (ft_free_and_ret(split, NULL, 0));
+			return (0);
 		len = ft_check_param(ft_skip_space(split[1]), 1, &tmp);
 		if (len && (*tmp == COMMENT_CHAR
 			|| (!*tmp && !split[2])) && ft_nb_letter(line, SEPARATOR_CHAR) == 1)
 			return (ft_add_op(split, op, act, get_second_ocp(split, op)));
 	}
-	return (ft_free_and_ret(split, NULL, 0));
+	return (0);
 }

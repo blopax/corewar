@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 16:32:46 by atourner          #+#    #+#             */
-/*   Updated: 2018/06/13 17:47:54 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/11 15:45:36 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,5 @@ int				ft_case_1(char *line, char **split, int op, t_label *act)
 			|| (!*tmp && !split[1])) && !ft_nb_letter(line, SEPARATOR_CHAR))
 				return (ft_add_op(split, op, act, get_first_ocp(op, split)));
 	}
-	return (ft_free_and_ret(split, NULL, 0));
+	return (0);
 }

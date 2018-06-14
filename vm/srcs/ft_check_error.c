@@ -6,13 +6,13 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 15:29:38 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/13 18:23:56 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/14 10:20:59 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	ft_usage()
+void	ft_usage(void)
 {
 	ft_putstr("usage : ./corewar ");
 	ft_putstr("[-visual] [-dump [x]] [-n [n1]] player1.cor ");

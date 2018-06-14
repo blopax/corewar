@@ -16,10 +16,8 @@
 
 void		ft_skip_empty(char **file, int *line)
 {
-	int		i;
 	char	*tmp;
 
-	i = 0;
 	while (file[*line])
 	{
 		tmp = ft_skip_space(file[*line]);

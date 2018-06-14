@@ -6,7 +6,7 @@
 #    By: atourner <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 10:42:44 by atourner          #+#    #+#              #
-#    Updated: 2018/02/26 16:08:15 by atourner         ###   ########.fr        #
+#    Updated: 2018/06/14 10:00:18 by atourner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,14 +110,11 @@ SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 
 COMP_NAME = $(SRC:.c=.o)
 
-all : comp $(NAME)
+all : $(NAME)
 
 %.o : %.c
 	@gcc -o $@ -c $< -Iincludes
 	@printf "\033[0;31mCompilation of \033[0m\033[0;32m$<\033[0m            \r"
-
-comp :
-		@echo "\033[0;35mBegin of compilation of library\033[0m"
 
 $(NAME) : $(COMP_NAME)
 	@ar rc $(NAME) $(COMP_NAME)

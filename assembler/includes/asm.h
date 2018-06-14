@@ -6,30 +6,13 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/16 15:18:55 by atourner          #+#    #+#             */
-/*   Updated: 2018/06/12 19:25:07 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/14 10:07:46 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASM_H
 # define ASM_H
 # include <fcntl.h>
-
-# define OP1 "live"
-# define OP2 "ld"
-# define OP3 "st"
-# define OP4 "add"
-# define OP5 "sub"
-# define OP6 "and"
-# define OP7 "or"
-# define OP8 "xor"
-# define OP9 "zjmp"
-# define OP10 "ldi"
-# define OP11 "sti"
-# define OP12 "fork"
-# define OP13 "lld"
-# define OP14 "lldi"
-# define OP15 "lfork"
-# define OP16 "aff"
 
 typedef struct		s_label
 {
@@ -101,6 +84,7 @@ int					ft_add_act_op(unsigned char *ret, t_op *op,
 		t_label *first, int *i);
 void				ft_print_error(int type, int len);
 void				ft_get_describe_len(int *name_len, int *cmd_len, int *len);
-int					ft_strncmp_s(char **file, int *act, int choice);
+int					ft_strncmp_s(char *file);
+int					ft_noth_after(char *line, int ret);
 
 #endif

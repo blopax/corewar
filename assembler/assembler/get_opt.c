@@ -6,13 +6,17 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 16:34:22 by atourner          #+#    #+#             */
-/*   Updated: 2018/06/13 16:16:31 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/14 10:06:53 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "asm.h"
 #include "op.h"
+
+char	*g_allop[16] = {"live\0", "ld\0", "st\0", "add\0", "sub\0",
+	"and\0", "or\0", "xor\0", "zjmp\0", "ldi\0",
+	"sti\0", "fork\0", "lld\0", "lldi\0", "lfork\0", "aff\0"};
 
 /*
 **	Test de chaque op ,le retour sera si l'element
@@ -26,46 +30,41 @@ static int		right_follow(char c)
 	return (0);
 }
 
-static int		continu_op(char *line, t_label *act)
+static int		choose_op(int op, t_label *act, char *line, int len)
 {
-	if (!ft_strncmp(line, OP8, 3) && right_follow(line[3]))
-		return (ft_case_5(line, ft_split_arg(&line[3]), 8, act));
-	if (!ft_strncmp(line, OP9, 4) && right_follow(line[4]))
-		return (ft_case_1(line, ft_split_arg(&line[4]), 9, act));
-	if (!ft_strncmp(line, OP10, 3) && right_follow(line[3]))
-		return (ft_case_6(line, ft_split_arg(&line[3]), 10, act));
-	if (!ft_strncmp(line, OP11, 3) && right_follow(line[3]))
-		return (ft_case_7(line, ft_split_arg(&line[3]), 11, act));
-	if (!ft_strncmp(line, OP12, 4) && right_follow(line[4]))
-		return (ft_case_1(line, ft_split_arg(&line[4]), 12, act));
-	if (!ft_strncmp(line, OP13, 3) && right_follow(line[3]))
-		return (ft_case_2(line, ft_split_arg(&line[3]), 13, act));
-	if (!ft_strncmp(line, OP14, 4) && right_follow(line[4]))
-		return (ft_case_6(line, ft_split_arg(&line[4]), 14, act));
-	if (!ft_strncmp(line, OP15, 5) && right_follow(line[5]))
-		return (ft_case_1(line, ft_split_arg(&line[5]), 15, act));
-	if (!ft_strncmp(line, OP16, 3) && right_follow(line[3]))
-		return (ft_case_8(line, ft_split_arg(&line[3]), 16, act));
+	if (op == 1 || op == 9 || op == 12 || op == 15)
+		return (ft_case_1(line, ft_split_arg(&line[len]), op, act));
+	if (op == 2 || op == 13)
+		return (ft_case_2(line, ft_split_arg(&line[len]), op, act));
+	if (op == 3)
+		return (ft_case_3(line, ft_split_arg(&line[len]), op, act));
+	if (op == 4 || op == 5)
+		return (ft_case_4(line, ft_split_arg(&line[len]), op, act));
+	if (op == 6 || op == 7 || op == 8)
+		return (ft_case_5(line, ft_split_arg(&line[len]), op, act));
+	if (op == 10)
+		return (ft_case_6(line, ft_split_arg(&line[len]), op, act));
+	if (op == 11)
+		return (ft_case_7(line, ft_split_arg(&line[len]), op, act));
+	if (op == 16)
+		return (ft_case_8(line, ft_split_arg(&line[len]), op, act));
 	return (0);
 }
 
 static int		all_op(char *line, t_label *act)
 {
-	if (!ft_strncmp(line, OP1, 4) && right_follow(line[4]))
-		return (ft_case_1(line, ft_split_arg(&line[4]), 1, act));
-	if (!ft_strncmp(line, OP2, 2) && right_follow(line[2]))
-		return (ft_case_2(line, ft_split_arg(&line[2]), 2, act));
-	if (!ft_strncmp(line, OP3, 2) && right_follow(line[2]))
-		return (ft_case_3(line, ft_split_arg(&line[2]), 3, act));
-	if (!ft_strncmp(line, OP4, 3) && right_follow(line[3]))
-		return (ft_case_4(line, ft_split_arg(&line[3]), 4, act));
-	if (!ft_strncmp(line, OP5, 3) && right_follow(line[3]))
-		return (ft_case_4(line, ft_split_arg(&line[3]), 5, act));
-	if (!ft_strncmp(line, OP6, 3) && right_follow(line[3]))
-		return (ft_case_5(line, ft_split_arg(&line[3]), 6, act));
-	if (!ft_strncmp(line, OP7, 2) && right_follow(line[2]))
-		return (ft_case_5(line, ft_split_arg(&line[2]), 7, act));
-	return (continu_op(line, act));
+	int		op;
+
+	op = 0;
+	while (op < 16)
+		if (!ft_strncmp(line, g_allop[op], (int)ft_strlen(g_allop[op]))
+			&& right_follow(line[ft_strlen(g_allop[op])]))
+			break ;
+		else
+			op++;
+	if (op < 16 && right_follow(line[ft_strlen(allop[op])]))
+		return (choose_op(op + 1, act, line, (int)ft_strlen(allop[op])));
+	return (0);
 }
 
 /*
