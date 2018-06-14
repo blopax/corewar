@@ -6,7 +6,7 @@
 #    By: atourner <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 10:42:44 by atourner          #+#    #+#              #
-#    Updated: 2018/06/14 10:01:08 by atourner         ###   ########.fr        #
+#    Updated: 2018/06/14 11:37:34 by atourner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ NAME = asm
 FLAGS = -Wall -Werror -Wextra
 
 SRC_PATH = assembler/
+
+H = includes/asm.h includes/op.h
 
 COMP_PATH = obj/
 
@@ -54,7 +56,7 @@ all : LIB $(NAME)
 LIB:
 	@make -C $(LIB_PATH)
 
-%.o : %.c
+%.o : %.c $(H) $(LIB_PATH)/libftprintf.a
 	@gcc -o $@ $(FLAGS) -c $< -I$(LIB_PATH)/includes -Iincludes
 
 $(NAME) : $(COMP_NAME)
