@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 14:59:59 by atourner          #+#    #+#             */
-/*   Updated: 2018/06/13 14:00:38 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/14 17:53:26 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static int		g_wait_time = 1;
 static int		g_continu_visu = 1;
 
-static void	get_ev(WINDOW *board, char c)
+void	get_ev(WINDOW *board, char c)
 {
 	if (c == ' ')
 		ft_pause(board);
@@ -69,7 +69,7 @@ static void	print_player(t_info *info, WINDOW *player)
 	print_bulbasaur(info, player);
 	print_pikachu(info, player);
 	if (!g_continu_visu)
-		mvwprintw(player, (info->players_nb - 1) * 4 + 12, 1,
+		mvwprintw(player, (info->players_nb - 1) * 4 + 15, 1,
 			"Thanks for waiting the vm to calculate the end ;)");
 	wrefresh(player);
 }

@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 18:08:19 by atourner          #+#    #+#             */
-/*   Updated: 2018/06/13 12:45:55 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/14 17:56:36 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,15 @@ void		wait_plz(int ms)
 
 void		ft_pause(WINDOW *board)
 {
-	while (wgetch(board) != ' ')
+	char	c;
+
+	while ((c = wgetch(board)) == ERR)
 		;
+	if (c != ' ')
+	{
+		get_ev(board, c);
+		ft_pause(board);
+	}
 }
 
 void		change_music(void)
@@ -74,9 +81,9 @@ void		launch_end(t_info *info, WINDOW *player)
 {
 	system("pkill afplay");
 	system("afplay ~/Downloads/Pokemon_final.mp3 &");
-	mvwprintw(player, (info->players_nb - 1) * 4 + 14, 1,
+	mvwprintw(player, (info->players_nb - 1) * 4 + 17, 1,
 		"Winner is player %d :", info->last_player_alive);
-	mvwprintw(player, (info->players_nb - 1) * 4 + 15, 1,
+	mvwprintw(player, (info->players_nb - 1) * 4 + 19, 1,
 		"\t%s", info->players_info[info->last_player_alive - 1].name);
 	wrefresh(player);
 }

@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 20:08:45 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/13 16:50:13 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/14 18:43:29 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	ft_add_new_proc(t_info *info, t_proc *proc, int fork_val)
 		new->reg[i] = proc->reg[i];
 		i++;
 	}
+	ft_preload_instruction(info, new);
+	new->loaded_op.cycle_nb--;
 }
 
 int		ft_fork(t_info *info, t_proc *proc)

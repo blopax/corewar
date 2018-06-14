@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:35:51 by atourner          #+#    #+#             */
-/*   Updated: 2018/06/13 15:07:07 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/14 15:03:26 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,33 @@ static char	*str_chrreplace(char *str)
 	return (name);
 }
 
+static void	wprint_player_and_stuff(WINDOW *player, t_info *info, int i,
+		char *name)
+{
+		mvwprintw(player, i * 4 + 1, 1,
+				"Joueur %d -> %d", i + 1, info->players_info[i].number);
+		mvwprintw(player, i * 4 + 2, 1,
+				"\tName : %s", name);
+		mvwprintw(player, i * 4 + 3, 1,
+				"\tLive : %d", info->players_info[i].live);
+}
+
+static void	wprint_proc(WINDOW *player, t_info *info, int i)
+{
+	t_proc		*act;
+	int			nb_pc;
+
+	nb_pc = 0;
+	act = info->first_processus;
+	while (act)
+	{
+		if (act->alive >= 0)
+			nb_pc += 1;
+		act = act->next;
+	}
+	mvwprintw(player, i * 4 + 13, 1, "Total proc : %d", nb_pc);
+}
+
 void		wprint_player(WINDOW *player, t_info *info, int g_wait_time)
 {
 	int		i;
@@ -37,21 +64,16 @@ void		wprint_player(WINDOW *player, t_info *info, int g_wait_time)
 	{
 		wattron(player, COLOR_PAIR(5 + i));
 		name = str_chrreplace(info->players_info[i].name);
-		mvwprintw(player, i * 4 + 1, 1,
-				"Joueur %d -> %d", i, info->players_info[i].number);
-		mvwprintw(player, i * 4 + 2, 1,
-				"\tName : %s", name);
-		mvwprintw(player, i * 4 + 3, 1,
-				"\tLive : %d", info->players_info[i].live);
+		wprint_player_and_stuff(player, info, i, name);
 		ft_strdel(&name);
 		i++;
 	}
 	wattron(player, COLOR_PAIR(1));
-	mvwprintw(player, --i * 4 + 5, 1, "Cycle to die : %d", info->cycles_to_die);
-	mvwprintw(player, i * 4 + 6, 1, "Actual cycle : %d", info->cycles);
+	mvwprintw(player, --i * 4 + 5, 1, "Current period : %d / %d",
+			info->countdown_to_die, info->cycles_to_die);
+	mvwprintw(player, i * 4 + 6, 1, "Total cycle : %d", info->cycles);
 	mvwprintw(player, i * 4 + 7, 1, "Check : %d / 9", info->check);
-	mvwprintw(player, i * 4 + 8, 1,
-			"Count_to_die : %d", info->countdown_to_die);
-	mvwprintw(player, i * 4 + 9, 1, "Total_live : %d", info->total_lives);
-	mvwprintw(player, i * 4 + 10, 1, "Wait time : %d ms", g_wait_time);
+	mvwprintw(player, i * 4 + 9, 1, "Total live : %d", info->total_lives);
+	mvwprintw(player, i * 4 + 11, 1, "Wait time : %d ms", g_wait_time);
+	wprint_proc(player, info, i);
 }

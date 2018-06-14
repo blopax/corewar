@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 16:55:35 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/13 16:56:06 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/14 16:42:01 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		ft_param_120(t_info *info, t_proc *proc, int param)
 	{
 		return (ft_ptr_to_uint(info, proc->pc - 2 +
 					ft_idx_mod(proc, ft_ptr_to_uint(info, proc->pc + P_SIZE[0],
-						P_SIZE[1])), proc->loaded_op.dir_size));
+						P_SIZE[1])), 4));
 	}
 	if (param == 2)
 	{

@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/06/14 13:24:31 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/14 18:11:39 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void				ft_uint_to_ptr(t_info *info, unsigned int ptr, int size,
 		unsigned int value);
 void				ft_modif_carry(t_proc *proc, int carry_value);
 int					ft_idx_mod(t_proc *proc, unsigned int val);
+int					ft_preload_instruction(t_info *info, t_proc *proc);
 unsigned int		ft_mod_memsize(int val);
 void				free_player(t_player *player);
 int					ft_free_all(t_info *info);
@@ -148,5 +149,6 @@ void				wprint_player(WINDOW *player, t_info *info,
 					int g_wait_time);
 void				ft_hahaaa(t_proc *act);
 void				is_live(int i, t_info *info, WINDOW *board);
+void				get_ev(WINDOW *board, char c);
 
 #endif
