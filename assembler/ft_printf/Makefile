@@ -6,13 +6,15 @@
 #    By: atourner <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 10:42:44 by atourner          #+#    #+#              #
-#    Updated: 2018/06/14 10:00:18 by atourner         ###   ########.fr        #
+#    Updated: 2018/06/14 11:35:33 by atourner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
 FLAGS = -Wall -Werror -Wextra
+
+H = includes/ft_printf.h includes/get_next_line.h includes/libft.h
 
 SRC_PATH = srcs/
 
@@ -112,7 +114,7 @@ COMP_NAME = $(SRC:.c=.o)
 
 all : $(NAME)
 
-%.o : %.c
+%.o : %.c $(H)
 	@gcc -o $@ -c $< -Iincludes
 	@printf "\033[0;31mCompilation of \033[0m\033[0;32m$<\033[0m            \r"
 
