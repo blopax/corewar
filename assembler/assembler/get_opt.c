@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 16:34:22 by atourner          #+#    #+#             */
-/*   Updated: 2018/06/14 10:06:53 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/14 11:05:59 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ static int		all_op(char *line, t_label *act)
 			break ;
 		else
 			op++;
-	if (op < 16 && right_follow(line[ft_strlen(allop[op])]))
-		return (choose_op(op + 1, act, line, (int)ft_strlen(allop[op])));
+	if (op < 16 && right_follow(line[ft_strlen(g_allop[op])]))
+		return (choose_op(op + 1, act, line, (int)ft_strlen(g_allop[op])));
 	return (0);
 }
 
