@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 16:33:52 by atourner          #+#    #+#             */
-/*   Updated: 2018/06/12 19:29:27 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/14 13:38:45 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ t_label				*ft_get_label(char **file, int line)
 		if (!file[line])
 			break ;
 		if (get_current_label(file, &line, &first) < 0)
+		{
+			ft_free_chain(first, 0);
 			return (NULL);
+		}
 	}
 	return (first);
 }
