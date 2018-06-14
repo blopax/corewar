@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/06/13 17:20:22 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/14 13:24:31 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include "stdio.h"
 # include <ncurses.h>
 # define P_SIZE proc->loaded_op.param_size
-
 
 typedef struct		s_op
 {
@@ -145,7 +144,8 @@ void				is_proc(int i, t_proc *act, WINDOW *board);
 void				ft_pause(WINDOW *board);
 void				change_music();
 void				launch_end(t_info *info, WINDOW *player);
-void				wprint_player(WINDOW *player, t_info *info, int g_wait_time);
+void				wprint_player(WINDOW *player, t_info *info,
+					int g_wait_time);
 void				ft_hahaaa(t_proc *act);
 void				is_live(int i, t_info *info, WINDOW *board);
 

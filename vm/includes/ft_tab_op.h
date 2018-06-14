@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/16 15:04:00 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/05 16:22:51 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/14 13:22:17 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct		s_tab_op
 	int		(*f_op)(t_info*, t_proc*);
 }					t_tab_op;
 
-struct	s_tab_op	tabop[] =
+struct s_tab_op	tabop[] =
 {
 	{1, &ft_live},
 	{2, &ft_load},

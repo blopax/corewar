@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 17:38:49 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/01 17:42:05 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/14 13:21:43 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct		s_get_param
 	int		(*f_op)(t_info*, t_proc*, int);
 }					t_get_param;
 
-struct	s_get_param	tab_ocp[] =
+struct s_get_param	tab_ocp[] =
 {
 	{84, &ft_param_84},
 	{88, &ft_param_88},
