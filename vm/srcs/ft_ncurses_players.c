@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:35:51 by atourner          #+#    #+#             */
-/*   Updated: 2018/06/14 18:48:43 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/15 16:02:28 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	wprint_player_and_stuff(WINDOW *player, t_info *info, int i,
 		char *name)
 {
 	mvwprintw(player, i * 4 + 1, 1,
-			"Joueur %d -> %d", i + 1, info->players_info[i].number);
+			"Player %d -> %d", i + 1, info->players_info[i].number);
 	mvwprintw(player, i * 4 + 2, 1,
 			"\tName : %s", name);
 	mvwprintw(player, i * 4 + 3, 1,
@@ -71,9 +71,10 @@ void		wprint_player(WINDOW *player, t_info *info, int g_wait_time)
 	wattron(player, COLOR_PAIR(1));
 	mvwprintw(player, --i * 4 + 5, 1, "Current period : %d / %d",
 			info->countdown_to_die, info->cycles_to_die);
-	mvwprintw(player, i * 4 + 6, 1, "Total cycle : %d", info->cycles);
+	mvwprintw(player, i * 4 + 6, 1, "Total cycles : %d", info->cycles);
 	mvwprintw(player, i * 4 + 7, 1, "Check : %d / 9", info->check);
-	mvwprintw(player, i * 4 + 9, 1, "Total live : %d", info->total_lives);
+	mvwprintw(player, i * 4 + 9, 1, "Live(s) in current period : %d",
+			info->total_lives);
 	mvwprintw(player, i * 4 + 11, 1, "Wait time : %d ms", g_wait_time);
 	wprint_proc(player, info, i);
 }
