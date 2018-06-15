@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:56:29 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/15 13:32:32 by pclement         ###   ########.fr       */
+/*   Updated: 2018/06/15 14:34:09 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_intro_contestant(t_info *info)
 	while (i < info->players_nb)
 	{
 		ft_putstr("* Player ");
-		ft_putnbr(i + 1);
+		ft_putnbr(info->players_info[i].number);
 		ft_putstr(", weighing ");
 		ft_putnbr(info->players_info[i].size);
 		ft_putstr(" bytes, \"");

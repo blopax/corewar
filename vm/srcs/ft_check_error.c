@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 15:29:38 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/14 10:22:21 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/15 14:38:51 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_error(int error_code, t_info *info)
 	if (error_code == 2)
 		ft_putstr("Player file not found\n");
 	if (error_code == 3)
-		ft_putstr("You must enter a number between -2147483648 & 2147483647\n");
+		ft_putstr("You must enter a valid number\n");
 	if (error_code == 4)
 		ft_putstr("Problem while checking parameters\n");
 	if (error_code == 5)
