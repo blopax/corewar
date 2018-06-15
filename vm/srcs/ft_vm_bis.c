@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 16:56:49 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/13 19:04:08 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/15 15:39:17 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ int		ft_flag(t_info *info)
 	}
 	if (info->countdown_to_die == info->cycles_to_die)
 	{
+		ft_kill_proc(info);
 		if (info->total_lives > NBR_LIVE || info->check == MAX_CHECKS - 1)
 		{
-			ft_kill_proc(info);
 			info->cycles_to_die -= CYCLE_DELTA;
 			info->check = 0;
 		}
