@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 14:59:59 by atourner          #+#    #+#             */
-/*   Updated: 2018/06/14 18:48:31 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/15 14:31:09 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	print_board(t_info *info, WINDOW *board, int ret)
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		wattron(board, COLOR_PAIR(1));
+		wattron(board, COLOR_PAIR(9));
 		is_proc(i, info->first_processus, board);
 		is_live(i, info, board);
 		mvwprintw(board, (i / 64) + 1, ((i % 64) + 1) * 3,

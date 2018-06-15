@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 18:08:19 by atourner          #+#    #+#             */
-/*   Updated: 2018/06/14 17:56:36 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/15 14:36:48 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,6 @@ void		launch_end(t_info *info, WINDOW *player)
 	mvwprintw(player, (info->players_nb - 1) * 4 + 17, 1,
 		"Winner is player %d :", info->last_player_alive);
 	mvwprintw(player, (info->players_nb - 1) * 4 + 19, 1,
-		"\t%s", info->players_info[info->last_player_alive - 1].name);
+		"\t%s", info->players_info[info->last_player_alive_idx].name);
 	wrefresh(player);
 }
