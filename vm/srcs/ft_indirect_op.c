@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 20:05:21 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/14 16:45:29 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/15 13:35:53 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_store_indirect(t_info *info, t_proc *proc)
 			info->board[ft_mod_memsize(proc->pc - 1)]);
 	if (reg_idx < 1 || reg_idx > 16 || proc->error == 1)
 		return (0);
-	ft_uint_to_ptr(info, proc->pc - 2 + (val1 + val2) % IDX_MOD,
+	ft_uint_to_ptr(info, proc->pc - 2 + ft_idx_mod(proc, val1 + val2),
 			REG_SIZE, proc->reg[reg_idx - 1]);
 	(proc->reg[reg_idx - 1] == 0) ? ft_modif_carry(proc, 1) :
 		ft_modif_carry(proc, 0);
