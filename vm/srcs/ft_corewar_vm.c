@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:56:29 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/15 12:37:35 by pclement         ###   ########.fr       */
+/*   Updated: 2018/06/15 12:53:11 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_show_live_board(t_info *info)
 	}
 }
 
-void	ft_intro_contestant(t_info * info)
+void	ft_intro_contestant(t_info *info)
 {
 	int		i;
 
@@ -81,7 +81,6 @@ void	ft_intro_contestant(t_info * info)
 		ft_putstr("\n");
 		i++;
 	}
-
 }
 
 int		main(int argc, char **argv)
