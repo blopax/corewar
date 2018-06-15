@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/29 16:49:52 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/13 16:51:42 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/15 15:09:25 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,19 @@ unsigned int	ft_mod_memsize(int val)
 
 int				ft_idx_mod(t_proc *proc, unsigned int val)
 {
+	int		flag;
+
+	flag = 0;
+	if (val > 2147483647)
+		flag = 1;
 	val = val % 65536;
 	if (proc->loaded_op.opcode == 13 || proc->loaded_op.opcode == 14)
-		return (val % MEM_SIZE);
-	if (val > (65535 / 2))
+	{
+		if (flag == 0)
+			return (val % MEM_SIZE);
+		return (-(-(val % MEM_SIZE) % IDX_MOD));
+	}
+	if (val > (65535 / 2) || flag == 1)
 		return (-(-(val % MEM_SIZE) % IDX_MOD));
 	return ((val % MEM_SIZE) % IDX_MOD);
 }
