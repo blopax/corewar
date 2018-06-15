@@ -12,9 +12,9 @@
 
 NAME = asm
 
-FLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
-SRC_PATH = assembler/
+SRC_PATH = src/
 
 H = includes/asm.h includes/op.h
 
@@ -57,17 +57,11 @@ LIB:
 	@make -C $(LIB_PATH)
 
 %.o : %.c $(H) $(LIB_PATH)/libftprintf.a
-	@gcc -o $@ $(FLAGS) -c $< -I$(LIB_PATH)/includes -Iincludes
+	@gcc -o $@ $(CFLAGS) -c $< -I$(LIB_PATH)/includes -Iincludes
 
 $(NAME) : $(COMP_NAME) Makefile
 	@gcc -o $(NAME) $(COMP_NAME) $(LIB_PATH)/libftprintf.a
 	@echo "\033[0;35mCompilation de la l'assembleur fini\033[0m"
-
-leaks:
-	@gcc $(FLAGS) -g -fsanitize=leak -o $(NAME) $(COMP_NAME) $(LIB_PATH)/libftprintf.a
-
-address:
-	@gcc $(FLAGS) -g -fsanitize=address -fno-omit-frame-pointer -o $(NAME) $(COMP_NAME) $(LIB_PATH)/libftprintf.a
 
 clean :
 	@echo "\033[0;31mPiou piou partially erased zone\033[0m"

@@ -83,6 +83,8 @@ int			ft_val_lab(char *line, char **name)
 	j = 0;
 	while (ft_iswhitespace(line[i]))
 		i++;
+	if (line[i] == LABEL_CHAR)
+		return (0);
 	while (line[i + j] && ft_letter_lab_name(line[i + j]))
 		j++;
 	if (line[i + j] == LABEL_CHAR)
