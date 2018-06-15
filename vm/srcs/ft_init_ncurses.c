@@ -6,7 +6,7 @@
 /*   By: atourner <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 18:20:57 by atourner          #+#    #+#             */
-/*   Updated: 2018/06/13 13:59:22 by atourner         ###   ########.fr       */
+/*   Updated: 2018/06/15 14:41:28 by atourner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static void	option_ncurses(void)
 	init_pair(6, COLOR_BLUE, COLOR_BLACK);
 	init_pair(7, COLOR_MAGENTA, COLOR_BLACK);
 	init_pair(8, COLOR_CYAN, COLOR_BLACK);
+	init_color(20, 255, 255, 255);
+	init_pair(9, 20, COLOR_BLACK);
 }
 
 int			ft_init_ncurse(WINDOW **board, WINDOW **player)

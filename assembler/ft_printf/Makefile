@@ -6,7 +6,7 @@
 #    By: atourner <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 10:42:44 by atourner          #+#    #+#              #
-#    Updated: 2018/06/14 11:35:33 by atourner         ###   ########.fr        #
+#    Updated: 2018/06/15 13:39:08 by pclement         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libftprintf.a
 
 FLAGS = -Wall -Werror -Wextra
 
-H = includes/ft_printf.h includes/get_next_line.h includes/libft.h
+H = includes/ft_printf.h includes/get_next_line.h includes/libft.h Makefile
 
 SRC_PATH = srcs/
 

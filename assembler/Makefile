@@ -6,7 +6,7 @@
 #    By: atourner <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 10:42:44 by atourner          #+#    #+#              #
-#    Updated: 2018/06/14 13:39:24 by atourner         ###   ########.fr        #
+#    Updated: 2018/06/15 13:36:54 by pclement         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ LIB:
 %.o : %.c $(H) $(LIB_PATH)/libftprintf.a
 	@gcc -o $@ $(FLAGS) -c $< -I$(LIB_PATH)/includes -Iincludes
 
-$(NAME) : $(COMP_NAME)
+$(NAME) : $(COMP_NAME) Makefile
 	@gcc -o $(NAME) $(COMP_NAME) $(LIB_PATH)/libftprintf.a
 	@echo "\033[0;35mCompilation de la l'assembleur fini\033[0m"
 
