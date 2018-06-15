@@ -6,7 +6,7 @@
 /*   By: pclement <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/20 16:11:17 by pclement          #+#    #+#             */
-/*   Updated: 2018/06/14 18:11:39 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/15 12:42:44 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct		s_info
 	char			argv[15];
 	int				player_one;
 	int				last_player_alive;
+	int				last_player_alive_idx;
 	int				countdown_to_die;
 }					t_info;
 

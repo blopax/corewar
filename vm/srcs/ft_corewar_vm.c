@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:56:29 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/13 16:30:41 by pclement         ###   ########.fr       */
+/*   Updated: 2018/06/15 12:37:35 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,28 @@ void	ft_show_live_board(t_info *info)
 	}
 }
 
+void	ft_intro_contestant(t_info * info)
+{
+	int		i;
+
+	i = 0;
+	ft_putstr("Introducing contestants...\n");
+	while (i < info->players_nb)
+	{
+		ft_putstr("* Player ");
+		ft_putnbr(i + 1);
+		ft_putstr(", weighing ");
+		ft_putnbr(info->players_info[i].size);
+		ft_putstr(" bytes, \"");
+		ft_putstr(info->players_info[i].name);
+		ft_putstr("\"\n");
+		ft_putstr(info->players_info[i].comment);
+		ft_putstr("\n");
+		i++;
+	}
+
+}
+
 int		main(int argc, char **argv)
 {
 	t_info	*info;
@@ -77,6 +99,7 @@ int		main(int argc, char **argv)
 			ft_error(7, info);
 		i++;
 	}
+	ft_intro_contestant(info);
 	set_vm(info);
 	ft_create_proc(info);
 	ft_run_vm(info);
