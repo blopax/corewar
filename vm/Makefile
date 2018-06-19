@@ -1,8 +1,8 @@
 NAME = corewar
 
 #compiler
-CC = clang
-CFLAGS = -Werror -Wall -Wextra
+CC = gcc
+CFLAGS = -Werror -Wall -Wextra -fsanitize=address
 
 #flags for preprocessor
 CPPFLAGS = -Iincludes/ -Ilibft/
@@ -56,7 +56,7 @@ END_COLOUR = \x1b[0m
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(LFLAGS) $(OBJ) $(LIB_NCURSES) -o $@
+	$(CC) $(LFLAGS) -fsanitize=address $(OBJ) $(LIB_NCURSES) -o $@
 	@echo "$(GREEN) Binary compilation succesfull$(END_COLOUR)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)/%.c $(DEPENDENCIES) $(LIB)

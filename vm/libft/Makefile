@@ -1,8 +1,8 @@
 NAME = libft.a
 
 #compiler
-CC = clang
-CFLAGS = -Werror -Wall -Wextra
+CC = gcc
+CFLAGS = -Werror -Wall -Wextra -fsanitize=address
 
 #flags for preprocessor
 CPPFLAGS = -I.

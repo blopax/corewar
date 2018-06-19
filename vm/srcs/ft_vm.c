@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 17:08:34 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/15 14:38:50 by pclement         ###   ########.fr       */
+/*   Updated: 2018/06/19 19:11:41 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	ft_run_vm(t_info *info)
 		info->cycles++;
 		info->countdown_to_die++;
 	}
-	if (info->dump == -1)
+	if (info->dump == -1 || info->dump > info->cycles)
 	{
 		if (info->visual == 1)
 			ft_visu(info, 1);
