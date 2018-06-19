@@ -2,7 +2,7 @@ NAME = libft.a
 
 #compiler
 CC = gcc
-CFLAGS = -Werror -Wall -Wextra -fsanitize=address
+CFLAGS = -Werror -Wall -Wextra
 
 #flags for preprocessor
 CPPFLAGS = -I.
