@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:56:29 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/15 14:34:09 by pclement         ###   ########.fr       */
+/*   Updated: 2018/06/19 16:38:15 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,6 @@ void	ft_show_board(t_info *info)
 		ft_nl_space(i);
 	}
 	ft_putstr("\n");
-}
-
-void	ft_show_live_board(t_info *info)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (i < MEM_SIZE)
-	{
-		if (info->live_board[i] != 5000000000)
-		{
-			ft_putstr("There has been a live detected at position ");
-			ft_putnbr(i);
-			ft_putstr(" for player ");
-			ft_putnbr(info->live_board[i]);
-			ft_putstr("\n");
-		}
-		i++;
-	}
 }
 
 void	ft_intro_contestant(t_info *info)

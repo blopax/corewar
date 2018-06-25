@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 16:02:56 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/12 16:09:55 by pclement         ###   ########.fr       */
+/*   Updated: 2018/06/19 16:43:48 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,3 @@ int		ft_free_all(t_info *info)
 	info = 0;
 	return (0);
 }
-/*
-** Ne pas free name et comment car sont deja free quand on free header
-*/
