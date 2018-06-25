@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/26 17:56:29 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/19 16:38:15 by pclement         ###   ########.fr       */
+/*   Updated: 2018/06/25 15:24:06 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@ void	ft_nl_space(int i)
 		ft_putstr("\n");
 	else
 		ft_putstr(" ");
+}
+
+void	ft_write_char(t_info *info, int i)
+{
+	char			*str;
+
+	str = 0;
+	str = ft_itoa_base(info->board[i], "0123456789abcdef");
+	ft_putstr(str);
+	ft_safe_free(str);
 }
 
 void	ft_show_board(t_info *info)
@@ -35,7 +45,7 @@ void	ft_show_board(t_info *info)
 		{
 			if (info->board[i] < 16)
 				ft_putstr("0");
-			ft_putstr(ft_itoa_base(info->board[i], "0123456789abcdef"));
+			ft_write_char(info, i);
 		}
 		i++;
 		ft_nl_space(i);
