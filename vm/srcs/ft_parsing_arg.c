@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 15:30:38 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/19 17:00:11 by pclement         ###   ########.fr       */
+/*   Updated: 2018/06/25 10:33:32 by pclement         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_set_player_number(char **argv, t_info *info, int i)
 		if (info->players_nb > 0)
 		{
 			info->players_info[info->players_nb].number =
-				info->players_info[0].number + info->player_one;
+				info->players_info[0].number - info->player_one;
 			info->player_one++;
 		}
 	}

@@ -6,14 +6,14 @@
 #    By: pclement <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/19 16:33:19 by pclement          #+#    #+#              #
-#    Updated: 2018/06/19 16:33:25 by pclement         ###   ########.fr        #
+#    Updated: 2018/06/20 18:30:39 by nvergnac         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = corewar
 
 #compiler
-CC = clang
+CC = gcc
 CFLAGS = -Werror -Wall -Wextra
 
 #flags for preprocessor

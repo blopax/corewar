@@ -1,7 +1,7 @@
 NAME = libft.a
 
 #compiler
-CC = clang
+CC = gcc
 CFLAGS = -Werror -Wall -Wextra
 
 #flags for preprocessor

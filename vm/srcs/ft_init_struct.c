@@ -6,7 +6,7 @@
 /*   By: nvergnac <nvergnac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/07 15:28:11 by nvergnac          #+#    #+#             */
-/*   Updated: 2018/06/13 16:50:37 by nvergnac         ###   ########.fr       */
+/*   Updated: 2018/06/20 16:56:09 by nvergnac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_init_players(t_info *new_info)
 		new_info->players_info[i].program = 0;
 		new_info->players_info[i].live = 0;
 		new_info->players_info[i].turn = 0;
-		new_info->players_info[i].number = 1;
+		new_info->players_info[i].number = -1;
 		i++;
 	}
 }
